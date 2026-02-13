@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect, useCallback } from "react"
 import Image from "next/image"
 import { ArrowLeft, Minus, Plus, UtensilsCrossed, Package } from "lucide-react"
 import type { Product, Additional } from "@/lib/types"
@@ -25,6 +25,22 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
   const [observation, setObservation] = useState("")
 
   const isBelowMinimum = quantity < minQty
+  const [showBottomBar, setShowBottomBar] = useState(true)
+
+  const handleScroll = useCallback(() => {
+    const scrollable = document.querySelector('[data-product-scroll]')
+    if (!scrollable) return
+    const { scrollTop, scrollHeight, clientHeight } = scrollable
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 20
+    setShowBottomBar(!isAtBottom)
+  }, [])
+
+  useEffect(() => {
+    const scrollable = document.querySelector('[data-product-scroll]')
+    if (!scrollable) return
+    scrollable.addEventListener('scroll', handleScroll, { passive: true })
+    return () => scrollable.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
 
   const suggestedProducts = useMemo(() => {
     const others = products.filter((p) => p.id !== product.id)
@@ -76,7 +92,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
   }
 
   return (
-    <div className="fixed inset-0 bg-background z-50 overflow-y-auto animate-in fade-in duration-300">
+    <div data-product-scroll className="fixed inset-0 bg-background z-50 overflow-y-auto animate-in fade-in duration-300">
       <div className="max-w-lg mx-auto min-h-screen pb-24 animate-in slide-in-from-bottom-8 duration-500 ease-out">
         <button
           onClick={onClose}
@@ -322,7 +338,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
           </div>
         </div>
 
-        <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 animate-in slide-in-from-bottom-4 duration-500 delay-500 fill-mode-both">
+        <div className={`fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 transition-transform duration-300 ease-in-out ${showBottomBar ? 'translate-y-0' : 'translate-y-full'}`}>
           <div className="max-w-lg mx-auto flex items-center gap-4">
             <div className="flex items-center gap-3 bg-secondary rounded-lg px-4 py-2">
               <button
