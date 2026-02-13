@@ -368,7 +368,7 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit }: UpsellComboP
               active:scale-[0.98] transition-all duration-200 disabled:opacity-50"
           >
             <Check className="w-5 h-5" />
-            Adicionar Combo - R$ {comboPrice.toFixed(2).replace(".", ",")} (economize R$ {savings.toFixed(2).replace(".", ",")})
+            Adicionar Combo
           </Button>
         </div>
       )}
