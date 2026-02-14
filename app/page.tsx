@@ -17,6 +17,7 @@ import { LocationPopup } from "@/components/delivery/location-popup"
 import { CategoryShowcase } from "@/components/delivery/category-showcase"
 import { AboutUs } from "@/components/delivery/about-us"
 import { Footer } from "@/components/delivery/footer"
+import { PendingOrdersButton, PendingOrdersModal } from "@/components/delivery/pending-orders"
 
 function DeliveryApp() {
   const [activeCategory, setActiveCategory] = useState("ofertas")
@@ -25,6 +26,7 @@ function DeliveryApp() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [showLocationPopup, setShowLocationPopup] = useState(false)
   const [userAddress, setUserAddress] = useState<string | null>(null)
+  const [showPendingOrders, setShowPendingOrders] = useState(false)
 
   useEffect(() => {
     // Verifica se ja tem endereco salvo
@@ -151,6 +153,7 @@ function DeliveryApp() {
         <Footer />
       </main>
 
+      <PendingOrdersButton onClick={() => setShowPendingOrders(true)} />
       <CartButton onClick={() => setIsCartOpen(true)} />
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
@@ -160,6 +163,10 @@ function DeliveryApp() {
           onClose={() => setSelectedProduct(null)}
           onSelectProduct={(p) => setSelectedProduct(p)}
         />
+      )}
+
+      {showPendingOrders && (
+        <PendingOrdersModal onClose={() => setShowPendingOrders(false)} />
       )}
 
       {showLocationPopup && (

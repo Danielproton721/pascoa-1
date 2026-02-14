@@ -2,6 +2,7 @@
 
 import React from "react"
 import { TrackPurchase } from "./track-purchase"
+import { savePendingOrder, removePendingOrder } from "./pending-orders"
 
 import { useState, useEffect } from "react"
 import { X, Copy, Check, Loader2, QrCode, AlertCircle, MapPin } from "lucide-react"
@@ -145,12 +146,24 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
         throw new Error(data.error || "Erro ao gerar PIX")
       }
 
-      setPixData({
+      const newPixData = {
         pixCode: data.pixCode || "",
         pixQrCodeImage: data.pixQrCodeImage || "",
         transactionId: data.transactionId || "",
-      })
+      }
+      setPixData(newPixData)
       setStep("qrcode")
+
+      // Salvar pedido pendente no localStorage
+      savePendingOrder({
+        transactionId: newPixData.transactionId,
+        pixCode: newPixData.pixCode,
+        pixQrCodeImage: newPixData.pixQrCodeImage,
+        amount,
+        items,
+        customerName: customerData.name,
+        createdAt: new Date().toISOString(),
+      })
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao processar pagamento")
       setStep("error")
@@ -406,6 +419,13 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
           {step === "qrcode" && pixData && (
             <div className="space-y-6">
+              {/* TRACKING - Dispara quando o PIX e gerado (pendente) */}
+              <TrackPurchase 
+                transactionId={pixData.transactionId || ""} 
+                amount={amount} 
+                items={items} 
+              />
+
               <div className="text-center">
                 <p className="text-sm text-muted-foreground mb-4">
                   Escaneie o QR Code ou copie o codigo PIX
@@ -468,7 +488,13 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
               </div>
 
               <Button
-                onClick={() => setStep("success")}
+                onClick={() => {
+                  // Remove pedido pendente ao confirmar pagamento
+                  if (pixData?.transactionId) {
+                    removePendingOrder(pixData.transactionId)
+                  }
+                  setStep("success")
+                }}
                 className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold"
               >
                 Ja fiz o pagamento
@@ -478,13 +504,6 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
           {step === "success" && (
             <div className="text-center py-8 space-y-4 animate-in fade-in zoom-in-95 duration-300">
-              {/* TRACKING DE CONVERSAO - Dispara quando o usuario finaliza a compra */}
-              <TrackPurchase 
-                transactionId={pixData?.transactionId || ""} 
-                amount={amount} 
-                items={items} 
-              />
-              
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <Check className="w-10 h-10 text-primary" />
               </div>
