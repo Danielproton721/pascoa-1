@@ -75,8 +75,7 @@ export default function PoliticaCookies() {
             <section className="space-y-2">
               <h2 className="text-lg font-semibold text-foreground">7. Contato</h2>
               <p>
-                Para dúvidas sobre cookies e privacidade, entre em contato via Instagram @arcobebidas ou telefone (62)
-                3226-2107.
+                Para dúvidas sobre cookies e privacidade, entre em contato pelo e-mail contato@arcobebidas.com.br
               </p>
             </section>
           </div>

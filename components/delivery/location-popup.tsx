@@ -3,7 +3,7 @@
 import React from "react"
 
 import { useState, useEffect } from "react"
-import { MapPin, ChevronDown, Loader2, CheckCircle2, Store } from "lucide-react"
+import { MapPin, Loader2, CheckCircle2, Store, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 // Lista de estados brasileiros
@@ -63,6 +63,18 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
   const [selectedCity, setSelectedCity] = useState("")
   const [cidadesDoEstado, setCidadesDoEstado] = useState<string[]>([])
   const [loadingCidades, setLoadingCidades] = useState(false)
+  const [searchState, setSearchState] = useState("")
+  const [searchCity, setSearchCity] = useState("")
+
+  const filteredStates = ESTADOS_BRASIL.filter(
+    (estado) =>
+      estado.nome.toLowerCase().includes(searchState.toLowerCase()) ||
+      estado.sigla.toLowerCase().includes(searchState.toLowerCase())
+  )
+
+  const filteredCities = cidadesDoEstado.filter((cidade) =>
+    cidade.toLowerCase().includes(searchCity.toLowerCase())
+  )
 
   useEffect(() => {
     if (selectedState) {
@@ -80,24 +92,22 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
     if (step === "searching") {
       const timer = setTimeout(() => {
         setStep("found")
-      }, 3500) // 3.5 segundos
+      }, 3000) // 3 segundos
       return () => clearTimeout(timer)
     }
   }, [step])
 
-  const handleStateSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedState(e.target.value)
+  const handleStateSelect = (sigla: string) => {
+    setSelectedState(sigla)
     setSelectedCity("")
+    setSearchState("")
+    setSearchCity("")
+    setStep("city")
   }
 
-  const handleCitySelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCity(e.target.value)
-  }
-
-  const handleNextToCity = () => {
-    if (selectedState) {
-      setStep("city")
-    }
+  const handleCitySelect = (cidade: string) => {
+    setSelectedCity(cidade)
+    setSearchCity("")
   }
 
   const handleConfirm = () => {
@@ -133,111 +143,108 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
         <div className="p-6">
           {/* Selecao de Estado */}
           {step === "state" && (
-            <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Estado</label>
-                <div className="relative">
-                  <select
-                    value={selectedState}
-                    onChange={handleStateSelect}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground
-                      focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary
-                      transition-all duration-200 appearance-none cursor-pointer"
-                  >
-                    <option value="">Selecione o estado</option>
-                    {ESTADOS_BRASIL.map((estado) => (
-                      <option key={estado.sigla} value={estado.sigla}>
-                        {estado.nome}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
-                </div>
+            <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-300">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  value={searchState}
+                  onChange={(e) => setSearchState(e.target.value)}
+                  placeholder="Buscar estado..."
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary
+                    transition-all duration-200 text-sm placeholder:text-muted-foreground"
+                  autoFocus
+                />
               </div>
-
-              <Button
-                onClick={handleNextToCity}
-                disabled={!selectedState}
-                className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base font-semibold
-                  hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Proximo
-              </Button>
-              
-              <button
-                onClick={onClose}
-                className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Pular por enquanto
-              </button>
+              <div className="max-h-64 overflow-y-auto rounded-xl border border-border divide-y divide-border">
+                {filteredStates.length === 0 ? (
+                  <div className="px-4 py-6 text-center text-sm text-muted-foreground">
+                    {"Nenhum estado encontrado"}
+                  </div>
+                ) : (
+                  filteredStates.map((estado) => (
+                    <button
+                      key={estado.sigla}
+                      onClick={() => handleStateSelect(estado.sigla)}
+                      className="w-full flex items-center justify-between px-4 py-3 text-left text-sm text-foreground
+                        hover:bg-primary/10 active:bg-primary/20 transition-colors cursor-pointer"
+                    >
+                      <span>{estado.nome}</span>
+                      <span className="text-xs text-muted-foreground font-medium">{estado.sigla}</span>
+                    </button>
+                  ))
+                )}
+              </div>
             </div>
           )}
 
           {/* Selecao de Cidade */}
           {step === "city" && (
-            <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
-              <div className="bg-secondary/50 rounded-xl p-3 mb-2">
-                <p className="text-sm text-muted-foreground">Estado selecionado:</p>
-                <p className="font-medium text-foreground">
-                  {ESTADOS_BRASIL.find(e => e.sigla === selectedState)?.nome}
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">
-                  Cidade {loadingCidades && <span className="text-muted-foreground">({cidadesDoEstado.length > 0 ? cidadesDoEstado.length : "carregando..."} cidades)</span>}
-                  {!loadingCidades && cidadesDoEstado.length > 0 && <span className="text-muted-foreground">({cidadesDoEstado.length} cidades)</span>}
-                </label>
-                <div className="relative">
-                  {loadingCidades ? (
-                    <div className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-muted-foreground flex items-center gap-2">
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      Carregando cidades...
-                    </div>
-                  ) : (
-                    <select
-                      value={selectedCity}
-                      onChange={handleCitySelect}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground
-                        focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary
-                        transition-all duration-200 appearance-none cursor-pointer"
-                    >
-                      <option value="">Selecione a cidade</option>
-                      {cidadesDoEstado.map((cidade) => (
-                        <option key={cidade} value={cidade}>
-                          {cidade}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                  {!loadingCidades && <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />}
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                <Button
-                  onClick={() => setStep("state")}
-                  variant="outline"
-                  className="flex-shrink-0 bg-transparent"
-                >
-                  Voltar
-                </Button>
-                <Button
-                  onClick={handleConfirm}
-                  disabled={!selectedCity}
-                  className="flex-1 py-6 bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base font-semibold
-                    hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Confirmar
-                </Button>
-              </div>
-              
+            <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-300">
               <button
-                onClick={onClose}
-                className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => { setStep("state"); setSelectedState(""); setSearchState(""); }}
+                className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors cursor-pointer"
               >
-                Pular por enquanto
+                <MapPin className="w-4 h-4" />
+                <span className="font-medium">
+                  {ESTADOS_BRASIL.find(e => e.sigla === selectedState)?.nome}
+                </span>
+                <span className="text-muted-foreground">{"- Trocar estado"}</span>
               </button>
+
+              {loadingCidades ? (
+                <div className="py-12 flex flex-col items-center justify-center gap-3">
+                  <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                  <p className="text-sm text-muted-foreground">Carregando cidades...</p>
+                </div>
+              ) : (
+                <>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <input
+                      type="text"
+                      value={searchCity}
+                      onChange={(e) => setSearchCity(e.target.value)}
+                      placeholder="Buscar cidade..."
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground
+                        focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary
+                        transition-all duration-200 text-sm placeholder:text-muted-foreground"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="max-h-56 overflow-y-auto rounded-xl border border-border divide-y divide-border">
+                    {filteredCities.length === 0 ? (
+                      <div className="px-4 py-6 text-center text-sm text-muted-foreground">
+                        {"Nenhuma cidade encontrada"}
+                      </div>
+                    ) : (
+                      filteredCities.map((cidade) => (
+                        <button
+                          key={cidade}
+                          onClick={() => handleCitySelect(cidade)}
+                          className={`w-full px-4 py-3 text-left text-sm transition-colors cursor-pointer ${
+                            selectedCity === cidade
+                              ? "bg-primary/10 text-primary font-medium"
+                              : "text-foreground hover:bg-primary/5 active:bg-primary/10"
+                          }`}
+                        >
+                          {cidade}
+                        </button>
+                      ))
+                    )}
+                  </div>
+                  {selectedCity && (
+                    <Button
+                      onClick={handleConfirm}
+                      className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base font-semibold
+                        hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                    >
+                      {"Confirmar \u2014 "}{selectedCity}
+                    </Button>
+                  )}
+                </>
+              )}
             </div>
           )}
 
@@ -245,19 +252,31 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
           {step === "searching" && (
             <div className="py-8 flex flex-col items-center justify-center animate-in fade-in slide-in-from-bottom-4 duration-300">
               <div className="relative mb-6">
-                <div className="w-20 h-20 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
-                <Store className="w-8 h-8 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Store className="w-9 h-9 text-primary" />
+                </div>
+                <svg className="absolute inset-0 w-20 h-20 animate-spin" viewBox="0 0 80 80">
+                  <circle
+                    cx="40" cy="40" r="38"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeDasharray="80 160"
+                    strokeLinecap="round"
+                    className="text-primary"
+                  />
+                </svg>
               </div>
               <h3 className="text-lg font-semibold text-foreground text-center mb-2">
-                Estamos procurando a loja mais proxima de voce
+                {"Estamos procurando a loja mais proxima de voce"}
               </h3>
               <p className="text-sm text-muted-foreground text-center">
                 {selectedCity}, {ESTADOS_BRASIL.find(e => e.sigla === selectedState)?.nome}
               </p>
-              <div className="mt-4 flex gap-1">
-                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+              <div className="mt-4 flex gap-1.5">
+                <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
               </div>
             </div>
           )}
@@ -265,21 +284,21 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
           {/* Tela de Loja Encontrada */}
           {step === "found" && (
             <div className="py-8 flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-500">
-              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                <CheckCircle2 className="w-12 h-12 text-primary" />
+              <div className="w-20 h-20 rounded-full bg-green-50 border-2 border-green-200 flex items-center justify-center mb-6">
+                <CheckCircle2 className="w-12 h-12 text-green-600" />
               </div>
               <h3 className="text-lg font-semibold text-foreground text-center mb-2">
-                Encontramos uma loja a 2,5 KM de você!
+                {"Encontramos uma loja a 2,5 KM de voc\u00ea!"}
               </h3>
               <p className="text-sm text-muted-foreground text-center mb-6">
                 {selectedCity}, {ESTADOS_BRASIL.find(e => e.sigla === selectedState)?.nome}
               </p>
               <Button
                 onClick={handleGoShopping}
-                className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base font-semibold
+                className="w-full py-6 bg-green-600 text-white hover:bg-green-700 gap-2 text-base font-semibold
                   hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
-                Ir as compras
+                {"Ir as compras"}
               </Button>
             </div>
           )}

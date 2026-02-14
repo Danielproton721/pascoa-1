@@ -55,7 +55,7 @@ export default function PoliticaPrivacidade() {
               <h2 className="text-lg font-semibold text-foreground">5. Direitos do Usuário</h2>
               <p>
                 Você tem o direito de acessar, corrigir ou solicitar a exclusão de seus dados pessoais. Para exercer esses
-                direitos, entre em contato conosco através do Instagram @arcobebidas ou telefone (62) 3226-2107.
+                direitos, entre em contato conosco pelo e-mail contato@arcobebidas.com.br
               </p>
             </section>
 

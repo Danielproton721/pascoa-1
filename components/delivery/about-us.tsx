@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { MapPin, Phone, Instagram } from "lucide-react"
+import { MapPin } from "lucide-react"
 
 export function AboutUs() {
   return (
