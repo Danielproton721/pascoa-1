@@ -40,32 +40,21 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
   return (
     <header className="bg-card border-b border-border">
       <div className="max-w-lg mx-auto px-4 py-4">
-        {/* Top bar: Logo + Receber em */}
-        <div className="flex items-center gap-3 mb-3 animate-in fade-in slide-in-from-top-4 duration-500">
-          <div className="w-[52px] h-[52px] flex-shrink-0 flex items-center justify-center overflow-hidden">
-            <Image
-              src="/logo.png"
-              alt="Arco Bebidas"
-              width={52}
-              height={52}
-              className="object-contain"
-            />
+        {/* Top bar: Receber em */}
+        <button
+          type="button"
+          onClick={onChangeAddress}
+          className="flex items-center gap-1.5 mb-3 min-w-0 cursor-pointer group animate-in fade-in slide-in-from-top-4 duration-500"
+        >
+          <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+          <div className="flex flex-col items-start min-w-0">
+            <span className="text-[11px] text-muted-foreground leading-tight">{"Receber em"}</span>
+            <span className="text-sm font-semibold text-foreground leading-tight truncate max-w-[200px] group-hover:text-primary transition-colors">
+              {userAddress ? getCityFromAddress(userAddress) : "Selecione sua cidade"}
+            </span>
           </div>
-          <button
-            type="button"
-            onClick={onChangeAddress}
-            className="flex items-center gap-1.5 min-w-0 cursor-pointer group"
-          >
-            <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-            <div className="flex flex-col items-start min-w-0">
-              <span className="text-[11px] text-muted-foreground leading-tight">{"Receber em"}</span>
-              <span className="text-sm font-semibold text-foreground leading-tight truncate max-w-[200px] group-hover:text-primary transition-colors">
-                {userAddress ? getCityFromAddress(userAddress) : "Selecione sua cidade"}
-              </span>
-            </div>
-            <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0 group-hover:text-primary transition-colors" />
-          </button>
-        </div>
+          <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0 group-hover:text-primary transition-colors" />
+        </button>
 
         {/* Logo centralizada e maior */}
         <div className="flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-500">
