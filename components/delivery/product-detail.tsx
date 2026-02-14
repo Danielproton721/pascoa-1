@@ -73,7 +73,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
   }
 
   return (
-    <div data-product-scroll className="fixed top-0 left-0 right-0 bg-background z-50 flex flex-col animate-in fade-in duration-300" style={{ height: '100dvh', maxHeight: '-webkit-fill-available' }}>
+    <div data-product-scroll className="fixed top-0 left-0 right-0 bottom-0 bg-background z-50 flex flex-col animate-in fade-in duration-300">
       <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
       <div className="max-w-lg mx-auto pb-4 animate-in slide-in-from-bottom-8 duration-500 ease-out">
         <button
