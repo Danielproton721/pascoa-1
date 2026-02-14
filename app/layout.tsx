@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Script from 'next/script'
 import { CookieBanner } from '@/components/cookie-banner'
+import { AgeVerification } from '@/components/delivery/age-verification'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -27,6 +28,16 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        {/* Google tag (gtag.js) */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-17934359668" strategy="afterInteractive" />
+        <Script id="google-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17934359668');
+          `}
+        </Script>
         {/* Meta Pixel Code */}
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
@@ -50,6 +61,7 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className={`font-sans antialiased`}>
+        <AgeVerification />
         {children}
         <CookieBanner />
       </body>

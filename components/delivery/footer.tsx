@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, Shield, Cookie } from "lucide-react"
+import { FileText, Shield, Cookie, ShieldAlert } from "lucide-react"
 
 export function Footer() {
   return (
@@ -32,6 +32,21 @@ export function Footer() {
               <Cookie className="w-4 h-4" />
               <span className="text-sm">Política de Cookies</span>
             </Link>
+          </div>
+        </div>
+
+        {/* Aviso +18 */}
+        <div className="mb-8 bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <div className="flex items-start gap-3">
+            <ShieldAlert className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-semibold text-amber-800 mb-1">
+                {"+18 \u2014 Venda proibida para menores"}
+              </p>
+              <p className="text-xs text-amber-700 leading-relaxed">
+                {"A venda de bebidas alco\u00f3licas \u00e9 permitida apenas para maiores de 18 anos. A idade poder\u00e1 ser conferida no ato da entrega. Beba com modera\u00e7\u00e3o."}
+              </p>
+            </div>
           </div>
         </div>
 

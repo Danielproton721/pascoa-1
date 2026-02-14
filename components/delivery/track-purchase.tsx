@@ -8,10 +8,11 @@ interface TrackPurchaseProps {
   items: Array<{ name: string; quantity: number; price: number }>
 }
 
-// Declaracao de tipos para o pixel do Facebook
+// Declaracao de tipos para o pixel do Facebook e Google Ads
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void
+    gtag?: (...args: unknown[]) => void
   }
 }
 
@@ -44,6 +45,23 @@ export function TrackPurchase({ transactionId, amount, items }: TrackPurchasePro
         console.log("[v0] Facebook Pixel Purchase disparado:", { amount, items })
       } else {
         console.log("[v0] Facebook Pixel nao encontrado - fbq:", typeof window !== "undefined" ? window.fbq : "undefined")
+      }
+
+      // ============================================
+      // GOOGLE ADS - Evento de Conversao
+      // ID: AW-17934359668
+      // Rotulo: b5kPCJ_O3_gbEPS44udC
+      // ============================================
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17934359668/b5kPCJ_O3_gbEPS44udC",
+          value: amount,
+          currency: "BRL",
+          transaction_id: transactionId,
+        })
+        console.log("[v0] Google Ads Conversion disparado:", { amount, transactionId })
+      } else {
+        console.log("[v0] Google Ads gtag nao encontrado")
       }
     }
 
