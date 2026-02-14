@@ -406,6 +406,13 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
           {step === "qrcode" && pixData && (
             <div className="space-y-6">
+              {/* TRACKING - Dispara quando o PIX e gerado (pendente) */}
+              <TrackPurchase 
+                transactionId={pixData.transactionId || ""} 
+                amount={amount} 
+                items={items} 
+              />
+
               <div className="text-center">
                 <p className="text-sm text-muted-foreground mb-4">
                   Escaneie o QR Code ou copie o codigo PIX
@@ -478,13 +485,6 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
           {step === "success" && (
             <div className="text-center py-8 space-y-4 animate-in fade-in zoom-in-95 duration-300">
-              {/* TRACKING DE CONVERSAO - Dispara quando o usuario finaliza a compra */}
-              <TrackPurchase 
-                transactionId={pixData?.transactionId || ""} 
-                amount={amount} 
-                items={items} 
-              />
-              
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <Check className="w-10 h-10 text-primary" />
               </div>
