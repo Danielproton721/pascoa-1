@@ -2,6 +2,7 @@
 
 import React from "react"
 import { TrackPurchase } from "./track-purchase"
+import { savePendingOrder, removePendingOrder } from "./pending-orders"
 
 import { useState, useEffect } from "react"
 import { X, Copy, Check, Loader2, QrCode, AlertCircle, MapPin } from "lucide-react"
@@ -145,12 +146,24 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
         throw new Error(data.error || "Erro ao gerar PIX")
       }
 
-      setPixData({
+      const newPixData = {
         pixCode: data.pixCode || "",
         pixQrCodeImage: data.pixQrCodeImage || "",
         transactionId: data.transactionId || "",
-      })
+      }
+      setPixData(newPixData)
       setStep("qrcode")
+
+      // Salvar pedido pendente no localStorage
+      savePendingOrder({
+        transactionId: newPixData.transactionId,
+        pixCode: newPixData.pixCode,
+        pixQrCodeImage: newPixData.pixQrCodeImage,
+        amount,
+        items,
+        customerName: customerData.name,
+        createdAt: new Date().toISOString(),
+      })
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao processar pagamento")
       setStep("error")
@@ -475,7 +488,13 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
               </div>
 
               <Button
-                onClick={() => setStep("success")}
+                onClick={() => {
+                  // Remove pedido pendente ao confirmar pagamento
+                  if (pixData?.transactionId) {
+                    removePendingOrder(pixData.transactionId)
+                  }
+                  setStep("success")
+                }}
                 className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold"
               >
                 Ja fiz o pagamento
