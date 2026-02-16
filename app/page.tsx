@@ -17,6 +17,7 @@ import { LocationPopup } from "@/components/delivery/location-popup"
 import { CategoryShowcase } from "@/components/delivery/category-showcase"
 import { AboutUs } from "@/components/delivery/about-us"
 import { Footer } from "@/components/delivery/footer"
+import { BannerCarousel } from "@/components/delivery/banner-carousel"
 import { PendingOrdersButton, PendingOrdersModal } from "@/components/delivery/pending-orders"
 
 function DeliveryApp() {
@@ -73,6 +74,8 @@ function DeliveryApp() {
         activeCategory={activeCategory}
         onCategoryChange={handleCategoryChange}
       />
+
+      <BannerCarousel />
 
       <main className={`max-w-lg mx-auto px-4 py-6 transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
         {activeCategory === "ofertas" ? (
