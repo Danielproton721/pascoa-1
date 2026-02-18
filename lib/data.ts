@@ -1180,6 +1180,188 @@ export const products: Product[] = [
     category: "poke",
     includes: ["1 unidade"],
     accompaniments: []
+  },
+
+  // COMIDA
+  {
+    id: "100",
+    name: "Batata Frita com Queijo e Bacon",
+    description: "500g de batata crocante, coberta com queijo derretido e bacon no ponto certo.",
+    price: 28.00,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/9.png?v=1771228564",
+    category: "comida",
+    includes: ["500g"],
+    accompaniments: []
+  },
+  {
+    id: "101",
+    name: "Bolinho de Carne Seca com Queijo",
+    description: "Sao 10 unidades de bolinhos dourados, preparados com carne seca desfiada e temperada no estilo caipira, unidos a um recheio cremoso de queijo que escorre a cada mordida.",
+    price: 22.80,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/8.png?v=1771228557",
+    category: "comida",
+    includes: ["10 unidades"],
+    accompaniments: []
+  },
+  {
+    id: "102",
+    name: "Camarao Ao Alho E Oleo",
+    description: "Camaroes grelhados ao alho frito e oleo. Acompanha molho tartaro. 350 gr.",
+    price: 83.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/18.png?v=1771228475",
+    category: "comida",
+    includes: ["350g"],
+    accompaniments: ["Molho tartaro"]
+  },
+  {
+    id: "103",
+    name: "Chapa Mista G",
+    description: "600g de picanha macia e suculenta, selada na chapa, acompanhada de 200g de batata frita coberta com queijo derretido e bacon crocante, alem de 200g de mandioca no ponto perfeito.",
+    price: 96.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/4.png?v=1771228615",
+    category: "comida",
+    includes: ["600g picanha", "200g batata frita", "200g mandioca"],
+    accompaniments: []
+  },
+  {
+    id: "104",
+    name: "Coxinha de Frango com Requeijao",
+    description: "Sao 12 unidades de coxinha dourada e crocante, recheadas com frango desfiado temperado no estilo caseiro e um toque generoso de requeijao cremoso que derrete a cada mordida.",
+    price: 25.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/3.png?v=1771228604",
+    category: "comida",
+    includes: ["12 unidades"],
+    accompaniments: []
+  },
+  {
+    id: "105",
+    name: "Escalope de Mignon",
+    description: "File mignon em corte escalope grelhado com molho ferrugem a base de vinho tinto. Acompanha arroz e batata palha caseira. Serve 3 pessoas.",
+    price: 79.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/19.png?v=1771228501",
+    category: "comida",
+    includes: ["Arroz", "Batata palha caseira"],
+    accompaniments: ["Molho ferrugem"]
+  },
+  {
+    id: "106",
+    name: "Feijoada",
+    description: "Preparada no fogo lento, como manda a tradicao, com carnes selecionadas que desmancham no paladar e temperos que contam historias em cada colherada.",
+    price: 26.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/12.png?v=1771228529",
+    category: "comida",
+    includes: ["1 porcao"],
+    accompaniments: []
+  },
+  {
+    id: "107",
+    name: "File Acebolado",
+    description: "File mignon em tiras grelhadas com cebola roxa. Acompanha fritas e tomate. 500 gr.",
+    price: 65.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/17.png?v=1771228467",
+    category: "comida",
+    includes: ["500g", "Fritas", "Tomate"],
+    accompaniments: []
+  },
+  {
+    id: "108",
+    name: "File de Tilapia com Fritas",
+    description: "500g de file de tilapia macio e temperado, dourado na chapa ate ganhar cor e sabor marcantes. Servido com batata frita dourada e crocante.",
+    price: 61.80,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/6.png?v=1771228576",
+    category: "comida",
+    includes: ["500g tilapia", "Batata frita"],
+    accompaniments: []
+  },
+  {
+    id: "109",
+    name: "File em Medalhao com Alcaparras",
+    description: "File mignon com corte especial alto envolto em bacon, finalizado no forno com molho de queijos e alcaparras. Acompanha farofa de alho, arroz com brocolis e salada. Serve 3 pessoas.",
+    price: 78.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/15.png?v=1771228424",
+    category: "comida",
+    includes: ["Farofa de alho", "Arroz com brocolis", "Salada"],
+    accompaniments: ["Molho de queijos e alcaparras"]
+  },
+  {
+    id: "110",
+    name: "Fraldinha Mista",
+    description: "450g de fraldinha macia e suculenta, preparada na chapa para selar o sabor e manter toda a suculencia. Acompanha 200g de batata frita coberta com queijo.",
+    price: 86.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/1.png?v=1771228591",
+    category: "comida",
+    includes: ["450g fraldinha", "200g batata frita com queijo"],
+    accompaniments: []
+  },
+  {
+    id: "111",
+    name: "Frango a Passarinho",
+    description: "500g de frango temperado e frito ate a crocancia perfeita, no tempero da casa.",
+    price: 23.49,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/11.png?v=1771228522",
+    category: "comida",
+    includes: ["500g"],
+    accompaniments: []
+  },
+  {
+    id: "112",
+    name: "Isca de File Mignon a Parmegiana",
+    description: "Isca de File Mignon empanada e frita com molho de tomate da casa e gratinada com mussarela. Acompanha batata palha. 350 gr.",
+    price: 72.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/16.png?v=1771228451",
+    category: "comida",
+    includes: ["350g", "Batata palha"],
+    accompaniments: ["Molho de tomate"]
+  },
+  {
+    id: "113",
+    name: "O`BURGER",
+    description: "Pao de hamburguer, burguer bovino de 110g, presunto de alta qualidade, queijo mussarela fatiado, muito bacon sequinho, salada de alface e tomate e maionese caseira especial do Betao.",
+    price: 21.00,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/13.png?v=1771228537",
+    category: "comida",
+    includes: ["1 unidade"],
+    accompaniments: []
+  },
+  {
+    id: "114",
+    name: "Pastel de Carne com Queijo",
+    description: "Sao 10 unidades de pasteis sequinhos, recheados com carne moida bem temperada e queijo derretido, no ponto certo entre o crocante e o cremoso.",
+    price: 26.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/7.png?v=1771228548",
+    category: "comida",
+    includes: ["10 unidades"],
+    accompaniments: []
+  },
+  {
+    id: "115",
+    name: "Porcao de Feijao Tropeiro 300g",
+    description: "Feijao tropeiro preparado no estilo mineiro raiz, com graos macios, tempero da casa e toques de bacon e temperos que lembram cozinha de fazenda.",
+    price: 21.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/2.png?v=1771228598",
+    category: "comida",
+    includes: ["300g"],
+    accompaniments: []
+  },
+  {
+    id: "116",
+    name: "Torresmo Pururuca com Mandioca",
+    description: "Crocancia e sabor em cada mordida, o classico do boteco.",
+    price: 18.00,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/5.png?v=1771228626",
+    category: "comida",
+    includes: ["1 porcao"],
+    accompaniments: ["Mandioca"]
+  },
+  {
+    id: "117",
+    name: "Tulipas com Molho Especial",
+    description: "12 unidades douradas e crocantes, com o molho exclusivo do Picanha Boteco & Choperia.",
+    price: 26.90,
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/10.png?v=1771228516",
+    category: "comida",
+    includes: ["12 unidades"],
+    accompaniments: ["Molho especial"]
   }
 ]
 
@@ -1208,4 +1390,5 @@ export const categories = [
   { id: "combinados", name: "Energeticos" },
   { id: "temaki", name: "Refrigerantes" },
   { id: "poke", name: "Gelinhos" },
+  { id: "comida", name: "Comida" },
 ]

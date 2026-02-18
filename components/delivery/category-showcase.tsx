@@ -29,6 +29,10 @@ const categoryImages: Record<string, { image: string; scale: string }> = {
     image: "https://cdn.shopify.com/s/files/1/0794/8750/0511/files/limao.webp?v=1769742103", // Gelo Limao
     scale: "scale-125" 
   },
+  comida: { 
+    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/4.png?v=1771228615", // Chapa Mista
+    scale: "scale-125" 
+  },
 }
 
 export function CategoryShowcase({ onCategorySelect }: CategoryShowcaseProps) {

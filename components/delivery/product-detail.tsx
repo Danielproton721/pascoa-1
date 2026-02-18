@@ -139,6 +139,12 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
           <div className="mt-6">
             <h2 className="text-lg font-semibold text-foreground mb-3">Descrição</h2>
             
+            {product.description && (
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                {product.description}
+              </p>
+            )}
+
             {product.includes && product.includes.length > 0 && (
               <div className="mb-4">
                 <div className="flex items-center gap-2 text-foreground font-medium mb-2">
