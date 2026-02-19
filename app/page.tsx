@@ -50,16 +50,23 @@ function DeliveryApp() {
   }
 
   const handleCategoryChange = useCallback((categoryId: string) => {
-    if (categoryId === activeCategory) return
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setActiveCategory(categoryId)
-      setIsTransitioning(false)
-      // Scroll ate a area dos produtos
+    const scrollToProducts = () => {
       const productsSection = document.getElementById("products-section")
       if (productsSection) {
         productsSection.scrollIntoView({ behavior: "smooth", block: "start" })
       }
+    }
+
+    if (categoryId === activeCategory) {
+      scrollToProducts()
+      return
+    }
+
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setActiveCategory(categoryId)
+      setIsTransitioning(false)
+      scrollToProducts()
     }, 150)
   }, [activeCategory])
 
