@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { PixCheckout } from "./pix-checkout"
 import { UpsellCombo } from "./upsell-combo"
-import { UpsellComida } from "./upsell-comida"
+import { UpsellComida, UPSELL_PRODUCT_IDS } from "./upsell-comida"
 
 interface CartDrawerProps {
   isOpen: boolean
@@ -20,17 +20,17 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, totalPrice, updateQuantity, removeItem, clearCart, addCombo } = useCart()
   const [showPixCheckout, setShowPixCheckout] = useState(false)
   const [showUpsellComida, setShowUpsellComida] = useState(false)
-  const [upsellShown, setUpsellShown] = useState(false)
   const [editingComboId, setEditingComboId] = useState<string | null>(null)
+
+  const hasUpsellItemInCart = items.some((item) => UPSELL_PRODUCT_IDS.includes(item.product.id))
 
   const canCheckout = totalPrice >= MIN_ORDER_VALUE
   const remainingValue = MIN_ORDER_VALUE - totalPrice
 
   const handleCheckout = () => {
     if (!canCheckout) return
-    if (!upsellShown) {
+    if (!hasUpsellItemInCart) {
       setShowUpsellComida(true)
-      setUpsellShown(true)
     } else {
       setShowPixCheckout(true)
     }

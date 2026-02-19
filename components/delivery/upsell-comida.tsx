@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { products } from "@/lib/data"
 import { useCart } from "@/lib/cart-context"
 
-const UPSELL_PRODUCT_IDS = [
+export const UPSELL_PRODUCT_IDS = [
   "213", // O`BURGER
   "201", // Bolinho de Carne Seca com Queijo
   "200", // Batata Frita com Queijo e Bacon
