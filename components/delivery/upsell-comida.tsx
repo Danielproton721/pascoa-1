@@ -43,6 +43,7 @@ interface UpsellComidaProps {
 export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
   const { addItem } = useCart()
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set())
+  const [isClosing, setIsClosing] = useState(false)
 
   const upsellProducts = useMemo(() => {
     const filtered = products.filter((p) => UPSELL_PRODUCT_IDS.includes(p.id))
@@ -54,15 +55,27 @@ export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
     setAddedIds((prev) => new Set(prev).add(product.id))
   }
 
+  const handleClose = () => {
+    setIsClosing(true)
+    setTimeout(() => onClose(), 400)
+  }
+
+  const handleContinue = () => {
+    setIsClosing(true)
+    setTimeout(() => onContinue(), 400)
+  }
+
   const addedCount = addedIds.size
 
   return (
     <div className="fixed inset-0 z-[60]">
       <div
-        className="absolute inset-0 bg-black/50 animate-in fade-in duration-300"
-        onClick={onClose}
+        className={`absolute inset-0 bg-black/50 transition-opacity duration-400 ${isClosing ? "opacity-0" : "animate-in fade-in duration-300"}`}
+        onClick={handleClose}
       />
-      <div className="absolute bottom-0 left-0 right-0 bg-card rounded-t-3xl max-h-[85vh] overflow-hidden flex flex-col animate-in slide-in-from-bottom-full duration-500 ease-out">
+      <div
+        className={`absolute bottom-0 left-0 right-0 bg-card rounded-t-3xl max-h-[85vh] overflow-hidden flex flex-col transition-transform duration-400 ease-in-out ${isClosing ? "translate-y-full" : "animate-in slide-in-from-bottom-full duration-500 ease-out"}`}
+      >
         <div className="max-w-lg mx-auto w-full flex flex-col flex-1 min-h-0">
           {/* Header */}
           <div className="flex-shrink-0 bg-card border-b border-border p-4">
@@ -79,7 +92,7 @@ export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
                 </div>
               </div>
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className="p-2 rounded-full hover:bg-secondary"
               >
                 <X className="w-5 h-5 text-muted-foreground" />
@@ -146,7 +159,7 @@ export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
           {/* Footer */}
           <div className="flex-shrink-0 border-t border-border p-4 bg-card space-y-3">
             <Button
-              onClick={onContinue}
+              onClick={handleContinue}
               className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold gap-2
                 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
@@ -158,7 +171,7 @@ export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
             </Button>
             {addedCount === 0 && (
               <button
-                onClick={onContinue}
+                onClick={handleContinue}
                 className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-1"
               >
                 Nao quero, obrigado
