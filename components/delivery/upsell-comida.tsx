@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import Image from "next/image"
-import { X, Plus, ShoppingBag, ArrowRight, Flame } from "lucide-react"
+import { X, Plus, ShoppingBag, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { products } from "@/lib/data"
 import { useCart } from "@/lib/cart-context"
@@ -68,11 +68,11 @@ export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
           <div className="flex-shrink-0 bg-card border-b border-border p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <div className="w-9 h-9 rounded-full bg-red-500 flex items-center justify-center">
-                  <Flame className="w-5 h-5 text-white" />
+                <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center text-xl">
+                  <span role="img" aria-label="hamburger">🍔</span>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-foreground">Bateu a fome?</h2>
+                  <h2 className="text-lg font-bold text-foreground">Bateu a fome? Que tal um lanchinho</h2>
                   <p className="text-xs text-muted-foreground">
                     Adicione um prato ao seu pedido
                   </p>
