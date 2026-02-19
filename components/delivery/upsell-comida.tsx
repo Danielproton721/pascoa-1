@@ -24,6 +24,14 @@ export const UPSELL_PRODUCT_IDS = [
   "215", // Porcao de Feijao Tropeiro 300g
   "216", // Torresmo Pururuca com Mandioca
   "217", // Tulipas com Molho Especial
+  // Refrigerantes
+  "105", // Refrigerante Coca-Cola Zero Acucar 2L
+  "106", // Refrigerante Coca-Cola Zero Acucar 350ml
+  "109", // Refrigerante Coca-Cola Sleek 310ml
+  "100", // Pepsi 2L
+  "99",  // Pepsi Black 2L
+  "101", // Guarana Antarctica 2L
+  "22",  // Guarana Antarctica Lata 350ml
 ]
 
 function shuffleArray<T>(array: T[]): T[] {
