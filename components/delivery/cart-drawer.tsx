@@ -49,7 +49,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
   return (
     <div className="fixed inset-0 z-50">
-      <div className="absolute inset-0 bg-black/50 animate-in fade-in duration-300" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50 animate-in fade-in duration-300" />
       <div className="absolute bottom-0 left-0 right-0 bg-card rounded-t-3xl max-h-[85vh] overflow-hidden flex flex-col animate-in slide-in-from-bottom-full duration-500 ease-out">
         <div className="max-w-lg mx-auto w-full flex flex-col flex-1 min-h-0">
           <div className="flex-shrink-0 bg-card border-b border-border p-4 flex items-center justify-between">
