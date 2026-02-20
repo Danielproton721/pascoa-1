@@ -135,7 +135,7 @@ export function PendingOrdersModal({ onClose }: { onClose: () => void }) {
 
   if (orders.length === 0) {
     return (
-      <div className="fixed inset-0 z-[80] flex items-center justify-center p-4">
+      <div className="safari-drawer-overlay z-[80] flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/60 animate-in fade-in duration-300" onClick={onClose} />
         <div className="relative bg-card rounded-2xl w-full max-w-md p-6 shadow-2xl animate-in zoom-in-95 duration-300 text-center">
           <button onClick={onClose} className="absolute top-4 right-4 p-1 rounded-full hover:bg-secondary transition-colors">
@@ -153,9 +153,9 @@ export function PendingOrdersModal({ onClose }: { onClose: () => void }) {
   // Se um pedido esta selecionado, mostra o detalhe
   if (selectedOrder) {
     return (
-      <div className="fixed inset-0 z-[80] flex items-center justify-center p-4">
+      <div className="safari-drawer-overlay z-[80] flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/60 animate-in fade-in duration-300" onClick={onClose} />
-        <div className="relative bg-card rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto">
+        <div className="relative bg-card rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 max-h-[90dvh] max-h-[90svh] overflow-y-auto safari-scroll">
           {/* Header */}
           <div className="bg-amber-500 p-5 text-white">
             <button onClick={onClose} className="absolute top-4 right-4 p-1 rounded-full hover:bg-white/20 transition-colors">
@@ -264,9 +264,9 @@ export function PendingOrdersModal({ onClose }: { onClose: () => void }) {
 
   // Lista de pedidos
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center p-4">
+    <div className="safari-drawer-overlay z-[80] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 animate-in fade-in duration-300" onClick={onClose} />
-      <div className="relative bg-card rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-card rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 max-h-[90dvh] max-h-[90svh] overflow-y-auto safari-scroll">
         {/* Header */}
         <div className="bg-amber-500 p-5 text-white">
           <button onClick={onClose} className="absolute top-4 right-4 p-1 rounded-full hover:bg-white/20 transition-colors">

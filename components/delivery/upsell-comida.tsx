@@ -89,13 +89,13 @@ export function UpsellComida({ onClose, onContinue, onSkip }: UpsellComidaProps)
   const addedCount = addedIds.size
 
   return (
-    <div className="fixed inset-0 z-[60]">
+    <div className="safari-drawer-overlay z-[60]">
       <div
         className={`absolute inset-0 bg-black/50 transition-opacity duration-400 ${isClosing ? "opacity-0" : "animate-in fade-in duration-300"}`}
         onClick={handleClose}
       />
       <div
-        className={`absolute bottom-0 left-0 right-0 bg-card rounded-t-3xl max-h-[85vh] overflow-hidden flex flex-col transition-transform duration-400 ease-in-out ${isClosing ? "translate-y-full" : "animate-in slide-in-from-bottom-full duration-500 ease-out"}`}
+        className={`fixed bottom-0 left-0 right-0 bg-card rounded-t-3xl max-h-[85dvh] max-h-[85svh] overflow-hidden flex flex-col transition-transform duration-400 ease-in-out ${isClosing ? "translate-y-full" : "animate-in slide-in-from-bottom-full duration-500 ease-out"}`}
       >
         <div className="max-w-lg mx-auto w-full flex flex-col flex-1 min-h-0">
           {/* Header */}
@@ -122,7 +122,7 @@ export function UpsellComida({ onClose, onContinue, onSkip }: UpsellComidaProps)
           </div>
 
           {/* Products list */}
-          <div className="flex-1 overflow-y-auto p-4 min-h-0">
+          <div className="flex-1 overflow-y-auto p-4 min-h-0 safari-scroll">
             <div className="space-y-3">
               {upsellProducts.map((product, index) => {
                 const isAdded = addedIds.has(product.id)
@@ -178,7 +178,7 @@ export function UpsellComida({ onClose, onContinue, onSkip }: UpsellComidaProps)
           </div>
 
           {/* Footer */}
-          <div className="flex-shrink-0 border-t border-border p-4 bg-card space-y-3">
+          <div className="flex-shrink-0 border-t border-border p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-card space-y-3">
             <Button
               onClick={handleContinue}
               className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold gap-2

@@ -32,7 +32,7 @@ export function AgeVerification() {
   if (!isVisible) return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+    <div className="safari-drawer-overlay z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm">
       <div className="bg-card border border-border rounded-2xl shadow-2xl p-6 mx-4 max-w-sm w-full animate-in fade-in zoom-in-95 duration-300">
         {denied ? (
           <div className="flex flex-col items-center text-center gap-4">

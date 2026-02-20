@@ -179,10 +179,10 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
   }
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+    <div className="safari-drawer-overlay z-[70] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 animate-in fade-in duration-300" onClick={onClose} />
       
-      <div className="relative bg-card rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-300 max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-card rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-300 max-h-[90dvh] max-h-[90svh] overflow-y-auto safari-scroll">
         {/* Header */}
         <div className="bg-primary p-5 text-primary-foreground">
           <button

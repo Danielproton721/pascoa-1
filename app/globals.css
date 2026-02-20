@@ -137,3 +137,31 @@
 .-webkit-overflow-scrolling-touch {
   -webkit-overflow-scrolling: touch;
 }
+
+/* Fix para iOS Safari - body lock quando drawer esta aberto */
+body.drawer-open {
+  position: fixed;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  -webkit-overflow-scrolling: none;
+}
+
+/* Fix para iOS Safari - garantir que overlays cobrem toda a tela */
+.safari-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Usar min-height para cobrir area extra do Safari */
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+/* Fix para iOS Safari - smooth scrolling dentro de drawers */
+.safari-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
