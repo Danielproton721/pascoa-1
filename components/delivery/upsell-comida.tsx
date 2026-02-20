@@ -89,13 +89,13 @@ export function UpsellComida({ onClose, onContinue, onSkip }: UpsellComidaProps)
   const addedCount = addedIds.size
 
   return (
-    <div className="safari-drawer-overlay z-[60]">
+    <div className="fixed inset-0 z-[60]" style={{ minHeight: '100dvh' }}>
       <div
-        className={`absolute inset-0 bg-black/50 transition-opacity duration-400 ${isClosing ? "opacity-0" : "animate-in fade-in duration-300"}`}
+        className={`fixed inset-0 z-[60] bg-black/50 transition-opacity duration-400 ${isClosing ? "opacity-0" : "animate-in fade-in duration-300"}`}
         onClick={handleClose}
       />
       <div
-        className={`fixed bottom-0 left-0 right-0 bg-card rounded-t-3xl max-h-[85dvh] max-h-[85svh] overflow-hidden flex flex-col transition-transform duration-400 ease-in-out ${isClosing ? "translate-y-full" : "animate-in slide-in-from-bottom-full duration-500 ease-out"}`}
+        className={`fixed bottom-0 left-0 right-0 z-[61] bg-card rounded-t-3xl max-h-[85dvh] max-h-[85svh] overflow-hidden flex flex-col transition-transform duration-400 ease-in-out ${isClosing ? "translate-y-full" : "animate-in slide-in-from-bottom-full duration-500 ease-out"}`}
       >
         <div className="max-w-lg mx-auto w-full flex flex-col flex-1 min-h-0">
           {/* Header */}

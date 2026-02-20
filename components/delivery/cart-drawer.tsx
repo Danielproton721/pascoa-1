@@ -28,10 +28,13 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const remainingValue = MIN_ORDER_VALUE - totalPrice
 
   const handleCheckout = () => {
+    console.log("[v0] handleCheckout called, canCheckout:", canCheckout, "hasUpsellItemInCart:", hasUpsellItemInCart)
     if (!canCheckout) return
     if (!hasUpsellItemInCart) {
+      console.log("[v0] Showing upsell comida")
       setShowUpsellComida(true)
     } else {
+      console.log("[v0] Showing PIX checkout")
       setShowPixCheckout(true)
     }
   }
