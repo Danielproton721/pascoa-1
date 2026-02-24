@@ -49,13 +49,7 @@ export function HighlightProducts({ onProductSelect }: HighlightProductsProps) {
                 <button
                   onClick={(e) => {
                     e.stopPropagation()
-                    addItem({
-                      id: product.id,
-                      name: product.name,
-                      price: product.price,
-                      image: product.image,
-                      quantity: 1,
-                    })
+                    addItem(product, 1, [], "")
                   }}
                   className="absolute top-2 right-2 w-9 h-9 bg-accent rounded-full flex items-center justify-center shadow-lg
                     hover:scale-110 active:scale-95 transition-all duration-200 z-10"

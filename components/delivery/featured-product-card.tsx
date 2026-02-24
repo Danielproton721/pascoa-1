@@ -19,7 +19,7 @@ export function FeaturedProductCard({ product, onClick, index = 0 }: FeaturedPro
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation()
-    addItem(product, 1)
+    addItem(product, 1, [], "")
   }
 
   return (
