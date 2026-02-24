@@ -20,16 +20,16 @@ export function PromoTimer() {
   }, [])
 
   return (
-    <div className="bg-accent text-accent-foreground rounded-full px-3 py-1 flex items-center gap-1.5 flex-1 min-w-0 overflow-hidden">
-      <span className="text-[8px] font-medium whitespace-nowrap leading-none">Promocao acaba em</span>
-      <div className="flex items-center gap-0.5 font-mono font-bold shrink-0">
-        <span className="bg-card text-foreground px-1 py-0.5 rounded text-[10px] leading-none">00</span>
-        <span className="animate-pulse text-[8px] leading-none">:</span>
-        <span className="bg-card text-foreground px-1 py-0.5 rounded text-[10px] leading-none">
+    <div className="bg-accent text-accent-foreground rounded-full px-4 py-2 flex items-center gap-2 flex-1 min-w-0">
+      <span className="text-[11px] font-semibold whitespace-nowrap">Promocao acaba em</span>
+      <div className="flex items-center gap-1 font-mono font-bold shrink-0">
+        <span className="bg-card text-foreground px-1.5 py-0.5 rounded text-xs">00</span>
+        <span className="animate-pulse text-xs">:</span>
+        <span className="bg-card text-foreground px-1.5 py-0.5 rounded text-xs">
           {String(timeLeft.minutes).padStart(2, "0")}
         </span>
-        <span className="animate-pulse text-[8px] leading-none">:</span>
-        <span className={`bg-card text-foreground px-1 py-0.5 rounded text-[10px] leading-none transition-all duration-150 ${timeLeft.seconds <= 10 ? "text-accent scale-110" : ""}`}>
+        <span className="animate-pulse text-xs">:</span>
+        <span className={`bg-card text-foreground px-1.5 py-0.5 rounded text-xs transition-all duration-150 ${timeLeft.seconds <= 10 ? "text-accent scale-110" : ""}`}>
           {String(timeLeft.seconds).padStart(2, "0")}
         </span>
       </div>

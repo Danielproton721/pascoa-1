@@ -99,7 +99,7 @@ function DeliveryApp() {
         {activeCategory === "ofertas" ? (
           <>
             <section className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex flex-col gap-2 mb-4">
                 <h2 className="text-lg font-bold text-foreground">
                   Ofertas do Dia
                 </h2>
