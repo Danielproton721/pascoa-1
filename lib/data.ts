@@ -1599,6 +1599,197 @@ export const products: Product[] = [
     category: "comida",
     includes: ["12 unidades"],
     accompaniments: ["Molho especial"]
+  },
+  {
+    id: "400",
+    name: "Carvao 2kg",
+    description: "Carvao para churrasco 2kg.",
+    price: 18.32,
+    originalPrice: 20.32,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008982_17ef7153-3f43-40da-a03f-f70cf243815f.webp?v=1771967879",
+    category: "churrasco",
+    includes: ["2kg"],
+    accompaniments: []
+  },
+  {
+    id: "401",
+    name: "Isqueiro Bic Pequeno",
+    description: "Isqueiro Bic Pequeno, pratico e confiavel.",
+    price: 7.69,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00009402_5641a94f-2165-44e3-96f5-1d76e627c898.webp?v=1771967903",
+    category: "churrasco",
+    includes: ["1 unidade"],
+    accompaniments: []
+  },
+  {
+    id: "402",
+    name: "Isqueiro Bic Grande - Unidade",
+    description: "Isqueiro Bic Grande, maior durabilidade.",
+    price: 8.99,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/9666_c2a656f4-19bc-43c5-bb38-0d0494c6f3b8.webp?v=1771967925",
+    category: "churrasco",
+    includes: ["1 unidade"],
+    accompaniments: []
+  },
+  {
+    id: "403",
+    name: "Acendedor Alcool em Gel - 500g",
+    description: "Acendedor alcool em gel para churrasco, pratico e seguro.",
+    price: 15.69,
+    originalPrice: 21.59,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/9032.webp?v=1771967946",
+    category: "churrasco",
+    includes: ["500g"],
+    accompaniments: []
+  },
+  {
+    id: "404",
+    name: "Carvao 100% Eucalipto 2kg",
+    description: "Carvao 100% eucalipto, queima uniforme e duradoura.",
+    price: 21.27,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00009270_058318a5-ec4a-4b9b-90a5-8928e1844930.webp?v=1771968423",
+    category: "churrasco",
+    includes: ["2kg"],
+    accompaniments: []
+  },
+  {
+    id: "405",
+    name: "Carvao 100% Eucalipto 2.5kg",
+    description: "Carvao 100% eucalipto, queima uniforme e duradoura.",
+    price: 27.35,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008983_447623e2-58c2-414e-80dc-de71ba357e52.webp?v=1771967971",
+    category: "churrasco",
+    includes: ["2.5kg"],
+    accompaniments: []
+  },
+  {
+    id: "406",
+    name: "Carvao 2.5kg",
+    description: "Carvao para churrasco 2.5kg.",
+    price: 26.69,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008984_bbdafac0-7fcb-4ec3-a2d4-966510fcd3d1.webp?v=1771968001",
+    category: "churrasco",
+    includes: ["2.5kg"],
+    accompaniments: []
+  },
+  {
+    id: "407",
+    name: "Carvao 100% Eucalipto 3kg",
+    description: "Carvao 100% eucalipto 3kg, ideal para churrascos medios.",
+    price: 25.34,
+    originalPrice: 29.44,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008985_7906483b-8b78-4009-b07d-cf6f5b80feba.webp?v=1771968179",
+    category: "churrasco",
+    includes: ["3kg"],
+    accompaniments: []
+  },
+  {
+    id: "408",
+    name: "Carvao 3kg",
+    description: "Carvao para churrasco 3kg.",
+    price: 25.34,
+    originalPrice: 29.44,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00017739_934931f0-cbb0-44be-9d42-297ef7f74dff.webp?v=1771968469",
+    category: "churrasco",
+    includes: ["3kg"],
+    accompaniments: []
+  },
+  {
+    id: "409",
+    name: "Carvao 100% Eucalipto 4kg",
+    description: "Carvao 100% eucalipto 4kg, para churrascos maiores.",
+    price: 41.60,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008986_23191084-3f49-4d55-a894-81d49fc34185.webp?v=1771968255",
+    category: "churrasco",
+    includes: ["4kg"],
+    accompaniments: []
+  },
+  {
+    id: "410",
+    name: "Carvao 4kg",
+    description: "Carvao para churrasco 4kg.",
+    price: 28.90,
+    originalPrice: 39.61,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008987_e9e16c74-0ab5-416b-8de9-bbb06cbd6ebd.webp?v=1771968276",
+    category: "churrasco",
+    includes: ["4kg"],
+    accompaniments: []
+  },
+  {
+    id: "411",
+    name: "Carvao 100% Eucalipto 5kg",
+    description: "Carvao 100% eucalipto 5kg, rendimento superior.",
+    price: 34.19,
+    originalPrice: 52.81,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008988_466d6770-69e5-4885-bc6d-41d3f3585d00.webp?v=1771968297",
+    category: "churrasco",
+    includes: ["5kg"],
+    accompaniments: []
+  },
+  {
+    id: "412",
+    name: "Carvao 5kg",
+    description: "Carvao para churrasco 5kg.",
+    price: 34.18,
+    originalPrice: 49.68,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008989_4daa96a5-135d-4fd8-aade-31c324e1ecc8.webp?v=1771968330",
+    category: "churrasco",
+    includes: ["5kg"],
+    accompaniments: []
+  },
+  {
+    id: "413",
+    name: "Carvao 6kg",
+    description: "Carvao para churrasco 6kg.",
+    price: 36.90,
+    originalPrice: 55.95,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00017970_8a31b9c0-f1d7-4594-94f0-8c1ce4342e75.webp?v=1771968489",
+    category: "churrasco",
+    includes: ["6kg"],
+    accompaniments: []
+  },
+  {
+    id: "414",
+    name: "Carvao 7kg",
+    description: "Carvao para churrasco 7kg.",
+    price: 43.90,
+    originalPrice: 68.99,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00017971_e3f525d1-5315-4a8f-9b9d-9bb0a7a0f5e7.webp?v=1771968510",
+    category: "churrasco",
+    includes: ["7kg"],
+    accompaniments: []
+  },
+  {
+    id: "415",
+    name: "Carvao 100% Eucalipto 9kg",
+    description: "Carvao 100% eucalipto 9kg, para grandes churrascos.",
+    price: 54.15,
+    originalPrice: 84.26,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008990_02d57090-4ede-4a98-a44c-dab87dbc1c25.webp?v=1771968354",
+    category: "churrasco",
+    includes: ["9kg"],
+    accompaniments: []
+  },
+  {
+    id: "416",
+    name: "Carvao 10kg",
+    description: "Carvao para churrasco 10kg, ideal para grandes eventos.",
+    price: 61.80,
+    originalPrice: 88.63,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008991_22b216fc-f92f-48c4-9ffb-e4c4016143d6.webp?v=1771968376",
+    category: "churrasco",
+    includes: ["10kg"],
+    accompaniments: []
+  },
+  {
+    id: "417",
+    name: "Acendedor para Churrasco Fiat Lux Bastao",
+    description: "Acendedor Fiat Lux em bastao, acende rapido e seguro.",
+    price: 28.79,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/572a6468522c9.webp?v=1771968396",
+    category: "churrasco",
+    includes: ["1 unidade"],
+    accompaniments: []
   }
 ]
 
