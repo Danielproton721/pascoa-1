@@ -1389,5 +1389,5 @@ export const categories = [
   { id: "comida", name: "Comida", icon: "/categories/comida.png" },
   { id: "queridinhos", name: "Destilados", icon: "/categories/destilados.png" },
   { id: "combinados", name: "Refri e Energeticos", icon: "/categories/refrigerantes.png" },
-  { id: "poke", name: "Gelinhos", icon: "/categories/gelinhos.png" },
+  { id: "poke", name: "Gelinhos", icon: "/categories/aguas-gelo.png" },
   ]
