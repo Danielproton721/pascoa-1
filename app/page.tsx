@@ -20,8 +20,11 @@ import { AboutUs } from "@/components/delivery/about-us"
 import { Footer } from "@/components/delivery/footer"
 import { BannerCarousel } from "@/components/delivery/banner-carousel"
 import { PendingOrdersButton, PendingOrdersModal } from "@/components/delivery/pending-orders"
+import { UpsellCombo } from "@/components/delivery/upsell-combo"
+import { useCart } from "@/lib/cart-context"
 
 function DeliveryApp() {
+  const { addCombo } = useCart()
   const [activeCategory, setActiveCategory] = useState("ofertas")
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -89,10 +92,7 @@ function DeliveryApp() {
 
       <BannerCarousel 
         onBannerClick={handleCategoryChange} 
-        onComboClick={() => {
-          setOpenCombo(true)
-          setIsCartOpen(true)
-        }}
+        onComboClick={() => setOpenCombo(true)}
       />
 
       <main id="products-section" className={`max-w-lg mx-auto px-4 py-6 transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
@@ -184,8 +184,6 @@ function DeliveryApp() {
         isOpen={isCartOpen} 
         onClose={() => setIsCartOpen(false)} 
         onNavigateToCategory={handleCategoryChange}
-        openCombo={openCombo}
-        onComboOpened={() => setOpenCombo(false)}
       />
 
       {selectedProduct && (
@@ -204,6 +202,17 @@ function DeliveryApp() {
         <LocationPopup
           onClose={() => setShowLocationPopup(false)}
           onLocationSet={handleLocationSet}
+        />
+      )}
+
+      {openCombo && (
+        <UpsellCombo
+          startOpen
+          onAddCombo={(comboItems, comboPrice) => {
+            addCombo(comboItems, comboPrice)
+            setOpenCombo(false)
+          }}
+          onCancelEdit={() => setOpenCombo(false)}
         />
       )}
     </div>

@@ -13,29 +13,16 @@ interface CartDrawerProps {
   isOpen: boolean
   onClose: () => void
   onNavigateToCategory?: (categoryId: string) => void
-  openCombo?: boolean
-  onComboOpened?: () => void
 }
 
 const MIN_ORDER_VALUE = 50
 
-export function CartDrawer({ isOpen, onClose, onNavigateToCategory, openCombo, onComboOpened }: CartDrawerProps) {
+export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawerProps) {
   const { items, totalPrice, updateQuantity, removeItem, clearCart, addCombo } = useCart()
   const [showPixCheckout, setShowPixCheckout] = useState(false)
   const [showUpsellComida, setShowUpsellComida] = useState(false)
   const [editingComboId, setEditingComboId] = useState<string | null>(null)
   const [showComboBuilder, setShowComboBuilder] = useState(false)
-  const [prevOpenCombo, setPrevOpenCombo] = useState(false)
-
-  // Detecta mudanca de openCombo de false -> true (sem useEffect)
-  if (openCombo && !prevOpenCombo && isOpen) {
-    setShowComboBuilder(true)
-    setPrevOpenCombo(true)
-    onComboOpened?.()
-  }
-  if (!openCombo && prevOpenCombo) {
-    setPrevOpenCombo(false)
-  }
 
   const hasUpsellItemInCart = items.some((item) => UPSELL_PRODUCT_IDS.includes(item.product.id))
 
