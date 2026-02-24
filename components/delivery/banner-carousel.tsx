@@ -8,21 +8,24 @@ const banners = [
     id: 1,
     src: "/banners/banner-1.jpg",
     alt: "Deu fome? Peca aqui tambem! Entrega em minutos",
+    action: "category" as const,
     categoryLink: "comida",
   },
   {
     id: 2,
     src: "/banners/banner2.webp",
     alt: "Monte seu combo! Precos imbativeis com 30% OFF",
-    categoryLink: "queridinhos",
+    action: "combo" as const,
+    categoryLink: "",
   },
 ]
 
 interface BannerCarouselProps {
   onBannerClick?: (categoryId: string) => void
+  onComboClick?: () => void
 }
 
-export function BannerCarousel({ onBannerClick }: BannerCarouselProps) {
+export function BannerCarousel({ onBannerClick, onComboClick }: BannerCarouselProps) {
   const [current, setCurrent] = useState(0)
 
   const next = useCallback(() => {
@@ -46,7 +49,9 @@ export function BannerCarousel({ onBannerClick }: BannerCarouselProps) {
               key={banner.id}
               className="relative aspect-[16/7] w-full flex-shrink-0 cursor-pointer"
               onClick={() => {
-                if (banner.categoryLink && onBannerClick) {
+                if (banner.action === "combo" && onComboClick) {
+                  onComboClick()
+                } else if (banner.action === "category" && banner.categoryLink && onBannerClick) {
                   onBannerClick(banner.categoryLink)
                 }
               }}

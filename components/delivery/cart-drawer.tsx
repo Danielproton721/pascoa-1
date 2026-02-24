@@ -13,15 +13,26 @@ interface CartDrawerProps {
   isOpen: boolean
   onClose: () => void
   onNavigateToCategory?: (categoryId: string) => void
+  openCombo?: boolean
+  onComboOpened?: () => void
 }
 
 const MIN_ORDER_VALUE = 50
 
-export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawerProps) {
+export function CartDrawer({ isOpen, onClose, onNavigateToCategory, openCombo, onComboOpened }: CartDrawerProps) {
   const { items, totalPrice, updateQuantity, removeItem, clearCart, addCombo } = useCart()
   const [showPixCheckout, setShowPixCheckout] = useState(false)
   const [showUpsellComida, setShowUpsellComida] = useState(false)
   const [editingComboId, setEditingComboId] = useState<string | null>(null)
+  const [showComboBuilder, setShowComboBuilder] = useState(false)
+
+  // Quando openCombo = true, abre o combo builder direto
+  useEffect(() => {
+    if (openCombo && isOpen) {
+      setShowComboBuilder(true)
+      onComboOpened?.()
+    }
+  }, [openCombo, isOpen, onComboOpened])
 
   const hasUpsellItemInCart = items.some((item) => UPSELL_PRODUCT_IDS.includes(item.product.id))
 
@@ -294,6 +305,18 @@ export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawer
           onContinue={handleUpsellClose}
           onSkip={handleUpsellSkip}
           onViewMenu={handleViewMenu}
+        />
+      )}
+
+      {/* Modal de Combo Builder (via banner) */}
+      {showComboBuilder && (
+        <UpsellCombo
+          startOpen
+          onAddCombo={(comboItems, comboPrice) => {
+            addCombo(comboItems, comboPrice)
+            setShowComboBuilder(false)
+          }}
+          onCancelEdit={() => setShowComboBuilder(false)}
         />
       )}
 

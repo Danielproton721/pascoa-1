@@ -29,6 +29,7 @@ function DeliveryApp() {
   const [showLocationPopup, setShowLocationPopup] = useState(false)
   const [userAddress, setUserAddress] = useState<string | null>(null)
   const [showPendingOrders, setShowPendingOrders] = useState(false)
+  const [openCombo, setOpenCombo] = useState(false)
 
   useEffect(() => {
     // Verifica se ja tem endereco salvo
@@ -86,7 +87,13 @@ function DeliveryApp() {
         onCategoryChange={handleCategoryChange}
       />
 
-      <BannerCarousel onBannerClick={handleCategoryChange} />
+      <BannerCarousel 
+        onBannerClick={handleCategoryChange} 
+        onComboClick={() => {
+          setOpenCombo(true)
+          setIsCartOpen(true)
+        }}
+      />
 
       <main id="products-section" className={`max-w-lg mx-auto px-4 py-6 transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
         {activeCategory === "ofertas" ? (
@@ -173,7 +180,13 @@ function DeliveryApp() {
 
       <PendingOrdersButton onClick={() => setShowPendingOrders(true)} />
       <CartButton onClick={() => setIsCartOpen(true)} isCartOpen={isCartOpen} />
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} onNavigateToCategory={handleCategoryChange} />
+      <CartDrawer 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+        onNavigateToCategory={handleCategoryChange}
+        openCombo={openCombo}
+        onComboOpened={() => setOpenCombo(false)}
+      />
 
       {selectedProduct && (
         <ProductDetail
