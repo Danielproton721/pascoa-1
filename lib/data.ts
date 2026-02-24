@@ -1,7 +1,71 @@
 import type { Product, Additional, Review } from "./types"
 
 export const products: Product[] = [
-  // OFERTAS DO DIA - 5 produtos selecionados
+  // OFERTAS DO DIA
+  {
+    id: "400",
+    name: "Corona 330ml - Pack 6 garrafas",
+    description: "Pack com 6 garrafas da classica cerveja mexicana",
+    price: 19.19,
+    originalPrice: 24.14,
+    image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/cerveja_corona_2_1.jpg?v=1769486848",
+    category: "ofertas",
+    badge: "PROMO",
+    stock: 50,
+    includes: ["6 garrafas de 330ml"],
+    accompaniments: ["Limao"]
+  },
+  {
+    id: "401",
+    name: "Skol Beats Senses 6un 313ml",
+    description: "Bebida mista com base de cerveja, sabor citrico e refrescante. Otima para festas",
+    price: 27.90,
+    image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/a4f48483bbab465a4304ef1886d372ef.jpg?v=1769488484",
+    category: "ofertas",
+    badge: "PACK 6UN",
+    stock: 50,
+    includes: ["6 garrafas de 313ml"],
+    accompaniments: []
+  },
+  {
+    id: "402",
+    name: "Jack Daniels Apple 1000ml",
+    description: "Whiskey americano com sabor de maca verde, combinando o classico Tennessee Whiskey com frescor frutado. Perfeito puro, com gelo ou em drinks.",
+    price: 97.90,
+    originalPrice: 129.90,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/jack-daniels-apple-1000-ml_1_650.webp?v=1771911129",
+    category: "ofertas",
+    badge: "PROMO",
+    stock: 50,
+    includes: ["1 garrafa de 1L"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "403",
+    name: "Vodka Ciroc 750ml",
+    description: "Feita de uva na Franca, pais-icone do luxo. Presenca constante nos ambientes mais badalados do mundo. Garrafa elegante que lembra frascos de perfumistas.",
+    price: 158.90,
+    originalPrice: 234.52,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/vodka-ciroc_1_650.webp?v=1771912716",
+    category: "ofertas",
+    badge: "PROMO",
+    stock: 50,
+    includes: ["1 garrafa de 750ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "404",
+    name: "Red Bull Energy Drink 250ml - 4 unidades",
+    description: "Red Bull te da asas! Energetico com cafeina, taurina e vitaminas do grupo B",
+    price: 11.90,
+    originalPrice: 33.96,
+    image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/352bc8bb94367ea49ebf312bf24bf842.jpg?v=1769488562",
+    category: "ofertas",
+    badge: "PACK 4UN",
+    stock: 50,
+    includes: ["4 latas de 250ml"],
+    accompaniments: []
+  },
   {
     id: "5",
     name: "Heineken 330ml",
