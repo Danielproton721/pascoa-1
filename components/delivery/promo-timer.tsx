@@ -20,7 +20,7 @@ export function PromoTimer() {
   }, [])
 
   return (
-    <div className="bg-accent text-accent-foreground rounded-lg px-2.5 py-1 flex items-center gap-1.5 shrink-0">
+    <div className="bg-accent text-accent-foreground rounded-lg px-2.5 py-1 flex items-center justify-center gap-1.5 flex-1 min-w-0">
       <div className="flex items-center gap-0.5 font-mono font-bold text-xs">
         <span className="bg-card text-foreground px-1.5 py-0.5 rounded text-[11px]">00</span>
         <span className="animate-pulse text-[10px]">:</span>
