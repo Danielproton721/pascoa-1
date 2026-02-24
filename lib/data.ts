@@ -1790,6 +1790,186 @@ export const products: Product[] = [
     category: "churrasco",
     includes: ["1 unidade"],
     accompaniments: []
+  },
+  {
+    id: "500",
+    name: "Doritos Queijo Nacho 120g",
+    description: "Salgadinho Doritos sabor Queijo Nacho 120g.",
+    price: 15.89,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025903_e7850685-8628-43a0-adb8-803f3aa13fd9.webp?v=1771966570",
+    category: "salgadinho",
+    includes: ["120g"],
+    accompaniments: []
+  },
+  {
+    id: "501",
+    name: "Torcida Pimenta Mexicana 70g",
+    description: "Salgadinho Torcida sabor Pimenta Mexicana 70g.",
+    price: 2.49,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00012155_70c2aca4-d9d9-4f96-a5f5-467851cf4cf4.webp?v=1771966602",
+    category: "salgadinho",
+    includes: ["70g"],
+    accompaniments: []
+  },
+  {
+    id: "502",
+    name: "Torcida Churrasco 60g",
+    description: "Salgadinho Torcida sabor Churrasco 60g.",
+    price: 2.49,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00026001_16f5bdd1-dcf3-4257-a6f6-d9bc45760972.webp?v=1771967202",
+    category: "salgadinho",
+    includes: ["60g"],
+    accompaniments: []
+  },
+  {
+    id: "503",
+    name: "Torcida Bacon 60g",
+    description: "Salgadinho Torcida sabor Bacon 60g.",
+    price: 2.49,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025998_2a68f85b-3fb6-4473-8667-5dfa96e0fe8f.webp?v=1771967198",
+    category: "salgadinho",
+    includes: ["60g"],
+    accompaniments: []
+  },
+  {
+    id: "504",
+    name: "Cheetos Onda Requeijao 105g",
+    description: "Salgadinho Cheetos Onda sabor Requeijao 105g.",
+    price: 11.39,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025902_5fb42386-21c3-4237-a07a-8799d6d83581.webp?v=1771967192",
+    category: "salgadinho",
+    includes: ["105g"],
+    accompaniments: []
+  },
+  {
+    id: "505",
+    name: "Cebolitos 138g",
+    description: "Salgadinho Cebolitos 138g.",
+    price: 15.49,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025973_f19cf909-2a4e-48c1-9c0d-2134f11c565c.webp?v=1771967187",
+    category: "salgadinho",
+    includes: ["138g"],
+    accompaniments: []
+  },
+  {
+    id: "506",
+    name: "Doritos Queijo Nacho 300g",
+    description: "Salgadinho Doritos sabor Queijo Nacho 300g.",
+    price: 31.19,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00014019_e2f59f62-cdc4-43e6-8742-9e656b143348.webp?v=1771967183",
+    category: "salgadinho",
+    includes: ["300g"],
+    accompaniments: []
+  },
+  {
+    id: "507",
+    name: "Fandangos Presunto 105g",
+    description: "Salgadinho Fandangos sabor Presunto 105g.",
+    price: 10.09,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025984_5f0daf82-07b3-49e3-8b42-bf5069fbaa4a.webp?v=1771967175",
+    category: "salgadinho",
+    includes: ["105g"],
+    accompaniments: []
+  },
+  {
+    id: "508",
+    name: "Lays Classica 70g",
+    description: "Batata Lays sabor Classico 70g.",
+    price: 10.29,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025992_727e2966-9092-4688-98fa-6d08ecd12bc4.webp?v=1771967171",
+    category: "salgadinho",
+    includes: ["70g"],
+    accompaniments: []
+  },
+  {
+    id: "509",
+    name: "Cheetos Onda Requeijao 45g",
+    description: "Salgadinho Cheetos Onda sabor Requeijao 45g.",
+    price: 3.39,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00017138_b6222fb5-8fff-44be-9d4a-a5df9178bdb3.webp?v=1771967140",
+    category: "salgadinho",
+    includes: ["45g"],
+    accompaniments: []
+  },
+  {
+    id: "510",
+    name: "Ruffles Original 68g",
+    description: "Batata Ruffles sabor Original 68g.",
+    price: 9.79,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00026266_58de702d-f42f-4f51-a256-d2086088b172.webp?v=1771967135",
+    category: "salgadinho",
+    includes: ["68g"],
+    accompaniments: []
+  },
+  {
+    id: "511",
+    name: "Cheetos Lua Parmesao 95g",
+    description: "Salgadinho Cheetos Lua sabor Parmesao 95g.",
+    price: 10.79,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025974_4868f746-fbc4-4313-9721-7bd4aa36e34c.webp?v=1771967130",
+    category: "salgadinho",
+    includes: ["95g"],
+    accompaniments: []
+  },
+  {
+    id: "512",
+    name: "Baconzitos 130g",
+    description: "Salgadinho Baconzitos 130g.",
+    price: 15.49,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00026161_2a7596fe-c1cb-4a98-9f3e-e48d73028380.webp?v=1771967125",
+    category: "salgadinho",
+    includes: ["130g"],
+    accompaniments: []
+  },
+  {
+    id: "513",
+    name: "Doritos Queijo Nacho 210g",
+    description: "Salgadinho Doritos sabor Queijo Nacho 210g.",
+    price: 21.29,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00014018_739a0975-ccc6-44ca-9551-bb3336b3525d.webp?v=1771967122",
+    category: "salgadinho",
+    includes: ["210g"],
+    accompaniments: []
+  },
+  {
+    id: "514",
+    name: "Ruffles Cebola e Salsa 68g",
+    description: "Batata Ruffles sabor Cebola e Salsa 68g.",
+    price: 9.79,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00026264_4ff70fa7-baf2-4f79-9da9-820c3c588643.webp?v=1771967117",
+    category: "salgadinho",
+    includes: ["68g"],
+    accompaniments: []
+  },
+  {
+    id: "515",
+    name: "Torcida Pimenta Mexicana 60g",
+    description: "Salgadinho Torcida sabor Pimenta Mexicana 60g.",
+    price: 2.49,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00026004_a7a690c4-069a-4364-b877-8653596d2cf5.webp?v=1771967111",
+    category: "salgadinho",
+    includes: ["60g"],
+    accompaniments: []
+  },
+  {
+    id: "516",
+    name: "Ruffles Churrasco 68g",
+    description: "Batata Ruffles sabor Churrasco 68g.",
+    price: 9.79,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00026265_44f38296-a481-4651-8be8-db539e9b011d.webp?v=1771967105",
+    category: "salgadinho",
+    includes: ["68g"],
+    accompaniments: []
+  },
+  {
+    id: "517",
+    name: "Cheetos Lua Parmesao 40g",
+    description: "Salgadinho Cheetos Lua sabor Parmesao 40g.",
+    price: 4.09,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00015600_3e0eac5f-5292-4424-952a-dd111a3619af.webp?v=1771967096",
+    category: "salgadinho",
+    includes: ["40g"],
+    accompaniments: []
   }
 ]
 
