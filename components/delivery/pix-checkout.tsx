@@ -4,10 +4,16 @@ import React from "react"
 import { TrackPurchase } from "./track-purchase"
 import { savePendingOrder, removePendingOrder } from "./pending-orders"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { X, Copy, Check, Loader2, QrCode, AlertCircle, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[]
+  }
+}
 
 interface PixCheckoutProps {
   amount: number
@@ -188,6 +194,61 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
       setTimeout(() => setCopied(false), 2000)
     }
   }
+
+  // ============================================
+  // POLLING - Verificacao automatica de pagamento
+  // ============================================
+  const hasDispatchedEvent = useRef(false)
+
+  const handlePaymentConfirmed = useCallback(() => {
+    if (hasDispatchedEvent.current) return
+    hasDispatchedEvent.current = true
+
+    // Remove pedido pendente
+    if (pixData?.transactionId) {
+      removePendingOrder(pixData.transactionId)
+    }
+
+    // Dispara evento no dataLayer (apenas uma vez)
+    if (typeof window !== "undefined") {
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({
+        event: "compra_aprovada",
+        transaction_id: pixData?.transactionId || "",
+        value: amount,
+        currency: "BRL",
+      })
+      console.log("[v0] dataLayer compra_aprovada disparado:", {
+        transaction_id: pixData?.transactionId,
+        value: amount,
+      })
+    }
+
+    // Mostrar tela de sucesso
+    setStep("success")
+  }, [pixData, amount])
+
+  useEffect(() => {
+    if (step !== "qrcode" || !pixData?.transactionId) return
+
+    const intervalId = setInterval(async () => {
+      try {
+        const response = await fetch(`/api/verificar-status?pedido_id=${pixData.transactionId}`)
+        const data = await response.json()
+
+        console.log("[v0] Polling status:", data.status, "raw:", data.rawStatus)
+
+        if (data.status === "Pago") {
+          clearInterval(intervalId)
+          handlePaymentConfirmed()
+        }
+      } catch (err) {
+        console.error("[v0] Polling error:", err)
+      }
+    }, 5000) // Verifica a cada 5 segundos
+
+    return () => clearInterval(intervalId)
+  }, [step, pixData?.transactionId, handlePaymentConfirmed])
 
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" style={{ minHeight: '100dvh' }}>
@@ -498,18 +559,11 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                 </ol>
               </div>
 
-              <Button
-                onClick={() => {
-                  // Remove pedido pendente ao confirmar pagamento
-                  if (pixData?.transactionId) {
-                    removePendingOrder(pixData.transactionId)
-                  }
-                  setStep("success")
-                }}
-                className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold"
-              >
-                Ja fiz o pagamento
-              </Button>
+              {/* Verificacao automatica de pagamento */}
+              <div className="flex items-center justify-center gap-2 py-3 text-sm text-muted-foreground">
+                <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                <span>Aguardando confirmacao do pagamento...</span>
+              </div>
             </div>
           )}
 
@@ -518,17 +572,14 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <Check className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">Obrigado!</h3>
+              <h3 className="text-xl font-bold text-foreground">Pagamento Confirmado!</h3>
               <p className="text-muted-foreground">
-                Seu pedido esta sendo preparado.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Assim que confirmarmos o pagamento, liberamos a entrega.
+                Seu pedido esta sendo preparado e logo saira para entrega.
               </p>
               
               <div className="bg-secondary/50 rounded-xl p-4 mt-6">
                 <p className="text-sm text-muted-foreground">
-                  Voce recebera uma notificacao assim que o pagamento for confirmado.
+                  Obrigado pela sua compra! Voce recebera atualizacoes sobre o status da entrega.
                 </p>
               </div>
 
