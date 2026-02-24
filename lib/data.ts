@@ -681,6 +681,149 @@ export const products: Product[] = [
     includes: ["1 garrafa de 1L", "Blend escocês"],
     accompaniments: ["Gelo"]
   },
+  {
+    id: "303",
+    name: "Whisky Macallan 12 anos Double Cask 700ml",
+    description: "O Macallan Double Cask 12 Anos e uma expressao sofisticada do single malt escoces, envelhecida exclusivamente em barris de carvalho temperados com vinho Jerez. Produzido na celebre regiao de Speyside, Escocia.",
+    price: 229.90,
+    originalPrice: 429.90,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/macallan-12-anos-double-cask-700-ml-1074_1_650.webp?v=1771911194",
+    category: "queridinhos",
+    includes: ["1 garrafa de 700ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "304",
+    name: "Whisky Chivas Royal Salute 21 anos Azul 700ml",
+    description: "O Whisky Chivas Royal Salute 21 Anos Azul e uma verdadeira joia do mundo dos destilados. Criado para celebrar a coroacao da Rainha Elizabeth II, em 1953, este rotulo e sinonimo de elegancia e tradicao.",
+    price: 279.98,
+    originalPrice: 565.90,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/whisky-chivas-royal-salute-21-anos_1_650.webp?v=1771911204",
+    category: "queridinhos",
+    includes: ["1 garrafa de 700ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "305",
+    name: "Whisky Johnnie Walker Blue Label 750ml",
+    description: "Cada garrafa do Blue Label e uma verdadeira obra-prima, assinada por mestres blendadores. Elegante, poderoso e envolvente, e uma experiencia de luxo para quem valoriza historia e tradicao.",
+    price: 1299.00,
+    originalPrice: 2113.84,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/whisky-johnnie-walker-blue-label_1_650.webp?v=1771911213",
+    category: "queridinhos",
+    includes: ["1 garrafa de 750ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "306",
+    name: "Whisky Buffalo Trace Bourbon 750ml",
+    description: "Perfil marcante, encorpado e levemente adocicado, com notas irresistiveis de baunilha, caramelo e especiarias. Bourbon premiado, perfeito puro, com gelo ou em coqueteis classicos.",
+    price: 84.90,
+    originalPrice: 145.40,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/buffalo-trace-bourbon-750-ml_1_650.webp?v=1771911224",
+    category: "queridinhos",
+    includes: ["1 garrafa de 750ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "307",
+    name: "Whisky Woodford Reserve Bourbon 750ml",
+    description: "Um dos bourbons mais premiados dos EUA, produzido na historica Woodford Reserve Distillery, Kentucky. Reconhecido pelo processo artesanal e producao em pequenos lotes (small batch).",
+    price: 129.98,
+    originalPrice: 219.90,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/whisky-woodford-reserve-bourbon_1_650.webp?v=1771911230",
+    category: "queridinhos",
+    includes: ["1 garrafa de 750ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "308",
+    name: "Whisky Macallan Sherry Oak 12 anos 700ml",
+    description: "Envelhecido exclusivamente em barris de carvalho europeu que antes contiveram vinho Jerez Oloroso. Single malt que expressa profundidade, estrutura e estilo intensamente frutado e especiado.",
+    price: 269.90,
+    originalPrice: 388.77,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/macallan-sherry-oak-12-anos-700-ml_1_650.webp?v=1771911237",
+    category: "queridinhos",
+    includes: ["1 garrafa de 700ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "309",
+    name: "Whisky Old Parr 12 anos 1L",
+    description: "A historia do Old Parr remonta ao inicio do seculo XX, inspirada em Thomas Parr que viveu mais de 150 anos. Design marcante com vidro texturizado e formato robusto.",
+    price: 98.90,
+    originalPrice: 235.16,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/whisky-old-parr-12-anos_1_650.webp?v=1771911243",
+    category: "queridinhos",
+    includes: ["1 garrafa de 1L"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "310",
+    name: "Whisky Buchanan's 12 anos 1L",
+    description: "Envelhecido por pelo menos 12 anos, entrega notas suaves de frutas citricas, mel e madeira. Ideal para consumo puro, com gelo ou em coqueteis premium.",
+    price: 129.90,
+    originalPrice: 249.30,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/whisky-buchanans-12-anos_1_650.webp?v=1771911146",
+    category: "queridinhos",
+    includes: ["1 garrafa de 1L"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "311",
+    name: "Jack Daniels Apple 1000ml",
+    description: "Whiskey americano com sabor de maca verde, combinando o classico Tennessee Whiskey com frescor frutado. Perfeito puro, com gelo ou em drinks.",
+    price: 97.90,
+    originalPrice: 129.90,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/jack-daniels-apple-1000-ml_1_650.webp?v=1771911129",
+    category: "queridinhos",
+    includes: ["1 garrafa de 1L"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "312",
+    name: "Licor 43 (Cuarenta y Tres) 700ml",
+    description: "Licor espanhol produzido desde o inicio do seculo XX em Cartagena, Espanha. Sabor unico com conexao a cultura mediterranea, sinonimo de qualidade e tradicao.",
+    price: 159.90,
+    originalPrice: 224.68,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/licor-43-cuarenta-y-tres_1_650.webp?v=1771912721",
+    category: "queridinhos",
+    includes: ["1 garrafa de 700ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "313",
+    name: "Vodka Ciroc 750ml",
+    description: "Feita de uva na Franca, pais-icone do luxo. Presenca constante nos ambientes mais badalados do mundo. Garrafa elegante que lembra frascos de perfumistas.",
+    price: 158.90,
+    originalPrice: 234.52,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/vodka-ciroc_1_650.webp?v=1771912716",
+    category: "queridinhos",
+    includes: ["1 garrafa de 750ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "314",
+    name: "Vodka Grey Goose 750ml",
+    description: "Producao com trigo 100% puro da regiao francesa de La Beauce. Processo de destilacao de cinco etapas garante uma vodka suave, aveludada e refinada.",
+    price: 139.90,
+    originalPrice: 227.06,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/vodka-grey-goose_1_650.webp?v=1771912711",
+    category: "queridinhos",
+    includes: ["1 garrafa de 750ml"],
+    accompaniments: ["Gelo"]
+  },
+  {
+    id: "315",
+    name: "Vodka Pravda 750ml",
+    description: "Vodka ultra premium produzida desde 1743 no coracao da mundialmente conhecida regiao produtora de vodka no sul da Polonia: Bielsko-Biala.",
+    price: 124.90,
+    originalPrice: 167.92,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/vodka-pravda_1_650.webp?v=1771912702",
+    category: "queridinhos",
+    includes: ["1 garrafa de 750ml"],
+    accompaniments: ["Gelo"]
+  },
 
   // ENERGETICOS (combinados)
   {
