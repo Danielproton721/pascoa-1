@@ -1384,11 +1384,11 @@ export const reviews: Review[] = [
 ]
 
 export const categories = [
-  { id: "ofertas", name: "Ofertas do Dia" },
-  { id: "cervejas", name: "Cervejas" },
-  { id: "comida", name: "Comida" },
-  { id: "queridinhos", name: "Destilados e Drinks Fortes" },
-  { id: "combinados", name: "Energeticos" },
-  { id: "temaki", name: "Refrigerantes" },
-  { id: "poke", name: "Gelinhos" },
-]
+  { id: "ofertas", name: "Ofertas", icon: "/categories/ofertas.png" },
+  { id: "cervejas", name: "Cervejas", icon: "/categories/cervejas.png" },
+  { id: "comida", name: "Comida", icon: "/categories/comida.png" },
+  { id: "queridinhos", name: "Destilados", icon: "/categories/destilados.png" },
+  { id: "combinados", name: "Energeticos", icon: "/categories/energeticos.png" },
+  { id: "temaki", name: "Refrigerantes", icon: "/categories/refrigerantes.png" },
+  { id: "poke", name: "Gelinhos", icon: "/categories/gelinhos.png" },
+  ]

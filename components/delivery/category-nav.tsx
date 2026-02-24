@@ -2,42 +2,53 @@
 
 import { cn } from "@/lib/utils"
 import { categories } from "@/lib/data"
+import Image from "next/image"
 
 interface CategoryNavProps {
   activeCategory: string
   onCategoryChange: (categoryId: string) => void
 }
 
-const dotColors = [
-  "bg-yellow-500",
-  "bg-orange-500", 
-  "bg-red-500",
-  "bg-pink-500",
-  "bg-purple-500",
-]
-
 export function CategoryNav({ activeCategory, onCategoryChange }: CategoryNavProps) {
   return (
-    <nav className="bg-secondary/50 py-3">
+    <nav className="py-4">
       <div className="max-w-lg mx-auto px-4">
-        <div className="flex overflow-x-auto scrollbar-hide gap-2">
-          {categories.map((category, index) => (
+        <div className="flex overflow-x-auto scrollbar-hide gap-4 pb-1">
+          {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => onCategoryChange(category.id)}
               className={cn(
-                "px-4 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 rounded-full flex items-center gap-2",
-                "hover:scale-105 active:scale-95",
-                activeCategory === category.id
-                  ? "bg-card text-foreground shadow-md"
-                  : "text-muted-foreground hover:text-foreground"
+                "flex flex-col items-center gap-1.5 flex-shrink-0 transition-all duration-200",
+                "hover:scale-105 active:scale-95"
               )}
             >
-              <span className={cn(
-                "w-2 h-2 rounded-full",
-                dotColors[index % dotColors.length]
-              )} />
-              {category.name}
+              <div
+                className={cn(
+                  "w-[72px] h-[72px] rounded-2xl overflow-hidden border-2 transition-all duration-200 flex items-center justify-center bg-secondary/30",
+                  activeCategory === category.id
+                    ? "border-primary shadow-md shadow-primary/20"
+                    : "border-transparent"
+                )}
+              >
+                <Image
+                  src={category.icon}
+                  alt={category.name}
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span
+                className={cn(
+                  "text-[11px] font-medium text-center leading-tight w-[72px] truncate",
+                  activeCategory === category.id
+                    ? "text-foreground font-bold"
+                    : "text-muted-foreground"
+                )}
+              >
+                {category.name}
+              </span>
             </button>
           ))}
         </div>
