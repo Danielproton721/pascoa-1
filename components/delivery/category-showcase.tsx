@@ -1,79 +1,84 @@
 "use client"
 
 import Image from "next/image"
-import { categories } from "@/lib/data"
+import { products } from "@/lib/data"
+import { useCart } from "@/lib/cart-context"
+import { ShoppingBag } from "lucide-react"
 
-interface CategoryShowcaseProps {
-  onCategorySelect: (categoryId: string) => void
+const HIGHLIGHT_IDS = ["40", "41"] // Tanqueray Gin 750ml, Whisky Jack Daniel's 1L
+
+interface HighlightProductsProps {
+  onProductSelect: (product: (typeof products)[0]) => void
 }
 
-// Mapeamento de categoria para imagem de produto representativo (especificas)
-const categoryImages: Record<string, { image: string; scale: string }> = {
-  cervejas: { 
-    image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/imgi_1_image_3.jpg?v=1769488266", // Brahma Duplo Malte
-    scale: "scale-125" 
-  },
-  queridinhos: { 
-    image: "https://cdn.shopify.com/s/files/1/0709/6211/8725/files/whisky-johnnie-walker-red-label-1-l-1.jpg?v=1769119712", // Johnnie Walker
-    scale: "scale-125" 
-  },
-  combinados: { 
-    image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/352bc8bb94367ea49ebf312bf24bf842.jpg?v=1769488562", // Red Bull
-    scale: "scale-100" 
-  },
-  temaki: { 
-    image: "https://cdn.shopify.com/s/files/1/0794/8750/0511/files/00008884_91a99c52-6aad-4f1e-a91f-f8b943bbbd46.webp?v=1769744532", // Guarana
-    scale: "scale-125" 
-  },
-  poke: { 
-    image: "https://cdn.shopify.com/s/files/1/0794/8750/0511/files/limao.webp?v=1769742103", // Gelo Limao
-    scale: "scale-125" 
-  },
-  comida: { 
-    image: "https://cdn.shopify.com/s/files/1/0813/9089/5346/files/4.png?v=1771228615", // Chapa Mista
-    scale: "scale-125" 
-  },
-}
+export function HighlightProducts({ onProductSelect }: HighlightProductsProps) {
+  const { addItem } = useCart()
+  const highlightProducts = products.filter((p) => HIGHLIGHT_IDS.includes(p.id))
 
-export function CategoryShowcase({ onCategorySelect }: CategoryShowcaseProps) {
-  // Filtra apenas as categorias que queremos mostrar (exclui ofertas)
-  const showcaseCategories = categories.filter(cat => cat.id !== "ofertas")
+  if (highlightProducts.length === 0) return null
 
   return (
-    <section className="mb-8 py-6 bg-background -mx-4 px-4">
-      <div className="flex items-center gap-2 mb-5">
-        <h2 className="text-lg font-bold text-foreground">Voce Encontra Aqui</h2>
-        <div className="flex-1 h-1 rounded-full max-w-[80px] bg-primary" />
-      </div>
-      
-      <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-        {showcaseCategories.map((category, index) => (
-          <button
-            key={category.id}
-            onClick={() => onCategorySelect(category.id)}
-            className="flex flex-col items-center gap-2 min-w-[90px] group animate-in fade-in slide-in-from-bottom-4 duration-500"
-            style={{ animationDelay: `${index * 100}ms`, animationFillMode: "both" }}
-          >
-            <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-border shadow-md 
-              group-hover:border-primary group-hover:scale-110 transition-all duration-300 bg-card">
-              {categoryImages[category.id] ? (
+    <section className="mb-8">
+      <div className="flex gap-3">
+        {highlightProducts.map((product, index) => {
+          const discount = product.originalPrice
+            ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+            : 0
+
+          return (
+            <div
+              key={product.id}
+              onClick={() => onProductSelect(product)}
+              className="flex-1 bg-card rounded-xl overflow-hidden border border-border shadow-sm cursor-pointer
+                hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300
+                animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="relative aspect-square w-full overflow-hidden bg-secondary/30">
                 <Image
-                  src={categoryImages[category.id].image || "/placeholder.svg"}
-                  alt={category.name}
+                  src={product.image || "/placeholder.svg"}
+                  alt={product.name}
                   fill
-                  className={`object-cover group-hover:scale-110 transition-transform duration-300 leading-6 ${categoryImages[category.id].scale}`}
+                  className="object-contain p-2"
                 />
-              ) : (
-                <div className="w-full h-full bg-secondary flex items-center justify-center">
-                  <span className="text-2xl">🍺</span>
+                {discount > 0 && (
+                  <span className="absolute top-2 left-2 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-md">
+                    -{discount}%
+                  </span>
+                )}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    addItem({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      image: product.image,
+                      quantity: 1,
+                    })
+                  }}
+                  className="absolute top-2 right-2 w-9 h-9 bg-accent rounded-full flex items-center justify-center shadow-lg
+                    hover:scale-110 active:scale-95 transition-all duration-200 z-10"
+                >
+                  <ShoppingBag className="w-4 h-4 text-accent-foreground" />
+                </button>
+              </div>
+              <div className="p-3">
+                <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-tight">{product.name}</h3>
+                <div className="mt-2">
+                  {product.originalPrice && (
+                    <span className="text-xs text-muted-foreground line-through block">
+                      R$ {product.originalPrice.toFixed(2).replace(".", ",")}
+                    </span>
+                  )}
+                  <span className="text-base font-bold text-primary">
+                    R$ {product.price.toFixed(2).replace(".", ",")}
+                  </span>
                 </div>
-              )}
+              </div>
             </div>
-            <span className="text-xs font-semibold text-foreground whitespace-nowrap">
-              {category.name.split(" ")[0]}
-            </span>
-          </button>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
