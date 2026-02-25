@@ -100,7 +100,7 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit, startOpen }: U
   }
 
   const handleClose = () => {
-    if (editMode && onCancelEdit) {
+    if ((editMode || startOpen) && onCancelEdit) {
       onCancelEdit()
     } else {
       setStep("preview")
