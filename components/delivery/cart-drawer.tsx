@@ -15,13 +15,14 @@ interface CartDrawerProps {
   onNavigateToCategory?: (categoryId: string) => void
 }
 
-const MIN_ORDER_VALUE = 50
+const MIN_ORDER_VALUE = 85
 
 export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawerProps) {
   const { items, totalPrice, updateQuantity, removeItem, clearCart, addCombo } = useCart()
   const [showPixCheckout, setShowPixCheckout] = useState(false)
   const [showUpsellComida, setShowUpsellComida] = useState(false)
   const [editingComboId, setEditingComboId] = useState<string | null>(null)
+  const [showComboBuilder, setShowComboBuilder] = useState(false)
 
   const hasUpsellItemInCart = items.some((item) => UPSELL_PRODUCT_IDS.includes(item.product.id))
 
@@ -29,27 +30,21 @@ export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawer
   const remainingValue = MIN_ORDER_VALUE - totalPrice
 
   const handleCheckout = () => {
-    console.log("[v0] handleCheckout - canCheckout:", canCheckout, "hasUpsellItemInCart:", hasUpsellItemInCart)
     if (!canCheckout) return
     if (!hasUpsellItemInCart) {
-      console.log("[v0] showing upsell comida")
       setShowUpsellComida(true)
     } else {
-      console.log("[v0] showing pix checkout directly")
       setShowPixCheckout(true)
     }
   }
 
   const handleUpsellClose = () => {
-    console.log("[v0] upsell close - back to cart")
     setShowUpsellComida(false)
   }
 
   const handleUpsellSkip = () => {
-    console.log("[v0] upsell skip - going to pix checkout")
     setShowUpsellComida(false)
     setShowPixCheckout(true)
-    console.log("[v0] showPixCheckout set to true")
   }
 
   const handleViewMenu = () => {
@@ -294,6 +289,18 @@ export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawer
           onContinue={handleUpsellClose}
           onSkip={handleUpsellSkip}
           onViewMenu={handleViewMenu}
+        />
+      )}
+
+      {/* Modal de Combo Builder (via banner) */}
+      {showComboBuilder && (
+        <UpsellCombo
+          startOpen
+          onAddCombo={(comboItems, comboPrice) => {
+            addCombo(comboItems, comboPrice)
+            setShowComboBuilder(false)
+          }}
+          onCancelEdit={() => setShowComboBuilder(false)}
         />
       )}
 

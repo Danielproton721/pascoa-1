@@ -20,8 +20,11 @@ import { AboutUs } from "@/components/delivery/about-us"
 import { Footer } from "@/components/delivery/footer"
 import { BannerCarousel } from "@/components/delivery/banner-carousel"
 import { PendingOrdersButton, PendingOrdersModal } from "@/components/delivery/pending-orders"
+import { UpsellCombo } from "@/components/delivery/upsell-combo"
+import { useCart } from "@/lib/cart-context"
 
 function DeliveryApp() {
+  const { addCombo } = useCart()
   const [activeCategory, setActiveCategory] = useState("ofertas")
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -29,6 +32,7 @@ function DeliveryApp() {
   const [showLocationPopup, setShowLocationPopup] = useState(false)
   const [userAddress, setUserAddress] = useState<string | null>(null)
   const [showPendingOrders, setShowPendingOrders] = useState(false)
+  const [openCombo, setOpenCombo] = useState(false)
 
   useEffect(() => {
     // Verifica se ja tem endereco salvo
@@ -86,13 +90,16 @@ function DeliveryApp() {
         onCategoryChange={handleCategoryChange}
       />
 
-      <BannerCarousel onBannerClick={handleCategoryChange} />
+      <BannerCarousel 
+        onBannerClick={handleCategoryChange} 
+        onComboClick={() => setOpenCombo(true)}
+      />
 
       <main id="products-section" className={`max-w-lg mx-auto px-4 py-6 transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
         {activeCategory === "ofertas" ? (
           <>
             <section className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex flex-col gap-2 mb-4">
                 <h2 className="text-lg font-bold text-foreground">
                   Ofertas do Dia
                 </h2>
@@ -111,34 +118,46 @@ function DeliveryApp() {
               </div>
             </section>
 
+            <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} />
+
             {otherCategories.map((category, catIndex) => {
               const categoryProducts = products.filter(
                 (p) => p.category === category.id
               )
               if (categoryProducts.length === 0) return null
               
-              // Insere os produtos destaque entre Cervejas (index 0) e Destilados (index 1)
-              const showHighlightProducts = catIndex === 1
-              
+              const isHorizontal = category.id === "salgadinho"
+
               return (
                 <div key={category.id}>
-                  {showHighlightProducts && (
-                    <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} />
-                  )}
                   <section className="mb-8">
                     <h2 className="text-lg font-bold text-foreground mb-4">
                       {category.name}
                     </h2>
-                    <div className="space-y-3">
-                      {categoryProducts.map((product, index) => (
-                        <CompactProductCard
-                          key={product.id}
-                          product={product}
-                          index={index}
-                          onClick={() => setSelectedProduct(product)}
-                        />
-                      ))}
-                    </div>
+                    {isHorizontal ? (
+                      <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
+                        {categoryProducts.map((product, index) => (
+                          <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
+                            <FeaturedProductCard
+                              product={product}
+                              index={index}
+                              onClick={() => setSelectedProduct(product)}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {categoryProducts.map((product, index) => (
+                          <CompactProductCard
+                            key={product.id}
+                            product={product}
+                            index={index}
+                            onClick={() => setSelectedProduct(product)}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </section>
                 </div>
               )
@@ -173,7 +192,11 @@ function DeliveryApp() {
 
       <PendingOrdersButton onClick={() => setShowPendingOrders(true)} />
       <CartButton onClick={() => setIsCartOpen(true)} isCartOpen={isCartOpen} />
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} onNavigateToCategory={handleCategoryChange} />
+      <CartDrawer 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+        onNavigateToCategory={handleCategoryChange}
+      />
 
       {selectedProduct && (
         <ProductDetail
@@ -191,6 +214,17 @@ function DeliveryApp() {
         <LocationPopup
           onClose={() => setShowLocationPopup(false)}
           onLocationSet={handleLocationSet}
+        />
+      )}
+
+      {openCombo && (
+        <UpsellCombo
+          startOpen
+          onAddCombo={(comboItems, comboPrice) => {
+            addCombo(comboItems, comboPrice)
+            setOpenCombo(false)
+          }}
+          onCancelEdit={() => setOpenCombo(false)}
         />
       )}
     </div>

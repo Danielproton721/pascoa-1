@@ -99,7 +99,7 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
             </div>
           </div>
           
-          <p className="text-xs text-muted-foreground mt-2 font-semibold text-center">{"Combo gelado e rápido pro teu carnaval ! "}</p>
+          <p className="text-xs text-muted-foreground mt-2 font-semibold text-center">{"Combo gelado e rápido perto de voce !"}</p>
         </div>
 
         {/* Banner de localizacao */}

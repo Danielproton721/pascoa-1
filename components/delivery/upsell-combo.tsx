@@ -27,12 +27,13 @@ interface UpsellComboProps {
     energeticos: ComboSelection[]
   }
   onCancelEdit?: () => void
+  startOpen?: boolean
 }
 
 type ComboStep = "preview" | "destilado" | "gelo" | "energetico" | "confirm"
 
-export function UpsellCombo({ onAddCombo, editMode, onCancelEdit }: UpsellComboProps) {
-  const [step, setStep] = useState<ComboStep>(editMode ? "confirm" : "preview")
+export function UpsellCombo({ onAddCombo, editMode, onCancelEdit, startOpen }: UpsellComboProps) {
+  const [step, setStep] = useState<ComboStep>(editMode ? "confirm" : startOpen ? "destilado" : "preview")
   const [quantities, setQuantities] = useState<Record<string, number>>(() => {
     if (!editMode) return {}
     const init: Record<string, number> = {}
@@ -99,7 +100,7 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit }: UpsellComboP
   }
 
   const handleClose = () => {
-    if (editMode && onCancelEdit) {
+    if ((editMode || startOpen) && onCancelEdit) {
       onCancelEdit()
     } else {
       setStep("preview")
