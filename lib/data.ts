@@ -1138,7 +1138,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "99",
+    id: "redbull-250",
     name: "Red Bull Energy Drink 250ml",
     description: "O energetico original Red Bull, com cafeina, taurina e vitaminas do grupo B",
     price: 5.49,
