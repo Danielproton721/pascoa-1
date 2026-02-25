@@ -9,9 +9,15 @@ const HIGHLIGHT_IDS = ["40", "313", "41"] // Tanqueray Gin 750ml, Vodka Ciroc 75
 
 interface HighlightProductsProps {
   onProductSelect: (product: (typeof products)[0]) => void
+  onComboClick?: () => void
 }
 
-export function HighlightProducts({ onProductSelect }: HighlightProductsProps) {
+const COMBO_CARD = {
+  name: "Monte seu Combo",
+  image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/combos.png?v=1771976188",
+}
+
+export function HighlightProducts({ onProductSelect, onComboClick }: HighlightProductsProps) {
   const { addItem } = useCart()
   const highlightProducts = products.filter((p) => HIGHLIGHT_IDS.includes(p.id))
 
@@ -20,6 +26,30 @@ export function HighlightProducts({ onProductSelect }: HighlightProductsProps) {
   return (
     <section className="mb-8">
       <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 snap-x snap-mandatory pb-2">
+        {/* Card Monte seu Combo */}
+        <div
+          onClick={() => onComboClick?.()}
+          className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start bg-card rounded-xl overflow-hidden border-2 border-primary/30 shadow-sm cursor-pointer
+            hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300
+            animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
+        >
+          <div className="relative aspect-square w-full overflow-hidden bg-primary/5">
+            <Image
+              src={COMBO_CARD.image}
+              alt={COMBO_CARD.name}
+              fill
+              className="object-contain p-2"
+            />
+            <span className="absolute top-2 left-2 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-md">
+              COMBO
+            </span>
+          </div>
+          <div className="p-3">
+            <h3 className="font-bold text-sm text-foreground leading-tight">{COMBO_CARD.name}</h3>
+            <span className="text-xs text-primary font-semibold mt-1 block">Clique e monte</span>
+          </div>
+        </div>
+
         {highlightProducts.map((product, index) => {
           const discount = product.originalPrice
             ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)

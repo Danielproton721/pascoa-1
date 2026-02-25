@@ -132,7 +132,7 @@ function DeliveryApp() {
               return (
                 <div key={category.id}>
                   {showHighlightProducts && (
-                    <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} />
+                    <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} />
                   )}
                   <section className="mb-8">
                     <h2 className="text-lg font-bold text-foreground mb-4">
