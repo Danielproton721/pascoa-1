@@ -41,7 +41,7 @@ export const products: Product[] = [
     accompaniments: ["Gelo"]
   },
   {
-    id: "9",
+    id: "oferta-brahma-duplo",
     name: "Cerveja Brahma Duplo Malte 350ml",
     description: "Cerveja com duplo malte para um sabor mais encorpado",
     price: 2.49,
@@ -54,7 +54,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "10",
+    id: "oferta-brahma-chopp",
     name: "Cerveja Brahma Chopp 550ml",
     description: "A cerveja numero 1 do Brasil em versao chopp gelado",
     price: 2.39,
@@ -67,7 +67,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "11",
+    id: "oferta-amstel-sleek",
     name: "Cerveja Amstel Sleek 350ml",
     description: "Amstel em lata sleek, pratica e gelada",
     price: 2.49,
@@ -80,7 +80,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "12",
+    id: "oferta-antarctica",
     name: "Cerveja Antarctica Original Pilsen 473ml",
     description: "Cerveja pilsen tradicional brasileira",
     price: 3.28,
@@ -93,7 +93,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "13",
+    id: "oferta-stella",
     name: "Cerveja Stella Artois 473ml",
     description: "Cerveja belga premium com sabor sofisticado",
     price: 3.34,
@@ -106,7 +106,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "14",
+    id: "oferta-skol-puro",
     name: "Skol Puro Malte 473ml",
     description: "Cerveja puro malte da Skol, sabor leve e refrescante",
     price: 2.49,
@@ -119,7 +119,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "15",
+    id: "oferta-itaipava",
     name: "Itaipava 473ml",
     description: "Cerveja pilsen brasileira refrescante",
     price: 2.49,
@@ -132,7 +132,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "16",
+    id: "oferta-budweiser",
     name: "Budweiser 473ml",
     description: "Cerveja americana premium, sabor marcante",
     price: 2.53,
@@ -1766,7 +1766,7 @@ export const products: Product[] = [
     accompaniments: ["Molho especial"]
   },
   {
-    id: "400",
+    id: "churr-400",
     name: "Carvao 2kg",
     description: "Carvao para churrasco 2kg.",
     price: 18.32,
@@ -1777,7 +1777,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "401",
+    id: "churr-401",
     name: "Isqueiro Bic Pequeno",
     description: "Isqueiro Bic Pequeno, pratico e confiavel.",
     price: 7.69,
@@ -1787,7 +1787,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "402",
+    id: "churr-402",
     name: "Isqueiro Bic Grande - Unidade",
     description: "Isqueiro Bic Grande, maior durabilidade.",
     price: 8.99,
@@ -1797,7 +1797,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "403",
+    id: "churr-403",
     name: "Acendedor Alcool em Gel - 500g",
     description: "Acendedor alcool em gel para churrasco, pratico e seguro.",
     price: 15.69,
@@ -1808,7 +1808,7 @@ export const products: Product[] = [
     accompaniments: []
   },
   {
-    id: "404",
+    id: "churr-404",
     name: "Carvao 100% Eucalipto 2kg",
     description: "Carvao 100% eucalipto, queima uniforme e duradoura.",
     price: 21.27,
