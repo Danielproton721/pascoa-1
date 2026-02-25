@@ -5,7 +5,7 @@ import { products } from "@/lib/data"
 import { useCart } from "@/lib/cart-context"
 import { ShoppingBag } from "lucide-react"
 
-const HIGHLIGHT_IDS = ["40", "313", "41"] // Tanqueray Gin 750ml, Vodka Ciroc 750ml, Whisky Jack Daniel's 1L
+const HIGHLIGHT_IDS = ["cd-01", "cd-02", "cd-03", "cd-04", "cd-05", "cd-06", "cd-07", "cd-08", "cd-09", "cd-10", "cd-11"]
 
 interface HighlightProductsProps {
   onProductSelect: (product: (typeof products)[0]) => void
