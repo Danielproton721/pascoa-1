@@ -21,6 +21,7 @@ import { Footer } from "@/components/delivery/footer"
 import { BannerCarousel } from "@/components/delivery/banner-carousel"
 import { PendingOrdersButton, PendingOrdersModal } from "@/components/delivery/pending-orders"
 import { UpsellCombo } from "@/components/delivery/upsell-combo"
+import { PriceFilter, sortProducts, type SortOrder } from "@/components/delivery/price-filter"
 import { useCart } from "@/lib/cart-context"
 
 function DeliveryApp() {
@@ -33,6 +34,7 @@ function DeliveryApp() {
   const [userAddress, setUserAddress] = useState<string | null>(null)
   const [showPendingOrders, setShowPendingOrders] = useState(false)
   const [openCombo, setOpenCombo] = useState(false)
+  const [categoryFilters, setCategoryFilters] = useState<Record<string, SortOrder>>({})
 
   useEffect(() => {
     // Verifica se ja tem endereco salvo
@@ -127,16 +129,24 @@ function DeliveryApp() {
               if (categoryProducts.length === 0) return null
               
               const isHorizontal = category.id === "salgadinho"
+              const currentFilter = categoryFilters[category.id] || "default"
+              const sortedProducts = sortProducts(categoryProducts, currentFilter) as Product[]
 
               return (
                 <div key={category.id}>
                   <section className="mb-8">
-                    <h2 className="text-lg font-bold text-foreground mb-4">
-                      {category.name}
-                    </h2>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-lg font-bold text-foreground">
+                        {category.name}
+                      </h2>
+                      <PriceFilter
+                        value={currentFilter}
+                        onChange={(val) => setCategoryFilters(prev => ({ ...prev, [category.id]: val }))}
+                      />
+                    </div>
                     {isHorizontal ? (
                       <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
-                        {categoryProducts.map((product, index) => (
+                        {sortedProducts.map((product, index) => (
                           <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
                             <FeaturedProductCard
                               product={product}
@@ -148,7 +158,7 @@ function DeliveryApp() {
                       </div>
                     ) : (
                       <div className="space-y-3">
-                        {categoryProducts.map((product, index) => (
+                        {sortedProducts.map((product, index) => (
                           <CompactProductCard
                             key={product.id}
                             product={product}
@@ -165,13 +175,26 @@ function DeliveryApp() {
           </>
         ) : (
           <section>
-            <h2 className="text-lg font-bold text-foreground mb-4">
-              {categories.find((c) => c.id === activeCategory)?.name}
-            </h2>
+            {activeCategory !== "ofertas" ? (
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-bold text-foreground">
+                  {categories.find((c) => c.id === activeCategory)?.name}
+                </h2>
+                <PriceFilter
+                  value={categoryFilters[activeCategory] || "default"}
+                  onChange={(val) => setCategoryFilters(prev => ({ ...prev, [activeCategory]: val }))}
+                />
+              </div>
+            ) : (
+              <h2 className="text-lg font-bold text-foreground mb-4">
+                {categories.find((c) => c.id === activeCategory)?.name}
+              </h2>
+            )}
             <div className="space-y-3">
-              {products
-                .filter((p) => p.category === activeCategory)
-                .map((product, index) => (
+              {(sortProducts(
+                products.filter((p) => p.category === activeCategory),
+                categoryFilters[activeCategory] || "default"
+              ) as Product[]).map((product, index) => (
                   <CompactProductCard
                     key={product.id}
                     product={product}
