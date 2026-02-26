@@ -1583,6 +1583,16 @@ export const products: Product[] = [
     includes: ["6 unidades"],
     accompaniments: []
   },
+  {
+    id: "gelo-brinde-1kg",
+    name: "Saco de Gelo 1kg (Brinde)",
+    description: "Saco de gelo tradicional de 1kg. Brinde exclusivo para combos!",
+    price: 0,
+    image: "/images/gelo-1kg.jpg",
+    category: "poke",
+    includes: ["1 saco de 1kg"],
+    accompaniments: []
+  },
 
   // COMIDA
   {
