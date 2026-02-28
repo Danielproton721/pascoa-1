@@ -29,8 +29,13 @@ export async function POST(request: NextRequest) {
     // Valor em centavos
     const amountInCents = Math.round(amount * 100)
 
-    // Criar transacao PIX na PagouAI
-    console.log("[v0] Enviando request para PagouAI...")
+    // Formatar documento
+    const docNumber = customerDocument.replace(/\D/g, "")
+    const docType = docNumber.length > 11 ? "CNPJ" : "CPF"
+
+    // Criar transacao PIX na PagouAI v2
+    console.log("[v0] Enviando request para PagouAI v2...")
+    console.log("[v0] Payload amount (centavos):", amountInCents, "description:", description)
     const response = await fetch("https://api.pagou.ai/v2/transactions", {
       method: "POST",
       headers: {
@@ -39,16 +44,28 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         amount: amountInCents,
-        description: description,
-        customer: {
+        currency: "BRL",
+        method: "pix",
+        buyer: {
           name: customerName,
           email: customerEmail,
-          phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
-          document: customerDocument.replace(/\D/g, ""),
+          document: {
+            type: docType,
+            number: docNumber,
+          },
+          address: {
+            street: "N/A",
+            city: "N/A",
+            country: "BR",
+          },
         },
-        pix: {
-          expires_in: 3600, // 1 hora em segundos
-        },
+        products: [
+          {
+            name: "Combo Escolhido",
+            amount: amountInCents,
+            quantity: totalQuantity,
+          },
+        ],
       }),
     })
 
