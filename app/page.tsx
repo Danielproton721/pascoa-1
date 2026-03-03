@@ -36,7 +36,9 @@ function DeliveryApp() {
   const [showPendingOrders, setShowPendingOrders] = useState(false)
   const [openCombo, setOpenCombo] = useState(false)
   const [categoryFilters, setCategoryFilters] = useState<Record<string, SortOrder>>({})
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({})
   const ofertasScrollRef = useRef<HTMLDivElement>(null)
+  const MAX_PRODUCTS_PER_CATEGORY = 6
 
   const scrollOfertas = (direction: "left" | "right") => {
     if (!ofertasScrollRef.current) return
@@ -165,11 +167,11 @@ function DeliveryApp() {
               style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
             >
               <div className="flex gap-3 w-max px-2">
-                {[...featuredProducts, ...featuredProducts].map((product, index) => (
-                  <div key={`${product.id}-${index}`} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
+                {featuredProducts.map((product, index) => (
+                  <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
                     <FeaturedProductCard
                       product={product}
-                      index={index % featuredProducts.length}
+                      index={index}
                       onClick={() => setSelectedProduct(product)}
                     />
                   </div>
@@ -198,6 +200,9 @@ function DeliveryApp() {
               const isHorizontal = category.id === "salgadinho"
               const currentFilter = categoryFilters[category.id] || "default"
               const sortedProducts = sortProducts(categoryProducts, currentFilter) as Product[]
+              const isExpanded = expandedCategories[category.id] || false
+              const displayProducts = isExpanded ? sortedProducts : sortedProducts.slice(0, MAX_PRODUCTS_PER_CATEGORY)
+              const hasMore = sortedProducts.length > MAX_PRODUCTS_PER_CATEGORY
 
               return (
                 <div key={category.id}>
@@ -213,7 +218,7 @@ function DeliveryApp() {
                     </div>
                     {isHorizontal ? (
                       <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
-                        {sortedProducts.map((product, index) => (
+                        {displayProducts.map((product, index) => (
                           <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
                             <FeaturedProductCard
                               product={product}
@@ -225,7 +230,7 @@ function DeliveryApp() {
                       </div>
                     ) : (
                       <div className="space-y-3">
-                        {sortedProducts.map((product, index) => (
+                        {displayProducts.map((product, index) => (
                           <CompactProductCard
                             key={product.id}
                             product={product}
@@ -234,6 +239,15 @@ function DeliveryApp() {
                           />
                         ))}
                       </div>
+                    )}
+                    {hasMore && !isExpanded && (
+                      <button
+                        type="button"
+                        onClick={() => setExpandedCategories(prev => ({ ...prev, [category.id]: true }))}
+                        className="w-full mt-3 py-2.5 text-sm font-semibold text-primary hover:text-primary/80 border border-primary/20 rounded-xl hover:bg-primary/5 transition-colors"
+                      >
+                        Ver todos ({sortedProducts.length} produtos)
+                      </button>
                     )}
                   </section>
                 </div>

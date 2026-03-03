@@ -29,18 +29,18 @@ export function FeaturedProductCard({ product, onClick, index = 0 }: FeaturedPro
   return (
     <div
       onClick={onClick}
-      style={{ animationDelay: `${index * 100}ms` }}
       className="bg-card rounded-xl overflow-hidden shadow-sm border border-border text-left w-full h-full cursor-pointer relative flex flex-col
         hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1
         active:scale-[0.98] active:shadow-md
-        transition-all duration-300 ease-out
-        animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
+        transition-all duration-300 ease-out"
     >
       <div className="relative aspect-square w-full overflow-hidden bg-secondary/30">
         <Image
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           fill
+          loading="lazy"
+          sizes="(max-width: 512px) 42vw, 180px"
           className="object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-110"
         />
         {discountPercent ? (
