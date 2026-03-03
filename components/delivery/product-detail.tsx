@@ -50,7 +50,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
   const suggestedProducts = useMemo(() => {
     const others = products.filter((p) => p.id !== product.id)
     const shuffled = [...others].sort(() => Math.random() - 0.5)
-    return shuffled.slice(0, 10)
+    return shuffled.slice(0, 5)
   }, [product.id])
 
   // Verifica se ja foi escolhido um adicional gratuito

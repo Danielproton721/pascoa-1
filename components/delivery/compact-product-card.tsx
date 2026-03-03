@@ -29,12 +29,10 @@ export function CompactProductCard({ product, onClick, index = 0 }: CompactProdu
   return (
     <div
       onClick={onClick}
-      style={{ animationDelay: `${index * 80}ms` }}
       className="bg-card rounded-xl p-4 flex gap-4 shadow-sm border border-border text-left w-full cursor-pointer relative
         hover:shadow-lg hover:scale-[1.01] hover:border-primary/30 hover:bg-card/80
         active:scale-[0.99] active:shadow-sm
-        transition-all duration-200 ease-out
-        animate-in fade-in slide-in-from-right-4 fill-mode-both"
+        transition-all duration-200 ease-out"
     >
       <div className="flex-1 min-w-0">
         <h3 className="font-semibold text-foreground line-clamp-2">{product.name}</h3>
@@ -55,6 +53,8 @@ export function CompactProductCard({ product, onClick, index = 0 }: CompactProdu
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           fill
+          loading="lazy"
+          sizes="96px"
           className="object-contain p-1 transition-transform duration-300 group-hover:scale-110"
         />
         {discountPercent && (

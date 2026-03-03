@@ -41,14 +41,15 @@ export function HighlightProducts({ onProductSelect, onComboClick }: HighlightPr
         <div
           onClick={() => onComboClick?.()}
           className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start bg-card rounded-xl overflow-hidden border-2 border-primary/30 shadow-sm cursor-pointer
-            hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300
-            animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
+            hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
         >
           <div className="relative aspect-square w-full overflow-hidden bg-primary/5">
             <Image
               src={COMBO_CARD.image}
               alt={COMBO_CARD.name}
               fill
+              loading="lazy"
+              sizes="(max-width: 512px) 42vw, 180px"
               className="object-contain p-2"
             />
             <span className="absolute top-2 left-2 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-md">
@@ -71,15 +72,15 @@ export function HighlightProducts({ onProductSelect, onComboClick }: HighlightPr
               key={product.id}
               onClick={() => onProductSelect(product)}
               className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start bg-card rounded-xl overflow-hidden border border-border shadow-sm cursor-pointer
-                hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300
-                animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
-              style={{ animationDelay: `${index * 100}ms` }}
+                hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
             >
               <div className="relative aspect-square w-full overflow-hidden bg-secondary/30">
                 <Image
                   src={product.image || "/placeholder.svg"}
                   alt={product.name}
                   fill
+                  loading="lazy"
+                  sizes="(max-width: 512px) 42vw, 180px"
                   className="object-contain p-2"
                 />
                 {discount > 0 && (
