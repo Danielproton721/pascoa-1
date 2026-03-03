@@ -144,53 +144,53 @@ function DeliveryApp() {
       />
 
       <main id="products-section" className={`max-w-lg mx-auto px-4 py-6 transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
-        {/* Ofertas do Dia - sempre visível */}
-        <section className="mb-8">
-          <div className="flex flex-col gap-2 mb-4">
-            <h2 className="text-lg font-bold text-foreground">
-              Ofertas do Dia
-            </h2>
-            <PromoTimer />
-          </div>
-          <div className="flex items-center gap-1 -mx-2">
-            <button
-              type="button"
-              onClick={() => scrollOfertas("left")}
-              aria-label="Ofertas anteriores"
-              className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary/90 hover:bg-secondary shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <div
-              ref={ofertasScrollRef}
-              className="flex-1 min-w-0 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2 scroll-smooth snap-x snap-mandatory"
-              style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
-            >
-              <div className="flex gap-3 w-max px-2">
-                {[...featuredProducts, ...featuredProducts].map((product, index) => (
-                  <div key={`${product.id}-${index}`} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
-                    <FeaturedProductCard
-                      product={product}
-                      index={index % featuredProducts.length}
-                      onClick={() => setSelectedProduct(product)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={() => scrollOfertas("right")}
-              aria-label="Próximas ofertas"
-              className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary/90 hover:bg-secondary shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </section>
-
         {activeCategory === "promocao" ? (
           <>
+            {/* Ofertas do Dia - apenas em Promoções */}
+            <section className="mb-8">
+              <div className="flex flex-col gap-2 mb-4">
+                <h2 className="text-lg font-bold text-foreground">
+                  Ofertas do Dia
+                </h2>
+                <PromoTimer />
+              </div>
+              <div className="flex items-center gap-1 -mx-2">
+                <button
+                  type="button"
+                  onClick={() => scrollOfertas("left")}
+                  aria-label="Ofertas anteriores"
+                  className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary/90 hover:bg-secondary shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <div
+                  ref={ofertasScrollRef}
+                  className="flex-1 min-w-0 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2 scroll-smooth snap-x snap-mandatory"
+                  style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
+                >
+                  <div className="flex gap-3 w-max px-2">
+                    {[...featuredProducts, ...featuredProducts].map((product, index) => (
+                      <div key={`${product.id}-${index}`} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
+                        <FeaturedProductCard
+                          product={product}
+                          index={index % featuredProducts.length}
+                          onClick={() => setSelectedProduct(product)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => scrollOfertas("right")}
+                  aria-label="Proximas ofertas"
+                  className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary/90 hover:bg-secondary shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </section>
+
             <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} />
 
             {otherCategories.map((category) => {
