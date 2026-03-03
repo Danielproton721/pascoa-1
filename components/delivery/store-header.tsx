@@ -43,13 +43,12 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
 
         {/* Logo centralizada e maior */}
         <div className="flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-500">
-          <div className="w-[180px] h-[80px] flex items-center justify-center overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className="relative w-[180px] h-[80px] overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer">
             <Image
               src="/imgs/logo_branca.png"
               alt="Doce Sabor Chocolates"
-              width={180}
-              height={80}
-              className="object-contain w-auto h-auto"
+              fill
+              className="object-contain"
             />
           </div>
           
