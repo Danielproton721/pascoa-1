@@ -46,12 +46,14 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
 
         {/* Logo centralizada e maior */}
         <div className="flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-500">
-          <div className="relative w-[180px] h-[80px] overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer">
-            <Image
+          <div className="overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="https://cdn.shopify.com/s/files/1/0965/3846/0530/files/imgi_1_logo_branca.png?v=1772575046"
               alt="Doce Sabor Chocolates"
-              fill
-              className="object-contain"
+              width={180}
+              height={80}
+              className="object-contain w-[180px] h-auto"
             />
           </div>
           
