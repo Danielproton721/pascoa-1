@@ -75,7 +75,7 @@ export function FeaturedProductCard({ product, onClick, index = 0 }: FeaturedPro
         </div>
         {product.stock && (
           <p className="text-[10px] text-accent mt-1 font-medium leading-tight">
-            Apenas {product.stock} unidade(s) com esse preco especial
+            Apenas {product.stock} unidade(s) com esse preço especial
           </p>
         )}
       </div>

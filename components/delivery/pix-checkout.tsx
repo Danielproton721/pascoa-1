@@ -124,7 +124,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     e.preventDefault()
     
     if (!addressData.city || !addressData.neighborhood || !addressData.street || !addressData.number || !addressData.cep) {
-      setError("Preencha todos os campos do endereco")
+      setError("Preencha todos os campos do endereço")
       return
     }
 
@@ -403,7 +403,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 <MapPin className="w-5 h-5" />
-                Continuar para endereco
+                Continuar para endereço
               </Button>
             </form>
           )}
@@ -540,7 +540,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
             <div className="space-y-6">
               <div className="text-center">
                 <p className="text-sm text-muted-foreground mb-4">
-                  Escaneie o QR Code ou copie o codigo PIX
+                  Escaneie o QR Code ou copie o código PIX
                 </p>
                 
                 {/* QR Code */}
@@ -564,7 +564,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   R$ {amount.toFixed(2).replace(".", ",")}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Valido por 1 hora
+                  Válido por 1 hora
                 </p>
               </div>
 
@@ -594,7 +594,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                 <ol className="list-decimal list-inside space-y-1">
                   <li>Abra o app do seu banco</li>
                   <li>Escolha pagar com PIX</li>
-                  <li>Escaneie o QR Code ou cole o codigo</li>
+                  <li>Escaneie o QR Code ou cole o código</li>
                   <li>Confirme o pagamento</li>
                 </ol>
               </div>
@@ -602,7 +602,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
               {/* Verificacao automatica de pagamento */}
               <div className="flex items-center justify-center gap-2 py-3 text-sm text-muted-foreground">
                 <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                <span>Aguardando confirmacao do pagamento...</span>
+                <span>Aguardando confirmação do pagamento...</span>
               </div>
 
               <Button
@@ -616,7 +616,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 <Check className="w-5 h-5" />
-                Ja fiz o pagamento
+                Já fiz o pagamento
               </Button>
             </div>
           )}
@@ -628,12 +628,12 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
               </div>
               <h3 className="text-xl font-bold text-foreground">Pagamento Confirmado!</h3>
               <p className="text-muted-foreground">
-                Seu pedido esta sendo preparado e logo saira para entrega.
+                Seu pedido está sendo preparado e logo sairá para entrega.
               </p>
               
               <div className="bg-secondary/50 rounded-xl p-4 mt-6">
                 <p className="text-sm text-muted-foreground">
-                  Obrigado pela sua compra! Voce recebera atualizacoes sobre o status da entrega.
+                  Obrigado pela sua compra! Você receberá atualizações sobre o status da entrega.
                 </p>
               </div>
 

@@ -8,30 +8,17 @@ import { products } from "@/lib/data"
 import { useCart } from "@/lib/cart-context"
 
 export const UPSELL_PRODUCT_IDS = [
-  "213", // O`BURGER
-  "201", // Bolinho de Carne Seca com Queijo
-  "200", // Batata Frita com Queijo e Bacon
-  "202", // Camarao Ao Alho E Oleo
-  "203", // Chapa Mista G
-  "204", // Coxinha de Frango com Requeijao
-  "205", // Escalope de Mignon
-  "207", // File Acebolado
-  "208", // File de Tilapia com Fritas
-  "209", // File em Medalhao com Alcaparras
-  "210", // Fraldinha Mista
-  "211", // Frango a Passarinho
-  "214", // Pastel de Carne com Queijo
-  "215", // Porcao de Feijao Tropeiro 300g
-  "216", // Torresmo Pururuca com Mandioca
-  "217", // Tulipas com Molho Especial
-  // Refrigerantes
-  "105", // Refrigerante Coca-Cola Zero Acucar 2L
-  "106", // Refrigerante Coca-Cola Zero Acucar 350ml
-  "109", // Refrigerante Coca-Cola Sleek 310ml
-  "100", // Pepsi 2L
-  "99",  // Pepsi Black 2L
-  "101", // Guarana Antarctica 2L
-  "22",  // Guarana Antarctica Lata 350ml
+  "SKU_1772484023023_877",  // Caixa Brigadeiro
+  "SKU_1772484027069_694",  // Caça aos Ovos
+  "SKU_1772484087768_797",  // Tablete Decorado
+  "SKU_1772483931290_466",  // Ovo Coelho 40g
+  "SKU_1772483926656_849",  // Caixa Dreams
+  "SKU_1772484073780_289",  // Caixa Mini Show
+  "SKU_1772483973619_118",  // Tablete Macadâmia
+  "SKU_1772483918489_140",  // Coelhos e Ovos
+  "SKU_1772483985093_249",  // Coelho Artesanal
+  "SKU_1772483884306_401",  // Mini Ovinhos
+  "SKU_1772483888861_288",  // Ovo Cacau Magia 80g
 ]
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -111,12 +98,12 @@ export function UpsellComida({ onClose, onContinue, onSkip, onViewMenu }: Upsell
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center text-xl">
-                  <span role="img" aria-label="hamburger">🍔</span>
+                  <span role="img" aria-label="chocolate">🍫</span>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-foreground">Bateu a fome? Que tal pedir um acompanhamento?</h2>
+                  <h2 className="text-lg font-bold text-foreground">Que tal adicionar mais chocolates?</h2>
                   <p className="text-xs text-muted-foreground">
-                    Adicione um prato ao seu pedido
+                    Complemente seu pedido com mais itens
                   </p>
                 </div>
               </div>
@@ -205,14 +192,14 @@ export function UpsellComida({ onClose, onContinue, onSkip, onViewMenu }: Upsell
                     hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                 >
                   <ShoppingBag className="w-5 h-5" />
-                  {"Nao quero. Finalizar"}
+                  {"Não quero adicionar. Finalizar"}
                   <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
                 <button
                   onClick={handleViewMenu}
                   className="w-full text-center text-sm font-medium text-primary hover:text-primary/80 underline transition-colors py-1"
                 >
-                  Ver cardapio completo
+                  Ver catálogo completo
                 </button>
               </>
             )}

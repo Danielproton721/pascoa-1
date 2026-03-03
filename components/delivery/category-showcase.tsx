@@ -1,11 +1,12 @@
 "use client"
 
+import { useMemo } from "react"
 import Image from "next/image"
 import { products } from "@/lib/data"
 import { useCart } from "@/lib/cart-context"
 import { ShoppingBag } from "lucide-react"
 
-const HIGHLIGHT_IDS = ["cd-01", "cd-02", "cd-03", "cd-04", "cd-05", "cd-06", "cd-07", "cd-08", "cd-09", "cd-10", "cd-11"]
+const MAX_MAIORES_DESCONTOS = 8
 
 interface HighlightProductsProps {
   onProductSelect: (product: (typeof products)[0]) => void
@@ -13,19 +14,28 @@ interface HighlightProductsProps {
 }
 
 const COMBO_CARD = {
-  name: "Monte seu Combo",
-  image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/combos.png?v=1771976188",
+  name: "Monte sua caixa de chocolate",
+  image: "/imgs/caixa_chocolate_doce_sabor.png",
 }
 
 export function HighlightProducts({ onProductSelect, onComboClick }: HighlightProductsProps) {
   const { addItem } = useCart()
-  const highlightProducts = products.filter((p) => HIGHLIGHT_IDS.includes(p.id))
+  const highlightProducts = useMemo(() => {
+    return products
+      .filter((p) => p.originalPrice && p.originalPrice > p.price)
+      .sort((a, b) => {
+        const discountA = ((a.originalPrice! - a.price) / a.originalPrice!) * 100
+        const discountB = ((b.originalPrice! - b.price) / b.originalPrice!) * 100
+        return discountB - discountA
+      })
+      .slice(0, MAX_MAIORES_DESCONTOS)
+  }, [])
 
   if (highlightProducts.length === 0) return null
 
   return (
     <section className="mb-8">
-      <h2 className="text-lg font-bold text-foreground mb-4">Combos Destaques</h2>
+      <h2 className="text-lg font-bold text-foreground mb-4">Maiores Descontos</h2>
       <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 snap-x snap-mandatory pb-2">
         {/* Card Monte seu Combo */}
         <div

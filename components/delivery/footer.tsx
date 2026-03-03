@@ -35,16 +35,16 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Aviso +18 */}
+        {/* Aviso de qualidade */}
         <div className="mb-8 bg-amber-50 border border-amber-200 rounded-lg p-4">
           <div className="flex items-start gap-3">
             <ShieldAlert className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-semibold text-amber-800 mb-1">
-                {"+18 \u2014 Venda proibida para menores"}
+                {"Produtos originais e de qualidade"}
               </p>
               <p className="text-xs text-amber-700 leading-relaxed">
-                {"A venda de bebidas alco\u00f3licas \u00e9 permitida apenas para maiores de 18 anos. A idade poder\u00e1 ser conferida no ato da entrega. Beba com modera\u00e7\u00e3o."}
+                {"Trabalhamos apenas com chocolates e ovos de Páscoa originais das melhores marcas. Entrega cuidadosa para garantir que sua compra chegue em perfeito estado."}
               </p>
             </div>
           </div>
@@ -52,13 +52,15 @@ export function Footer() {
 
         {/* Informações da Empresa */}
         <div className="border-t border-border pt-6 mt-6">
-          
           <p className="text-xs text-muted-foreground">
-            Contato:{" "}
-            <a href="mailto:contato@arcobebidas.com.br" className="text-primary hover:underline">contato@arcobebidas.com.br</a>
+            Doce Sabor Chocolates • CNPJ 61.467.079/0001-50
           </p>
           <p className="text-xs text-muted-foreground mt-1">
-            © {new Date().getFullYear()} Bebidas Arco Iris LTDA. Todos os direitos reservados.
+            Contato:{" "}
+            <a href="mailto:contato@docesaborchocolates.com.br" className="text-primary hover:underline">contato@docesaborchocolates.com.br</a>
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            © {new Date().getFullYear()} Doce Sabor Chocolates. Todos os direitos reservados.
           </p>
         </div>
       </div>

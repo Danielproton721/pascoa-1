@@ -7,6 +7,7 @@ export interface Product {
   image: string
   category: string
   badge?: string
+  marca?: string
   stock?: number
   minQuantity?: number
   includes?: string[]

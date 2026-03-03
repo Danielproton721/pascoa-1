@@ -6,15 +6,36 @@ import { useState, useEffect, useCallback } from "react"
 const banners = [
   {
     id: 1,
-    src: "/banners/banner-1.jpg",
-    alt: "Deu fome? Peca aqui tambem! Entrega em minutos",
+    src: "/banners/banner_pascoa_coelho_1024x448.png",
+    alt: "Páscoa - Coelho",
     action: "category" as const,
-    categoryLink: "comida",
+    categoryLink: "pascoa",
   },
   {
     id: 2,
-    src: "/banners/banner2.webp",
-    alt: "Monte seu combo! Precos imbativeis com 30% OFF",
+    src: "/banners/banner_powerpuff_1024x448.png",
+    alt: "Páscoa infantil - Poderosas",
+    action: "combo" as const,
+    categoryLink: "",
+  },
+  {
+    id: 3,
+    src: "/banners/banner_ursinhos_1024x448.png",
+    alt: "Páscoa infantil - Ursinhos",
+    action: "combo" as const,
+    categoryLink: "",
+  },
+  {
+    id: 4,
+    src: "/banners/banner_snoopy_1024x448.png",
+    alt: "Páscoa infantil - Snoopy",
+    action: "combo" as const,
+    categoryLink: "",
+  },
+  {
+    id: 5,
+    src: "/banners/banner_harry_potter_1024x448.png",
+    alt: "Páscoa infantil - Harry Potter",
     action: "combo" as const,
     categoryLink: "",
   },
@@ -47,7 +68,7 @@ export function BannerCarousel({ onBannerClick, onComboClick }: BannerCarouselPr
           {banners.map((banner) => (
             <div
               key={banner.id}
-              className="relative aspect-[16/7] w-full flex-shrink-0 cursor-pointer"
+              className="relative aspect-[1024/448] w-full flex-shrink-0 cursor-pointer"
               onClick={() => {
                 if (banner.action === "combo" && onComboClick) {
                   onComboClick()

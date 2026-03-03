@@ -252,7 +252,7 @@ export function PendingOrdersModal({ onClose }: { onClose: () => void }) {
                 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
               <Check className="w-5 h-5" />
-              Ja fiz o pagamento
+              Já fiz o pagamento
             </Button>
 
             <div className="flex gap-3">

@@ -22,7 +22,7 @@ export default function TermosServico() {
             <section className="space-y-2">
               <h2 className="text-lg font-semibold text-foreground">1. Aceitação dos Termos</h2>
               <p>
-                Ao usar a plataforma da Bebidas Arco Iris LTDA, você concorda com estes Termos de Serviço. Se não concordar
+                Ao usar a plataforma da Doce Sabor Chocolates, você concorda com estes Termos de Serviço. Se não concordar
                 com alguma disposição, por favor, não use nossos serviços.
               </p>
             </section>
@@ -70,7 +70,7 @@ export default function TermosServico() {
             <section className="space-y-2">
               <h2 className="text-lg font-semibold text-foreground">7. Responsabilidade</h2>
               <p>
-                A Bebidas Arco Iris LTDA não se responsabiliza por danos indiretos ou consequentes resultantes do uso de
+                A Doce Sabor Chocolates não se responsabiliza por danos indiretos ou consequentes resultantes do uso de
                 nossos serviços, exceto onde proibido por lei.
               </p>
             </section>
@@ -85,7 +85,7 @@ export default function TermosServico() {
             <section className="space-y-2">
               <h2 className="text-lg font-semibold text-foreground">9. Contato</h2>
               <p>
-                Para dúvidas ou reclamações, entre em contato conosco pelo e-mail contato@arcobebidas.com.br
+                Para dúvidas ou reclamações, entre em contato conosco pelo e-mail contato@docesaborchocolates.com.br
               </p>
             </section>
           </div>

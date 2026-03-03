@@ -10,7 +10,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.2 145);
+  --primary: #532702;
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -31,7 +31,7 @@
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: #532702;
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
@@ -122,6 +122,27 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Animação de pulse para PromoTimer - aumenta de tamanho a cada 2s */
+@keyframes promo-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+.promo-pulse {
+  animation: promo-pulse 2s ease-in-out infinite;
+}
+
+/* Auto-scroll lento para Ofertas do Dia */
+@keyframes ofertas-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ofertas-auto-scroll {
+  animation: ofertas-scroll 45s linear infinite;
+}
+.ofertas-auto-scroll:hover {
+  animation-play-state: paused;
 }
 
 /* Esconde scrollbar mas permite scroll */

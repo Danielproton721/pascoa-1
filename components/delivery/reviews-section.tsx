@@ -19,8 +19,8 @@ export function ReviewsSection() {
               ))}
             </div>
             <p className="text-3xl font-bold text-foreground animate-in fade-in slide-in-from-bottom-2 duration-500 delay-500 fill-mode-both">4.8</p>
-            <p className="text-sm text-muted-foreground">478 avaliações nos últimos 90 dias</p>
-            <p className="text-xs text-muted-foreground">1360+ avaliações no total</p>
+            <p className="text-sm text-muted-foreground">120 avaliações nos últimos 90 dias</p>
+            <p className="text-xs text-muted-foreground">380+ avaliações no total</p>
           </div>
         </div>
         

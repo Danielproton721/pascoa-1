@@ -22,7 +22,7 @@ export default function PoliticaPrivacidade() {
             <section className="space-y-2">
               <h2 className="text-lg font-semibold text-foreground">1. Introdução</h2>
               <p>
-                A Bebidas Arco Iris LTDA está comprometida com a proteção da sua privacidade. Esta Política de Privacidade
+                A Doce Sabor Chocolates está comprometida com a proteção da sua privacidade. Esta Política de Privacidade
                 descreve como coletamos, usamos e protegemos suas informações pessoais.
               </p>
             </section>
@@ -55,7 +55,7 @@ export default function PoliticaPrivacidade() {
               <h2 className="text-lg font-semibold text-foreground">5. Direitos do Usuário</h2>
               <p>
                 Você tem o direito de acessar, corrigir ou solicitar a exclusão de seus dados pessoais. Para exercer esses
-                direitos, entre em contato conosco pelo e-mail contato@arcobebidas.com.br
+                direitos, entre em contato conosco pelo e-mail contato@docesaborchocolates.com.br
               </p>
             </section>
 

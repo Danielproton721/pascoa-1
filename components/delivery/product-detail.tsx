@@ -97,13 +97,13 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
   }
 
   return (
-    <div data-product-scroll className="fixed inset-0 w-full h-full bg-background z-50 flex flex-col overflow-hidden animate-in fade-in duration-300" style={{ minHeight: '100vh', minHeight: '100dvh' } as React.CSSProperties}>
+    <div data-product-scroll className="fixed inset-0 w-full h-full bg-background z-50 flex flex-col overflow-hidden animate-in fade-in duration-300" style={{ minHeight: '100dvh' } as React.CSSProperties}>
       <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
       <div className="max-w-lg mx-auto pb-4 animate-in slide-in-from-bottom-8 duration-500 ease-out">
         <button
           onClick={onClose}
-          className="fixed top-4 left-4 z-10 bg-accent text-accent-foreground px-4 py-2 rounded-full font-medium flex items-center gap-2 shadow-md
-            hover:shadow-lg hover:scale-105 hover:bg-accent/90
+          className="fixed top-4 left-4 z-10 bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium flex items-center gap-2 shadow-md
+            hover:shadow-lg hover:scale-105 hover:bg-primary/90
             active:scale-95
             transition-all duration-200
             animate-in slide-in-from-left-4 duration-300"
@@ -190,12 +190,12 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h3 className="font-semibold text-foreground">
-                  {alreadyChosen ? "Adicional gratuito ja escolhido" : "Escolha um adicional gratuito"}
+                  {alreadyChosen ? "Adicional gratuito já escolhido" : "Escolha um adicional gratuito"}
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   {alreadyChosen 
-                    ? `Voce escolheu: ${freeAdditionalChosen?.name}` 
-                    : "Escolha ate 1 opcao"}
+                    ? `Você escolheu: ${freeAdditionalChosen?.name}` 
+                    : "Escolha até 1 opção"}
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -255,7 +255,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
                         {additional.name} ({additional.quantity})
                       </p>
                       {additional.freeOnFirstOrder && (
-                        <p className="text-xs text-primary">Gratis no 1o pedido</p>
+                        <p className="text-xs text-primary">Grátis no 1º pedido</p>
                       )}
                     </div>
                     <div className="flex items-center gap-3">

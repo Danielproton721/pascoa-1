@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { MapPin } from "lucide-react"
+import { MapPin } from "lucide-react" // Importa o ícone de localização
 
 export function AboutUs() {
   return (
@@ -11,20 +11,20 @@ export function AboutUs() {
       <div className="bg-card rounded-xl overflow-hidden border border-border shadow-sm">
         <div className="relative w-full h-48">
           <Image
-            src="/store-front.jpg"
-            alt="Fachada Arco Bebidas Distribuidora"
+            src="/imgs/fachada_doce_sabor.png"
+            alt="Doce Sabor - Revendedora de chocolates"
             fill
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
         
         <div className="p-4 space-y-3">
-          <h3 className="font-bold text-foreground text-lg">Arco Bebidas Distribuidora</h3>
+          <h3 className="font-bold text-foreground text-lg">Doce Sabor</h3>
           
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Fundada desde 2022, a Arco Bebidas é uma distribuidora comprometida em trabalhar 
-            com as melhores marcas de bebidas de extrema qualidade. Oferecemos preços imbatíveis 
-            e garantimos satisfação em cada pedido.
+            A Doce Sabor é revendedora autorizada das melhores marcas de chocolates e ovos de Páscoa. 
+            Trabalhamos com Lacta, Nestlé, Hershey's, Ferrero e outras marcas premium. 
+            Preços competitivos, entrega rápida e a garantia de produtos originais em cada pedido.
           </p>
           
           

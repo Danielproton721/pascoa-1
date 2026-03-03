@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react"
+import { ArrowUpDown, ArrowUp, ArrowDown, Percent } from "lucide-react"
 
-export type SortOrder = "default" | "cheapest" | "expensive"
+export type SortOrder = "default" | "cheapest" | "expensive" | "discount"
 
 interface PriceFilterProps {
   value: SortOrder
@@ -27,16 +27,19 @@ export function PriceFilter({ value, onChange }: PriceFilterProps) {
   }, [open])
 
   const options: { label: string; value: SortOrder; icon: React.ReactNode }[] = [
-    { label: "Padrao", value: "default", icon: <ArrowUpDown className="w-3.5 h-3.5" /> },
-    { label: "Menor preco", value: "cheapest", icon: <ArrowDown className="w-3.5 h-3.5" /> },
-    { label: "Maior preco", value: "expensive", icon: <ArrowUp className="w-3.5 h-3.5" /> },
+    { label: "Padrão", value: "default", icon: <ArrowUpDown className="w-3.5 h-3.5" /> },
+    { label: "Maior desconto", value: "discount", icon: <Percent className="w-3.5 h-3.5" /> },
+    { label: "Menor preço", value: "cheapest", icon: <ArrowDown className="w-3.5 h-3.5" /> },
+    { label: "Maior preço", value: "expensive", icon: <ArrowUp className="w-3.5 h-3.5" /> },
   ]
 
   const activeIcon = value === "cheapest" 
     ? <ArrowDown className="w-4 h-4" /> 
     : value === "expensive" 
       ? <ArrowUp className="w-4 h-4" /> 
-      : <ArrowUpDown className="w-4 h-4" />
+      : value === "discount"
+        ? <Percent className="w-4 h-4" />
+        : <ArrowUpDown className="w-4 h-4" />
 
   return (
     <div ref={ref} className="relative">
@@ -47,7 +50,7 @@ export function PriceFilter({ value, onChange }: PriceFilterProps) {
             ? "bg-primary text-primary-foreground border-primary"
             : "bg-card text-muted-foreground border-border hover:border-primary hover:text-primary"
         }`}
-        aria-label="Filtrar por preco"
+        aria-label="Filtrar por preço"
       >
         {activeIcon}
       </button>
@@ -77,8 +80,19 @@ export function PriceFilter({ value, onChange }: PriceFilterProps) {
   )
 }
 
-export function sortProducts(products: { price: number }[], order: SortOrder) {
+function getDiscountPercent(p: { price: number; originalPrice?: number }) {
+  if (!p.originalPrice || p.originalPrice <= 0) return 0
+  return ((p.originalPrice - p.price) / p.originalPrice) * 100
+}
+
+export function sortProducts(
+  products: { price: number; originalPrice?: number }[],
+  order: SortOrder
+) {
   if (order === "default") return products
+  if (order === "discount") {
+    return [...products].sort((a, b) => getDiscountPercent(b) - getDiscountPercent(a))
+  }
   return [...products].sort((a, b) =>
     order === "cheapest" ? a.price - b.price : b.price - a.price
   )

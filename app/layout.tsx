@@ -3,15 +3,18 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Script from 'next/script'
 import { CookieBanner } from '@/components/cookie-banner'
-import { AgeVerification } from '@/components/delivery/age-verification'
+import { LocationGuard } from '@/components/delivery/location-guard'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Arco Bebidas - Pedidos Online',
-  description: 'Bebida gelada pro teu bloco - entrega rapida!',
+  title: 'Doce Sabor - Chocolates e Ovos de Páscoa',
+  description: 'Chocolates finos e ovos de Páscoa - entrega rápida!',
+  icons: {
+    icon: '/imgs/logo_marrom.png',
+  },
 }
 
 export const viewport: Viewport = {
@@ -62,8 +65,9 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className={`font-sans antialiased`}>
-        <AgeVerification />
-        {children}
+        <LocationGuard>
+          {children}
+        </LocationGuard>
         <CookieBanner />
       </body>
     </html>

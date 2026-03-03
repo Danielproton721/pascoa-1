@@ -10,29 +10,29 @@ import { Button } from "@/components/ui/button"
 const ESTADOS_BRASIL = [
   { sigla: "AC", nome: "Acre" },
   { sigla: "AL", nome: "Alagoas" },
-  { sigla: "AP", nome: "Amapa" },
+  { sigla: "AP", nome: "Amapá" },
   { sigla: "AM", nome: "Amazonas" },
   { sigla: "BA", nome: "Bahia" },
-  { sigla: "CE", nome: "Ceara" },
+  { sigla: "CE", nome: "Ceará" },
   { sigla: "DF", nome: "Distrito Federal" },
-  { sigla: "ES", nome: "Espirito Santo" },
-  { sigla: "GO", nome: "Goias" },
-  { sigla: "MA", nome: "Maranhao" },
+  { sigla: "ES", nome: "Espírito Santo" },
+  { sigla: "GO", nome: "Goiás" },
+  { sigla: "MA", nome: "Maranhão" },
   { sigla: "MT", nome: "Mato Grosso" },
   { sigla: "MS", nome: "Mato Grosso do Sul" },
   { sigla: "MG", nome: "Minas Gerais" },
-  { sigla: "PA", nome: "Para" },
-  { sigla: "PB", nome: "Paraiba" },
-  { sigla: "PR", nome: "Parana" },
+  { sigla: "PA", nome: "Pará" },
+  { sigla: "PB", nome: "Paraíba" },
+  { sigla: "PR", nome: "Paraná" },
   { sigla: "PE", nome: "Pernambuco" },
-  { sigla: "PI", nome: "Piaui" },
+  { sigla: "PI", nome: "Piauí" },
   { sigla: "RJ", nome: "Rio de Janeiro" },
   { sigla: "RN", nome: "Rio Grande do Norte" },
   { sigla: "RS", nome: "Rio Grande do Sul" },
-  { sigla: "RO", nome: "Rondonia" },
+  { sigla: "RO", nome: "Rondônia" },
   { sigla: "RR", nome: "Roraima" },
   { sigla: "SC", nome: "Santa Catarina" },
-  { sigla: "SP", nome: "Sao Paulo" },
+  { sigla: "SP", nome: "São Paulo" },
   { sigla: "SE", nome: "Sergipe" },
   { sigla: "TO", nome: "Tocantins" },
 ]
@@ -128,11 +128,11 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
       <div className="relative z-[61] bg-card rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
         {/* Header - oculto nas telas de loading */}
         {(step === "state" || step === "city") && (
-          <div className="bg-primary p-6 text-primary-foreground text-center">
+          <div className="bg-primary p-6 text-muted text-center">
             <div className="w-16 h-16 bg-primary-foreground/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <MapPin className="w-8 h-8" />
             </div>
-            <h2 className="text-xl font-bold">Onde voce esta?</h2>
+            <h2 className="text-xl font-bold">Onde você está?</h2>
             <p className="text-sm text-primary-foreground/80 mt-1">
               {step === "state" ? "Escolha seu estado" : "Escolha sua cidade"}
             </p>
@@ -268,7 +268,7 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-foreground text-center mb-2">
-                {"Estamos procurando a loja mais proxima de voce"}
+                {"Estamos procurando a loja mais próxima de você"}
               </h3>
               <p className="text-sm text-muted-foreground text-center">
                 {selectedCity}, {ESTADOS_BRASIL.find(e => e.sigla === selectedState)?.nome}
@@ -284,8 +284,8 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
           {/* Tela de Loja Encontrada */}
           {step === "found" && (
             <div className="py-8 flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-500">
-              <div className="w-20 h-20 rounded-full bg-green-50 border-2 border-green-200 flex items-center justify-center mb-6">
-                <CheckCircle2 className="w-12 h-12 text-green-600" />
+              <div className="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center mb-6">
+                <CheckCircle2 className="w-12 h-12 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground text-center mb-2">
                 {"Encontramos uma loja a 2,5 KM de voc\u00ea!"}
@@ -295,10 +295,10 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
               </p>
               <Button
                 onClick={handleGoShopping}
-                className="w-full py-6 bg-green-600 text-white hover:bg-green-700 gap-2 text-base font-semibold
+                className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base font-semibold
                   hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
-                {"Ir as compras"}
+                {"Ir às compras"}
               </Button>
             </div>
           )}
