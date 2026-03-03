@@ -49,7 +49,7 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
               alt="Doce Sabor Chocolates"
               width={180}
               height={80}
-              className="object-contain"
+              className="object-contain w-auto h-auto"
             />
           </div>
           
