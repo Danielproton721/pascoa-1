@@ -23,7 +23,10 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
   }
 
   return (
-    <header className="border-b border-[#532702]/30" style={{ backgroundColor: "#532702" }}>
+    <header
+      className="border-b border-[#532702]/30 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url(/imgs/fundo.webp)" }}
+    >
       <div className="max-w-lg mx-auto px-4 py-4">
         {/* Top bar: Receber em */}
         <button
