@@ -15,7 +15,7 @@ interface HighlightProductsProps {
 
 const COMBO_CARD = {
   name: "Monte sua caixa de chocolate",
-  image: "/imgs/caixa_chocolate_doce_sabor.png",
+  image: "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/imgi_1_caixa_chocolate_doce_sabor.png?v=1772575039",
 }
 
 export function HighlightProducts({ onProductSelect, onComboClick }: HighlightProductsProps) {
