@@ -87,6 +87,7 @@ function DeliveryApp() {
 
   // Ofertas do Dia: Powerpuff Girls, Scooby-Doo, Harry Potter, Ursinhos Carinhosos, Snoopy, Zero Lactose
   const OFERTAS_DIA_IDS = [
+    "KIT_3_OVOS_MENINAS_SUPER", // Kit 3 Ovos Meninas Super Poderosas
     "SKU_1772484114807_525",  // Meninas Superpoderosas Docinho
     "SKU_1772484126294_547",  // Meninas Superpoderosas Florzinha
     "SKU_1772484039944_411",  // Meninas Superpoderosas Lindinha
