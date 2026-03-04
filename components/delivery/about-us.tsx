@@ -11,7 +11,7 @@ export function AboutUs() {
       <div className="bg-card rounded-xl overflow-hidden border border-border shadow-sm">
         <div className="relative w-full h-48">
           <Image
-            src="/imgs/fachada_doce_sabor.png"
+            src="https://cdn.shopify.com/s/files/1/0965/3846/0530/files/imgi_1_fachada_doce_sabor.png?v=1772575019"
             alt="Doce Sabor - Revendedora de chocolates"
             fill
             className="object-cover object-top"
