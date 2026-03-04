@@ -35,7 +35,7 @@ export function HighlightProducts({ onProductSelect, onComboClick }: HighlightPr
 
   return (
     <section className="mb-8">
-      <h2 className="text-lg font-bold text-foreground mb-4">Maiores Descontos</h2>
+      <h2 className="text-lg font-bold text-foreground mb-4">Monte sua caixa de Pascoa</h2>
       <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 snap-x snap-mandatory pb-2">
         {/* Card Monte seu Combo */}
         <div
