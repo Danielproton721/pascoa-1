@@ -110,7 +110,15 @@ function DeliveryApp() {
     // Marca: filtrar por marca (ex: marca:Cacau Show, marca:Lacta)
     if (categoryId.startsWith("marca:")) {
       const marca = categoryId.replace("marca:", "")
-      return products.filter((p) => p.marca === marca)
+      const marcaProducts = products.filter((p) => p.marca === marca)
+      // Ordenar ovos primeiro
+      return marcaProducts.sort((a, b) => {
+        const aIsOvo = isOvo(a.name)
+        const bIsOvo = isOvo(b.name)
+        if (aIsOvo && !bIsOvo) return -1
+        if (!aIsOvo && bIsOvo) return 1
+        return 0
+      })
     }
     // Chocolates: todos os chocolates (chocolates + ofertas, excluindo ovos)
     if (categoryId === "chocolates") {
