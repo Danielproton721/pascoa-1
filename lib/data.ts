@@ -1411,7 +1411,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497065941_819",
     "name": "Ovo de Páscoa Garoto Caribe Chocolate ao Leite com Flocos de Banana 229g",
-    "description": "Ovo de Páscoa Garoto Caribe Chocolate ao Leite com Flocos de Banana 229g em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Garoto Caribe Chocolate ao Leite com Flocos de Banana 229g. Delicioso chocolate ao leite com flocos crocantes de banana.",
     "price": 63.45,
     "originalPrice": 89.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/7891000394519_99_4_1200_72_RGB.jpg?v=1772497067",
@@ -1425,7 +1425,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497079679_655",
     "name": "Ovo de Páscoa Delice Dragões Chocolate ao Leite 90g Infantil com Copão 3D do Banguela e Canudo",
-    "description": "Ovo de Páscoa Delice Dragões Chocolate ao Leite 90g Infantil com Copão 3D do Banguela e Canudo em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Delice Dragões Chocolate ao Leite 90g Infantil. Acompanha Copão 3D do Banguela e Canudo.",
     "price": 63.45,
     "originalPrice": 89.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/TC26_Dragoes_90g_Mockup_2.jpg?v=1772497081",
@@ -1439,7 +1439,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497095871_259",
     "name": "Ovo de Páscoa Delice Hello Kitty Chocolate ao Leite 90g com Porta Retrato de Brinde",
-    "description": "Ovo de Páscoa Delice Hello Kitty Chocolate ao Leite 90g com Caneca em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Delice Hello Kitty Chocolate ao Leite 90g. Acompanha Porta Retrato de Brinde.",
     "price": 63.45,
     "originalPrice": 89.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/2171483--2.jpg?v=1772497097",
@@ -1453,7 +1453,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497109680_79",
     "name": "Ovo de Páscoa Lacta Favoritos 540g",
-    "description": "Ovo de Páscoa Lacta Favoritos 540g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Favoritos 540g. Combinação dos chocolates mais amados da Lacta em um único ovo.",
     "price": 89.99,
     "originalPrice": 149.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8139788_OVO_LACTA_FAVORITOS_560g_01_AF01.jpg?v=1772497110",
@@ -1467,7 +1467,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497124393_379",
     "name": "Ovo de Páscoa Lacta Sonho de Valsa 277g",
-    "description": "Ovo de Páscoa Lacta Sonho de Valsa 277g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida.",
+    "description": "Ovo de Páscoa Lacta Sonho de Valsa 277g. O clássico bombom em formato de ovo com recheio cremoso.",
     "price": 56.69,
     "originalPrice": 77.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8146755_OVO_LACTA_SONHO_DE_VALSA_277g_01_AF01.jpg?v=1772497125",
@@ -1481,7 +1481,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497143747_110",
     "name": "Ovo de Páscoa Lacta Ouro Branco 359g",
-    "description": "Ovo de Páscoa Lacta Ouro Branco 359g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Ouro Branco 359g. Chocolate ao leite com recheio cremoso de castanhas.",
     "price": 69.79,
     "originalPrice": 101.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8143397_OVO_LACTA_OURO_BRANCO_359g_01_AF01.jpg?v=1772497145",
@@ -1495,7 +1495,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497161712_573",
     "name": "Ovo de Páscoa Enaldinho Marilan Infantil Chocolate ao Leite Crocante 120g com Oleaginosas com 1 Copo de Alumínio que Muda de Cor com Líquido Gelado",
-    "description": "Ovo de Páscoa Enaldinho Marilan Ao Leite Crocante 120g com Oleaginosas com 1 com Copo de Alumínio que Muda de Cor com Líquido Gelado em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Enaldinho Marilan Chocolate ao Leite Crocante 120g com Oleaginosas. Acompanha Copo de Alumínio que muda de cor com líquido gelado.",
     "price": 75.59,
     "originalPrice": 113.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/2200985.jpg?v=1772497163",
@@ -1509,7 +1509,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497175130_864",
     "name": "Ovo de Páscoa Lacta Bis Branco 234g",
-    "description": "Ovo de Páscoa Lacta Bis Branco 234g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Bis Branco 234g. Chocolate branco com wafer crocante.",
     "price": 56.69,
     "originalPrice": 77.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8146756_OVO_BIS_BRANCO_254g_01_AF01.jpg?v=1772497176",
@@ -1523,7 +1523,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497188085_951",
     "name": "Ovo de Páscoa Nestlé Alpino Ao Leite 349,5g Cremoso",
-    "description": "Ovo de Páscoa Nestlé Alpino Ao Leite 349,5g Cremoso em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Nestlé Alpino ao Leite 349,5g. Chocolate cremoso com pedaços de Alpino.",
     "price": 80.89,
     "originalPrice": 125.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/7891000390542_99_1_1200_72_RGB.jpg?v=1772497189",
@@ -1537,7 +1537,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497204181_810",
     "name": "Ovo de Páscoa Lacta Chocolate ao Leite 157g",
-    "description": "Ovo de Páscoa Lacta Chocolate ao Leite 157g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Chocolate ao Leite 157g. Chocolate ao leite tradicional da Lacta.",
     "price": 53.09,
     "originalPrice": 71.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8143399_OVO_LACTA_AO_LEITE_170g_01_AF01.jpg?v=1772497205",
@@ -1551,7 +1551,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497215061_408",
     "name": "Ovo de Páscoa Garoto Crocante Ao Leite 227g Recheado com Amendoim e Castanha-de-Caju",
-    "description": "Ovo de Páscoa Garoto Crocante Ao Leite 227g Recheado com Amendoim e Castanha-de-Caju em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Garoto Crocante ao Leite 227g. Recheado com amendoim e castanha-de-caju.",
     "price": 63.45,
     "originalPrice": 89.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/7891000390504_99_1_1200_72_RGB.jpg?v=1772497216",
@@ -1565,7 +1565,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497226406_862",
     "name": "Ovo de Páscoa Delice Infantil Enaldinho Chocolate ao Leite 80g com Tatuagem Sortida",
-    "description": "Ovo de Páscoa Delice Enaldinho Chocolate ao Leite 80g com Tatuagem Sortida em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Delice Enaldinho Chocolate ao Leite 80g. Acompanha tatuagem sortida.",
     "price": 28.79,
     "originalPrice": 35.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/TC26_Enaldinho_80g_Mockup.jpg?v=1772497227",
@@ -1579,7 +1579,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497406196_95",
     "name": "Ovo de Páscoa Lacta Bis ao Leite 305,4g",
-    "description": "Ovo de Páscoa Lacta Bis ao Leite 305,4g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Bis ao Leite 305,4g. Chocolate ao leite com camadas de wafer crocante.",
     "price": 69.79,
     "originalPrice": 101.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8139789_OVO_BIS_AO-LEITE_305.4g_01_AF01.jpg?v=1772497407",
@@ -1593,7 +1593,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497416438_803",
     "name": "Ovo de Páscoa Ferrero Rocher Ao Leite com Avelã 300g Premium",
-    "description": "Ovo de Páscoa Ferrero Rocher Ao Leite com Avelã 300g Premium em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Ferrero Rocher ao Leite 300g Premium. Chocolate com avelãs crocantes.",
     "price": 85.79,
     "originalPrice": 137.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/7898024397199.jpg?v=1772497417",
@@ -1607,7 +1607,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497421081_238",
     "name": "Ovo de Páscoa Delice Infantil Minions 90g com Big Toy 3 Estampas Sortidas",
-    "description": "Ovo de Páscoa Delice Minions 90g com Big Toy 3 Estampas Sortidas em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Delice Minions 90g Infantil. Acompanha Big Toy com 3 estampas sortidas.",
     "price": 66.69,
     "originalPrice": 95.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/2198701.jpg?v=1772497422",
@@ -1621,7 +1621,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497423223_576",
     "name": "Ovo de Páscoa Delice Sonic Infantil Chocolate ao Leite 90g com Copão 3D de Brinde",
-    "description": "Ovo de Páscoa Delice Sonic Chocolate ao Leite 90g com Copão 3D de Brinde em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Delice Sonic Chocolate ao Leite 90g Infantil. Acompanha Copão 3D de brinde.",
     "price": 63.45,
     "originalPrice": 89.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/TC26_Sonic_90g_Mockup.jpg?v=1772497424",
@@ -1635,7 +1635,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497425467_245",
     "name": "Ovo de Páscoa Lacta Laka Chocolate Branco 162g",
-    "description": "Ovo de Páscoa Lacta Laka Chocolate Branco 162g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Laka Chocolate Branco 162g. Chocolate branco cremoso e irresistível.",
     "price": 53.09,
     "originalPrice": 71.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8146752_OVO_LACTA_LAKA_162g_01_AF01.jpg?v=1772497427",
@@ -1649,7 +1649,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497428193_544",
     "name": "Ovo de Páscoa Delice Naruto Infantil Chocolate ao Leite 90g com Bowl e Hashi de Brinde",
-    "description": "Ovo de Páscoa Delice Naruto Chocolate ao Leite 90g com Bowl e Hashi de Brinde em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Delice Naruto Chocolate ao Leite 90g Infantil. Acompanha Bowl e Hashi de brinde.",
     "price": 63.45,
     "originalPrice": 89.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/TC26_Naruto_90g_Mockup.jpg?v=1772497429",
@@ -1663,7 +1663,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497431130_824",
     "name": "Ovo de Páscoa Lacta Diamante Negro 163g",
-    "description": "Ovo de Páscoa Lacta Diamante Negro 163g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Diamante Negro 163g. Chocolate meio amargo com sabor intenso.",
     "price": 53.09,
     "originalPrice": 71.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8146757_OVO_LACTA_DN_163g_01_AF01.jpg?v=1772497432",
@@ -1677,7 +1677,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497433856_833",
     "name": "Ovo de Páscoa Lacta Oreo 239g",
-    "description": "Ovo de Páscoa Lacta Oreo 239g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Oreo 239g. Chocolate ao leite com pedaços de biscoito Oreo.",
     "price": 56.69,
     "originalPrice": 77.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8146751_OVO_LACTA_OREO_239g_01_AF01.jpg?v=1772497435",
@@ -1691,7 +1691,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497436263_823",
     "name": "Ovo de Páscoa Nestlé Chokito 241g",
-    "description": "Ovo de Páscoa Nestlé Chokito 241g em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Nestlé Chokito 241g. Chocolate ao leite com flocos de arroz crocantes.",
     "price": 63.45,
     "originalPrice": 89.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/7891000449707_99_1_1200_72_RGB.jpg?v=1772497437",
@@ -1705,7 +1705,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497438445_223",
     "name": "Ovo de Páscoa Delice Patrulha Canina Infantil Chocolate ao Leite 90g com Maleta 3D Sortido Skye ou Chase",
-    "description": "Ovo de Páscoa Delice Patrulha Canina Chocolate ao Leite 90g com Maleta 3D Sortido Skye ou Chase em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Delice Patrulha Canina Chocolate ao Leite 90g Infantil. Acompanha Maleta 3D sortida Skye ou Chase.",
     "price": 63.45,
     "originalPrice": 89.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/7087418610_2SZ.jpg?v=1772497439",
@@ -1719,7 +1719,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497440470_110",
     "name": "Ovo de Páscoa Arcor Monster High Infantil Chocolate ao Leite 100g com Brinquedo",
-    "description": "Ovo de Páscoa Arcor Ao Leite Monster High 100g com Brinquedo em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Arcor Monster High Chocolate ao Leite 100g Infantil. Acompanha brinquedo surpresa.",
     "price": 60.09,
     "originalPrice": 83.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/7898142867130.jpg?v=1772497441",
@@ -1733,7 +1733,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497444802_654",
     "name": "Ovo de Páscoa Nestlé Kit Kat Chocolate ao Leite 338,5g",
-    "description": "Ovo de Páscoa Nestlé Kit Kat Chocolate ao Leite 338,5g em oferta. Tem sempre uma Americanas pertinho. Vem!",
+    "description": "Ovo de Páscoa Nestlé Kit Kat Chocolate ao Leite 338,5g. Chocolate com wafer crocante.",
     "price": 80.89,
     "originalPrice": 125.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/7891000444740_99_1_1200_72_RGB.jpg?v=1772497446",
@@ -1747,7 +1747,7 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_1772497446971_221",
     "name": "Ovo de Páscoa Lacta Barbie Infantil Chocolate ao Leite 166g",
-    "description": "Ovo de Páscoa Lacta Barbie Chocolate ao Leite 166g em promoção na Americanas. Encontre ofertas com os melhores preços e entrega rápida. Vem!",
+    "description": "Ovo de Páscoa Lacta Barbie Chocolate ao Leite 166g Infantil. Perfeito para fãs da Barbie.",
     "price": 75.59,
     "originalPrice": 113.99,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/8153148_OVO_LACTA_BARBIE_166g_01_AF01.jpg?v=1772497448",
