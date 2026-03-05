@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, Shield, Cookie, ShieldAlert, RotateCcw } from "lucide-react"
+import { FileText, Shield, Cookie, BadgeCheck, RotateCcw } from "lucide-react"
 
 export function Footer() {
   return (
@@ -45,7 +45,7 @@ export function Footer() {
         {/* Aviso de qualidade */}
         <div className="mb-8 bg-amber-50 border border-amber-200 rounded-lg p-4">
           <div className="flex items-start gap-3">
-            <ShieldAlert className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <BadgeCheck className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-semibold text-amber-800 mb-1">
                 {"Produtos originais e de qualidade"}
