@@ -40,14 +40,17 @@ const ESTADOS_BRASIL = [
 // Funcao para buscar TODAS as cidades de um estado pela API do IBGE
 async function fetchCidadesIBGE(uf: string): Promise<string[]> {
   try {
+    console.log("[v0] Buscando cidades para UF:", uf)
     const response = await fetch(
       `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios?orderBy=nome`
     )
+    console.log("[v0] IBGE response status:", response.status)
     if (!response.ok) throw new Error("Erro ao buscar cidades")
     const data = await response.json()
+    console.log("[v0] Cidades encontradas:", data.length)
     return data.map((cidade: { nome: string }) => cidade.nome)
   } catch (error) {
-    console.error("Erro ao buscar cidades:", error)
+    console.error("[v0] Erro ao buscar cidades:", error)
     return []
   }
 }
@@ -78,9 +81,11 @@ export function LocationPopup({ onClose, onLocationSet }: LocationPopupProps) {
 
   useEffect(() => {
     if (selectedState) {
+      console.log("[v0] useEffect triggered for state:", selectedState)
       setLoadingCidades(true)
       setCidadesDoEstado([])
       fetchCidadesIBGE(selectedState).then((cidades) => {
+        console.log("[v0] setCidadesDoEstado com", cidades.length, "cidades")
         setCidadesDoEstado(cidades)
         setLoadingCidades(false)
       })
