@@ -82,7 +82,6 @@ export default function PoliticaReembolso() {
                     contato@docesaborchocolates.com.br
                   </a>
                 </li>
-                <li>{"WhatsApp: atrav\u00e9s do bot\u00e3o dispon\u00edvel no site."}</li>
               </ul>
               <p>
                 {"Envie fotos do produto (em caso de avaria ou erro) e o n\u00famero do pedido. Analisaremos sua solicita\u00e7\u00e3o em at\u00e9 48 horas \u00fateis."}
