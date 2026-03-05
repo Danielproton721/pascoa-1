@@ -1397,13 +1397,13 @@ const rawProducts: Product[] = [
   {
     "id": "SKU_Ovo_de_Páscoa_A_Casa_Mágica_da_Gabby_com_Caneca_3d_Chocolate_ao_Leite_90g_com_Copo_Plástico_de_Alça",
     "name": "Ovo de Páscoa A Casa Mágica da Gabby com Caneca 3d Chocolate ao Leite 90g com Copo Plástico de Alça",
-    "description": "Compre Ovo de Páscoa A Casa Mágica da Gabby com Caneca 3d Chocolate ao Leite 90g com Copo Plástico de Alça na Shopee Brasil! Ovo de Páscoa A Casa Mágica da Gabby Top Cau 90g chocolate ao leite 90 gram",
+    "description": "Ovo de Páscoa A Casa Mágica da Gabby Top Cau 90g chocolate ao leite com Copo Plástico de Alça",
     "price": 82.89,
     "originalPrice": 130.8,
     "image": "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/br-11134207-7r98o-m7x0vc9v5zw159.webp?v=1772495920",
     "category": "ovos-de-pascoa",
     "badge": "",
-    "marca": "Americanas",
+    "marca": "Top Cau",
     "stock": 0,
     "includes": [],
     "accompaniments": []
