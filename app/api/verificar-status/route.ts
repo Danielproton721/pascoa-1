@@ -12,17 +12,17 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const apiKey = process.env.PAGOUAI_API_KEY
+    const apiKey = process.env.MEDUSAPAY_SECRET_KEY
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: "Chave da API PagouAI nao configurada" },
+        { error: "Chave da API Medusa Pay nao configurada" },
         { status: 500 }
       )
     }
 
-    // Consultar status da transacao na PagouAI v1 (Basic Auth)
-    const response = await fetch(`https://api.conta.pagou.ai/v1/transactions/${pedidoId}`, {
+    // Consultar status da transacao na Medusa Pay (Basic Auth)
+    const response = await fetch(`https://api.v2.medusapay.com.br/v1/transactions/${pedidoId}`, {
       method: "GET",
       headers: {
         "Authorization": `Basic ${Buffer.from(`${apiKey}:x`).toString("base64")}`,
@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Mapear status da PagouAI para o formato esperado pelo frontend
+    // Mapear status da Medusa Pay para o formato esperado pelo frontend
     const rawStatus = (data.status || data.payment_status || "pending").toLowerCase()
     const isPaid = rawStatus === "paid" || rawStatus === "approved" || rawStatus === "completed" || rawStatus === "pago"
 
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
       transactionId: pedidoId,
     })
   } catch (err) {
-    console.log("[v0] Status check error:", err instanceof Error ? err.message : err)
+    console.error("[MedusaPay] Status check error:", err instanceof Error ? err.message : err)
     return NextResponse.json(
       { error: "Erro interno ao verificar status" },
       { status: 500 }

@@ -1964,12 +1964,7 @@ export const products: Product[] = rawProducts.map((p) => ({
 }))
 
 export const additionals: Additional[] = [
-  { id: "a1", name: "Embalagem para presente", quantity: "1 un", price: 0, freeOnFirstOrder: true },
-  { id: "a2", name: "Fita decorativa", quantity: "1 un", price: 0, freeOnFirstOrder: true },
   { id: "a3", name: "Cartão de mensagem", quantity: "1 un", price: 0, freeOnFirstOrder: true },
-  { id: "a4", name: "Saco de papel kraft", quantity: "1 un", price: 0, freeOnFirstOrder: true },
-  { id: "a5", name: "Guardanapos", quantity: "20 un", price: 0, freeOnFirstOrder: true },
-  { id: "a6", name: "Caixa de presente", quantity: "1 un", price: 0, freeOnFirstOrder: true },
 ]
 
 export const reviews: Review[] = [

@@ -21,14 +21,12 @@ export function LocationGuard({ children }: { children: React.ReactNode }) {
     return <div className="min-h-screen bg-background" />
   }
 
-  // Sem endereco: mostra popup obrigatorio (bloqueia ate selecionar)
-  if (!hasAddress) {
-    return (
-      <div className="min-h-screen bg-background">
+  return (
+    <>
+      {children}
+      {!hasAddress && (
         <LocationPopup onClose={() => {}} onLocationSet={handleLocationSet} />
-      </div>
-    )
-  }
-
-  return <>{children}</>
+      )}
+    </>
+  )
 }
