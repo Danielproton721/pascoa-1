@@ -139,7 +139,7 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit, startOpen }: U
             <Percent className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h3 className="font-bold text-foreground text-sm">Monte seu Combo com 30% OFF</h3>
+            <h3 className="font-bold text-foreground text-sm">Monte sua caixa de chocolate com 30% OFF</h3>
             <p className="text-xs text-muted-foreground">Ovos + Caixas + Tabletes/Bolos</p>
           </div>
         </div>
@@ -167,7 +167,7 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit, startOpen }: U
             className="bg-stone-600 text-white hover:bg-stone-700 text-sm font-semibold gap-1 px-4"
           >
             <Zap className="w-4 h-4" />
-            Montar Combo
+            Montar Caixa
           </Button>
         </div>
       </div>
