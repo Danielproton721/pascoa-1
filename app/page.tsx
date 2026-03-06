@@ -182,7 +182,7 @@ function DeliveryApp() {
               </div>
             </section>
 
-            <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} />
+            <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} excludeIds={OFERTAS_DIA_IDS} />
 
             {otherCategories.map((category) => {
               const categoryProducts = getCategoryProducts(category.id)
