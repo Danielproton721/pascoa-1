@@ -137,9 +137,9 @@ function DeliveryApp() {
     if (categoryId === "tabletes") {
       return products.filter((p) => isTablete(p.name))
     }
-    // Bombons: produtos com "bombom" ou "trufa" no nome
+    // Bombons: produtos com "bombom" ou "trufa" no nome (excluindo ovos)
     if (categoryId === "bombons") {
-      return products.filter((p) => isBombom(p.name))
+      return products.filter((p) => isBombom(p.name) && !isOvo(p.name))
     }
     const base = products.filter((p) => p.category === categoryId)
     return base
