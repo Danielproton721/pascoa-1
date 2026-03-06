@@ -59,6 +59,9 @@ export function Footer() {
 
         {/* Informações da Empresa */}
         <div className="border-t border-border pt-6 mt-6">
+          <p className="text-sm font-medium text-foreground mb-2">
+            Revendedor autorizado
+          </p>
           <p className="text-xs text-muted-foreground">
             Doce Sabor Chocolates • CNPJ 61.467.079/0001-50
           </p>

@@ -1,12 +1,22 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 
 export default function PoliticaReembolso() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 py-8">
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/imgs/logo-doce-sabor.webp"
+            alt="Doce Sabor Chocolates Finos"
+            width={150}
+            height={150}
+            className="rounded-full"
+          />
+        </div>
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-6"
