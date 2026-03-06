@@ -12,7 +12,6 @@ interface HighlightProductsProps {
   onProductSelect: (product: (typeof products)[0]) => void
   onComboClick?: () => void
   excludeIds?: string[]
-  excludeBrands?: string[]
 }
 
 const COMBO_CARD = {
@@ -20,18 +19,18 @@ const COMBO_CARD = {
   image: "https://cdn.shopify.com/s/files/1/0965/3846/0530/files/imgi_1_caixa_chocolate_doce_sabor.png?v=1772575039",
 }
 
-export function HighlightProducts({ onProductSelect, onComboClick, excludeIds = [], excludeBrands = [] }: HighlightProductsProps) {
+export function HighlightProducts({ onProductSelect, onComboClick, excludeIds = [] }: HighlightProductsProps) {
   const { addItem } = useCart()
   const highlightProducts = useMemo(() => {
     return products
-      .filter((p) => p.originalPrice && p.originalPrice > p.price && !excludeIds.includes(p.id) && !excludeBrands.includes(p.marca || ""))
+      .filter((p) => p.originalPrice && p.originalPrice > p.price && !excludeIds.includes(p.id))
       .sort((a, b) => {
         const discountA = ((a.originalPrice! - a.price) / a.originalPrice!) * 100
         const discountB = ((b.originalPrice! - b.price) / b.originalPrice!) * 100
         return discountB - discountA
       })
       .slice(0, MAX_MAIORES_DESCONTOS)
-  }, [excludeIds, excludeBrands])
+  }, [excludeIds])
 
   if (highlightProducts.length === 0) return null
 

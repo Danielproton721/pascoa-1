@@ -100,8 +100,7 @@ function DeliveryApp() {
     "SKU_1772483864171_307",  // Snoopy Astronauta
     "SKU_1772484118531_75",   // Zero Lactose
   ]
-  const MARCAS_OCULTAS_PROMO = ["Cacau Show", "Kopenhagen"]
-  const featuredProducts = products.filter((p) => OFERTAS_DIA_IDS.includes(p.id) && !MARCAS_OCULTAS_PROMO.includes(p.marca || ""))
+  const featuredProducts = products.filter((p) => OFERTAS_DIA_IDS.includes(p.id))
   const otherCategories = categories.filter((c) => c.id !== "promocao")
 
   const isOvo = (name: string) => {
@@ -196,7 +195,7 @@ function DeliveryApp() {
               </div>
             </section>
 
-            <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} excludeIds={OFERTAS_DIA_IDS} excludeBrands={MARCAS_OCULTAS_PROMO} />
+            <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} excludeIds={OFERTAS_DIA_IDS} />
 
             {otherCategories.map((category) => {
               const categoryProducts = getCategoryProducts(category.id)
