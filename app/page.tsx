@@ -120,10 +120,14 @@ function DeliveryApp() {
         return 0
       })
     }
-    // Chocolates: todos os chocolates (chocolates + ofertas, excluindo ovos)
+    // Helpers para categorias
+    const isTablete = (name: string) => name.toLowerCase().includes("tablete")
+    const isBombom = (name: string) => name.toLowerCase().includes("bombom") || name.toLowerCase().includes("trufa")
+    
+    // Chocolates: todos os chocolates (excluindo ovos, tabletes e bombons)
     if (categoryId === "chocolates") {
       const base = products.filter((p) => p.category === "chocolates" || p.category === "ofertas")
-      return base.filter((p) => !isOvo(p.name))
+      return base.filter((p) => !isOvo(p.name) && !isTablete(p.name) && !isBombom(p.name))
     }
     // Ovos de Páscoa: todos os ovos
     if (categoryId === "ovos-de-pascoa") {
@@ -131,11 +135,11 @@ function DeliveryApp() {
     }
     // Tabletes: produtos com "tablete" no nome
     if (categoryId === "tabletes") {
-      return products.filter((p) => p.name.toLowerCase().includes("tablete"))
+      return products.filter((p) => isTablete(p.name))
     }
-    // Bombons: produtos com "bombom" no nome
+    // Bombons: produtos com "bombom" ou "trufa" no nome
     if (categoryId === "bombons") {
-      return products.filter((p) => p.name.toLowerCase().includes("bombom") || p.name.toLowerCase().includes("trufa"))
+      return products.filter((p) => isBombom(p.name))
     }
     const base = products.filter((p) => p.category === categoryId)
     return base
