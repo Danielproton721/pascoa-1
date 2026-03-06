@@ -22,6 +22,7 @@ import { BannerCarousel } from "@/components/delivery/banner-carousel"
 import { PendingOrdersButton, PendingOrdersModal } from "@/components/delivery/pending-orders"
 import { UpsellCombo } from "@/components/delivery/upsell-combo"
 import { PriceFilter, sortProducts, type SortOrder } from "@/components/delivery/price-filter"
+import { BrandFilter } from "@/components/delivery/brand-filter"
 import { useCart } from "@/lib/cart-context"
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
 
@@ -38,6 +39,7 @@ function DeliveryApp() {
   const [showPendingOrders, setShowPendingOrders] = useState(false)
   const [openCombo, setOpenCombo] = useState(false)
   const [categoryFilters, setCategoryFilters] = useState<Record<string, SortOrder>>({})
+  const [brandFilters, setBrandFilters] = useState<Record<string, string[]>>({})
   const ofertasScrollRef = useRef<HTMLDivElement>(null)
 
   const scrollOfertas = (direction: "left" | "right") => {
@@ -260,33 +262,54 @@ function DeliveryApp() {
           </>
         ) : (
           <section id="category-products">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-bold text-foreground">
-                {categories.find((c) => c.id === activeCategory)?.name}
-              </h2>
-              <PriceFilter
-                value={categoryFilters[activeCategory] ?? "default"}
-                onChange={(val) => setCategoryFilters(prev => ({ ...prev, [activeCategory]: val }))}
-              />
-            </div>
-            <div className="space-y-3">
-              {(sortProducts(
-                getCategoryProducts(activeCategory),
-                categoryFilters[activeCategory] ?? "default"
-              ) as Product[]).map((product, index) => (
-                <CompactProductCard
-                  key={product.id}
-                  product={product}
-                  index={index}
-                  onClick={() => setSelectedProduct(product)}
-                />
-              ))}
-              {getCategoryProducts(activeCategory).length === 0 && (
-                <p className="text-sm text-muted-foreground py-8 text-center">
-                  Nenhum produto encontrado nesta categoria.
-                </p>
-              )}
-            </div>
+            {(() => {
+              const categoryProducts = getCategoryProducts(activeCategory)
+              const availableBrands = [...new Set(categoryProducts.map(p => p.marca).filter(Boolean))].sort()
+              const selectedBrands = brandFilters[activeCategory] || []
+              const filteredProducts = selectedBrands.length > 0
+                ? categoryProducts.filter(p => selectedBrands.includes(p.marca || ""))
+                : categoryProducts
+              const sortedFilteredProducts = sortProducts(filteredProducts, categoryFilters[activeCategory] ?? "default") as Product[]
+              const showBrandFilter = ["ovos-de-pascoa", "tabletes", "bombons"].includes(activeCategory)
+
+              return (
+                <>
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-lg font-bold text-foreground">
+                      {categories.find((c) => c.id === activeCategory)?.name}
+                    </h2>
+                    <div className="flex items-center gap-2">
+                      {showBrandFilter && availableBrands.length > 1 && (
+                        <BrandFilter
+                          brands={availableBrands}
+                          selectedBrands={selectedBrands}
+                          onChange={(brands) => setBrandFilters(prev => ({ ...prev, [activeCategory]: brands }))}
+                        />
+                      )}
+                      <PriceFilter
+                        value={categoryFilters[activeCategory] ?? "default"}
+                        onChange={(val) => setCategoryFilters(prev => ({ ...prev, [activeCategory]: val }))}
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    {sortedFilteredProducts.map((product, index) => (
+                      <CompactProductCard
+                        key={product.id}
+                        product={product}
+                        index={index}
+                        onClick={() => setSelectedProduct(product)}
+                      />
+                    ))}
+                    {sortedFilteredProducts.length === 0 && (
+                      <p className="text-sm text-muted-foreground py-8 text-center">
+                        Nenhum produto encontrado nesta categoria.
+                      </p>
+                    )}
+                  </div>
+                </>
+              )
+            })()}
           </section>
         )}
 
