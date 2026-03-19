@@ -1410,7 +1410,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497065941_819",
-    "name": "Ovo de Páscoa Garoto Caribe Chocolate ao Leite com Flocos de Banana 229g",
+    "name": "Ovo de Páscoa Caribe Chocolate ao Leite com Flocos de Banana 229g",
     "description": "Ovo de Páscoa Garoto Caribe Chocolate ao Leite com Flocos de Banana 229g. Delicioso chocolate ao leite com flocos crocantes de banana.",
     "price": 63.45,
     "originalPrice": 89.99,
@@ -1424,7 +1424,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497079679_655",
-    "name": "Ovo de Páscoa Delice Dragões Chocolate ao Leite 90g Infantil com Copão 3D do Banguela e Canudo",
+    "name": "Ovo de Páscoa Dragões Chocolate ao Leite 90g Infantil com Copão 3D do Banguela e Canudo",
     "description": "Ovo de Páscoa Delice Dragões Chocolate ao Leite 90g Infantil. Acompanha Copão 3D do Banguela e Canudo.",
     "price": 63.45,
     "originalPrice": 89.99,
@@ -1438,7 +1438,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497095871_259",
-    "name": "Ovo de Páscoa Delice Hello Kitty Chocolate ao Leite 90g com Porta Retrato de Brinde",
+    "name": "Ovo de Páscoa Hello Kitty Chocolate ao Leite 90g com Porta Retrato de Brinde",
     "description": "Ovo de Páscoa Delice Hello Kitty Chocolate ao Leite 90g. Acompanha Porta Retrato de Brinde.",
     "price": 63.45,
     "originalPrice": 89.99,
@@ -1452,7 +1452,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497109680_79",
-    "name": "Ovo de Páscoa Lacta Favoritos 540g",
+    "name": "Ovo de Páscoa Favoritos 540g",
     "description": "Ovo de Páscoa Lacta Favoritos 540g. Combinação dos chocolates mais amados da Lacta em um único ovo.",
     "price": 89.99,
     "originalPrice": 149.99,
@@ -1466,7 +1466,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497124393_379",
-    "name": "Ovo de Páscoa Lacta Sonho de Valsa 277g",
+    "name": "Ovo de Páscoa Sonho de Valsa 277g",
     "description": "Ovo de Páscoa Lacta Sonho de Valsa 277g. O clássico bombom em formato de ovo com recheio cremoso.",
     "price": 56.69,
     "originalPrice": 77.99,
@@ -1480,7 +1480,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497143747_110",
-    "name": "Ovo de Páscoa Lacta Ouro Branco 359g",
+    "name": "Ovo de Páscoa Ouro Branco 359g",
     "description": "Ovo de Páscoa Lacta Ouro Branco 359g. Chocolate ao leite com recheio cremoso de castanhas.",
     "price": 69.79,
     "originalPrice": 101.99,
@@ -1494,7 +1494,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497161712_573",
-    "name": "Ovo de Páscoa Enaldinho Marilan Infantil Chocolate ao Leite Crocante 120g com Oleaginosas com 1 Copo de Alumínio que Muda de Cor com Líquido Gelado",
+    "name": "Ovo de Páscoa Enaldinho Infantil Chocolate ao Leite Crocante 120g com Oleaginosas com 1 Copo de Alumínio que Muda de Cor com Líquido Gelado",
     "description": "Ovo de Páscoa Enaldinho Marilan Chocolate ao Leite Crocante 120g com Oleaginosas. Acompanha Copo de Alumínio que muda de cor com líquido gelado.",
     "price": 75.59,
     "originalPrice": 113.99,
@@ -1508,7 +1508,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497175130_864",
-    "name": "Ovo de Páscoa Lacta Bis Branco 234g",
+    "name": "Ovo de Páscoa Bis Branco 234g",
     "description": "Ovo de Páscoa Lacta Bis Branco 234g. Chocolate branco com wafer crocante.",
     "price": 56.69,
     "originalPrice": 77.99,
@@ -1522,7 +1522,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497188085_951",
-    "name": "Ovo de Páscoa Nestlé Alpino Ao Leite 349,5g Cremoso",
+    "name": "Ovo de Páscoa Alpino Ao Leite 349,5g Cremoso",
     "description": "Ovo de Páscoa Nestlé Alpino ao Leite 349,5g. Chocolate cremoso com pedaços de Alpino.",
     "price": 80.89,
     "originalPrice": 125.99,
@@ -1536,7 +1536,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497204181_810",
-    "name": "Ovo de Páscoa Lacta Chocolate ao Leite 157g",
+    "name": "Ovo de Páscoa Chocolate ao Leite 157g",
     "description": "Ovo de Páscoa Lacta Chocolate ao Leite 157g. Chocolate ao leite tradicional da Lacta.",
     "price": 53.09,
     "originalPrice": 71.99,
@@ -1550,7 +1550,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497215061_408",
-    "name": "Ovo de Páscoa Garoto Crocante Ao Leite 227g Recheado com Amendoim e Castanha-de-Caju",
+    "name": "Ovo de Páscoa Crocante Ao Leite 227g Recheado com Amendoim e Castanha-de-Caju",
     "description": "Ovo de Páscoa Garoto Crocante ao Leite 227g. Recheado com amendoim e castanha-de-caju.",
     "price": 63.45,
     "originalPrice": 89.99,
@@ -1564,7 +1564,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497226406_862",
-    "name": "Ovo de Páscoa Delice Infantil Enaldinho Chocolate ao Leite 80g com Tatuagem Sortida",
+    "name": "Ovo de Páscoa Infantil Enaldinho Chocolate ao Leite 80g com Tatuagem Sortida",
     "description": "Ovo de Páscoa Delice Enaldinho Chocolate ao Leite 80g. Acompanha tatuagem sortida.",
     "price": 28.79,
     "originalPrice": 35.99,
@@ -1578,7 +1578,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497406196_95",
-    "name": "Ovo de Páscoa Lacta Bis ao Leite 305,4g",
+    "name": "Ovo de Páscoa Bis ao Leite 305,4g",
     "description": "Ovo de Páscoa Lacta Bis ao Leite 305,4g. Chocolate ao leite com camadas de wafer crocante.",
     "price": 69.79,
     "originalPrice": 101.99,
@@ -1592,7 +1592,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497416438_803",
-    "name": "Ovo de Páscoa Ferrero Rocher Ao Leite com Avelã 300g Premium",
+    "name": "Ovo de Páscoa Rocher Ao Leite com Avelã 300g Premium",
     "description": "Ovo de Páscoa Ferrero Rocher ao Leite 300g Premium. Chocolate com avelãs crocantes.",
     "price": 85.79,
     "originalPrice": 137.99,
@@ -1606,7 +1606,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497421081_238",
-    "name": "Ovo de Páscoa Delice Infantil Minions 90g com Big Toy 3 Estampas Sortidas",
+    "name": "Ovo de Páscoa Infantil Minions 90g com Big Toy 3 Estampas Sortidas",
     "description": "Ovo de Páscoa Delice Minions 90g Infantil. Acompanha Big Toy com 3 estampas sortidas.",
     "price": 66.69,
     "originalPrice": 95.99,
@@ -1620,7 +1620,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497423223_576",
-    "name": "Ovo de Páscoa Delice Sonic Infantil Chocolate ao Leite 90g com Copão 3D de Brinde",
+    "name": "Ovo de Páscoa Sonic Infantil Chocolate ao Leite 90g com Copão 3D de Brinde",
     "description": "Ovo de Páscoa Delice Sonic Chocolate ao Leite 90g Infantil. Acompanha Copão 3D de brinde.",
     "price": 63.45,
     "originalPrice": 89.99,
@@ -1634,7 +1634,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497425467_245",
-    "name": "Ovo de Páscoa Lacta Laka Chocolate Branco 162g",
+    "name": "Ovo de Páscoa Laka Chocolate Branco 162g",
     "description": "Ovo de Páscoa Lacta Laka Chocolate Branco 162g. Chocolate branco cremoso e irresistível.",
     "price": 53.09,
     "originalPrice": 71.99,
@@ -1648,7 +1648,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497428193_544",
-    "name": "Ovo de Páscoa Delice Naruto Infantil Chocolate ao Leite 90g com Bowl e Hashi de Brinde",
+    "name": "Ovo de Páscoa Naruto Infantil Chocolate ao Leite 90g com Bowl e Hashi de Brinde",
     "description": "Ovo de Páscoa Delice Naruto Chocolate ao Leite 90g Infantil. Acompanha Bowl e Hashi de brinde.",
     "price": 63.45,
     "originalPrice": 89.99,
@@ -1662,7 +1662,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497431130_824",
-    "name": "Ovo de Páscoa Lacta Diamante Negro 163g",
+    "name": "Ovo de Páscoa Diamante Negro 163g",
     "description": "Ovo de Páscoa Lacta Diamante Negro 163g. Chocolate meio amargo com sabor intenso.",
     "price": 53.09,
     "originalPrice": 71.99,
@@ -1676,7 +1676,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497433856_833",
-    "name": "Ovo de Páscoa Lacta Oreo 239g",
+    "name": "Ovo de Páscoa Oreo 239g",
     "description": "Ovo de Páscoa Lacta Oreo 239g. Chocolate ao leite com pedaços de biscoito Oreo.",
     "price": 56.69,
     "originalPrice": 77.99,
@@ -1690,7 +1690,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497436263_823",
-    "name": "Ovo de Páscoa Nestlé Chokito 241g",
+    "name": "Ovo de Páscoa Chokito 241g",
     "description": "Ovo de Páscoa Nestlé Chokito 241g. Chocolate ao leite com flocos de arroz crocantes.",
     "price": 63.45,
     "originalPrice": 89.99,
@@ -1704,7 +1704,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497438445_223",
-    "name": "Ovo de Páscoa Delice Patrulha Canina Infantil Chocolate ao Leite 90g com Maleta 3D Sortido Skye ou Chase",
+    "name": "Ovo de Páscoa Patrulha Canina Infantil Chocolate ao Leite 90g com Maleta 3D Sortido Skye ou Chase",
     "description": "Ovo de Páscoa Delice Patrulha Canina Chocolate ao Leite 90g Infantil. Acompanha Maleta 3D sortida Skye ou Chase.",
     "price": 63.45,
     "originalPrice": 89.99,
@@ -1718,7 +1718,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497440470_110",
-    "name": "Ovo de Páscoa Arcor Monster High Infantil Chocolate ao Leite 100g com Brinquedo",
+    "name": "Ovo de Páscoa Monster High Infantil Chocolate ao Leite 100g com Brinquedo",
     "description": "Ovo de Páscoa Arcor Monster High Chocolate ao Leite 100g Infantil. Acompanha brinquedo surpresa.",
     "price": 60.09,
     "originalPrice": 83.99,
@@ -1732,7 +1732,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497444802_654",
-    "name": "Ovo de Páscoa Nestlé Kit Kat Chocolate ao Leite 338,5g",
+    "name": "Ovo de Páscoa Kit Kat Chocolate ao Leite 338,5g",
     "description": "Ovo de Páscoa Nestlé Kit Kat Chocolate ao Leite 338,5g. Chocolate com wafer crocante.",
     "price": 80.89,
     "originalPrice": 125.99,
@@ -1746,7 +1746,7 @@ const rawProducts: Product[] = [
   },
   {
     "id": "SKU_1772497446971_221",
-    "name": "Ovo de Páscoa Lacta Barbie Infantil Chocolate ao Leite 166g",
+    "name": "Ovo de Páscoa Barbie Infantil Chocolate ao Leite 166g",
     "description": "Ovo de Páscoa Lacta Barbie Chocolate ao Leite 166g Infantil. Perfeito para fãs da Barbie.",
     "price": 75.59,
     "originalPrice": 113.99,
@@ -1987,5 +1987,4 @@ export const categories = [
   { id: "ovos-de-pascoa", name: "Ovos de Páscoa" },
   { id: "tabletes", name: "Tabletes" },
   { id: "bombons", name: "Bombons" },
-  ...priorityBrands.filter((m) => brands.includes(m)).map((marca) => ({ id: `marca:${marca}`, name: marca })),
 ]
