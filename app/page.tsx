@@ -279,13 +279,6 @@ function DeliveryApp() {
                       {categories.find((c) => c.id === activeCategory)?.name}
                     </h2>
                     <div className="flex items-center gap-2">
-                      {showBrandFilter && availableBrands.length > 1 && (
-                        <BrandFilter
-                          brands={availableBrands}
-                          selectedBrands={selectedBrands}
-                          onChange={(brands) => setBrandFilters(prev => ({ ...prev, [activeCategory]: brands }))}
-                        />
-                      )}
                       <PriceFilter
                         value={categoryFilters[activeCategory] ?? "default"}
                         onChange={(val) => setCategoryFilters(prev => ({ ...prev, [activeCategory]: val }))}
