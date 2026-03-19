@@ -63,7 +63,7 @@ export function Footer() {
             Revendedor autorizado
           </p>
           <p className="text-xs text-muted-foreground">
-            Doce Sabor Chocolates • CNPJ 61.467.079/0001-50
+            Doce Sabor Chocolates
           </p>
           <p className="text-xs text-muted-foreground mt-1">
             Contato:{" "}
