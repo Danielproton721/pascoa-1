@@ -69,7 +69,7 @@ export function Footer() {
             Rua dos Chocolates, 123 - Centro, Sao Paulo - SP, 01234-567
           </p>
           <p className="text-xs text-muted-foreground mt-1">
-            Telefone: (11) 99999-9999
+            Telefone: (11) 91216-5632
           </p>
           <p className="text-xs text-muted-foreground mt-1">
             Contato:{" "}
