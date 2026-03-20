@@ -54,7 +54,20 @@ export default function PoliticaPrivacidade() {
             </section>
 
             <section className="space-y-2">
-              <h2 className="text-lg font-semibold text-foreground">4. Segurança</h2>
+              <h2 className="text-lg font-semibold text-foreground">4. Publicidade e Remarketing</h2>
+              <p>
+                Utilizamos ferramentas de publicidade online, como o Google Ads, para exibir anuncios relevantes com base 
+                na sua navegacao em nosso site. Essas ferramentas podem utilizar cookies para coletar informacoes anonimas 
+                sobre suas visitas, como paginas visualizadas e produtos consultados.
+              </p>
+              <p>
+                Voce pode optar por desativar a personalizacao de anuncios nas configuracoes da sua conta Google ou 
+                atraves das configuracoes de cookies do seu navegador.
+              </p>
+            </section>
+
+            <section className="space-y-2">
+              <h2 className="text-lg font-semibold text-foreground">5. Segurança</h2>
               <p>
                 Implementamos medidas de segurança adequadas para proteger seus dados pessoais contra acesso não autorizado,
                 alteração ou divulgação.
@@ -62,7 +75,7 @@ export default function PoliticaPrivacidade() {
             </section>
 
             <section className="space-y-2">
-              <h2 className="text-lg font-semibold text-foreground">5. Direitos do Usuário</h2>
+              <h2 className="text-lg font-semibold text-foreground">6. Direitos do Usuário</h2>
               <p>
                 Você tem o direito de acessar, corrigir ou solicitar a exclusão de seus dados pessoais. Para exercer esses
                 direitos, entre em contato conosco pelo e-mail contato@docesaborchocolates.com.br
@@ -70,7 +83,7 @@ export default function PoliticaPrivacidade() {
             </section>
 
             <section className="space-y-2">
-              <h2 className="text-lg font-semibold text-foreground">6. Contato</h2>
+              <h2 className="text-lg font-semibold text-foreground">7. Contato</h2>
               <p>
                 Se tiver dúvidas sobre esta Política de Privacidade, entre em contato conosco através dos canais disponíveis
                 em nosso site.
