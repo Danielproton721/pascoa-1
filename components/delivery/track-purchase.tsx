@@ -49,12 +49,12 @@ export function TrackPurchase({ transactionId, amount, items }: TrackPurchasePro
 
     // ============================================
     // GOOGLE ADS - Evento de Conversao
-    // ID: AW-17934359668
-    // Rotulo: b5kPCJ_O3_gbEPS44udC
+    // ID: AW-18020237329
+    // Rotulo: ldPtCPrYhowcEJGA3JBD
     // ============================================
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
-        send_to: "AW-17934359668/b5kPCJ_O3_gbEPS44udC",
+        send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
         value: amount,
         currency: "BRL",
         transaction_id: transactionId,

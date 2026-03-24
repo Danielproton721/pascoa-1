@@ -212,7 +212,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
       // 2. Google Ads - Evento de Conversao
       if (window.gtag) {
         window.gtag("event", "conversion", {
-          send_to: "AW-17934359668/b5kPCJ_O3_gbEPS44udC",
+          send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
           value: amount,
           currency: "BRL",
           transaction_id: transactionId,
@@ -224,7 +224,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
         setTimeout(() => {
           if (window.gtag) {
             window.gtag("event", "conversion", {
-              send_to: "AW-17934359668/b5kPCJ_O3_gbEPS44udC",
+              send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
               value: amount,
               currency: "BRL",
               transaction_id: transactionId,
