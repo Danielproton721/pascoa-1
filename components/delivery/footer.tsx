@@ -63,13 +63,22 @@ export function Footer() {
             Revendedor autorizado
           </p>
           <p className="text-xs text-muted-foreground">
-            Doce Sabor Chocolates • CNPJ 61.467.079/0001-50
+            Doce Sabor Chocolates
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Rua dos Chocolates, 123 - Centro, Sao Paulo - SP, 01234-567
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Telefone: (11) 91216-5632
           </p>
           <p className="text-xs text-muted-foreground mt-1">
             Contato:{" "}
             <a href="mailto:contato@docesaborchocolates.com.br" className="text-primary hover:underline">contato@docesaborchocolates.com.br</a>
           </p>
-          <p className="text-xs text-muted-foreground mt-1">
+          <p className="text-xs text-muted-foreground mt-4 italic">
+            As marcas dos produtos comercializados neste site sao propriedade de seus respectivos fabricantes. A Doce Sabor Chocolates nao possui vinculo societario com essas empresas. Somos um revendedor independente que comercializa produtos originais. Preco final sem taxas adicionais.
+          </p>
+          <p className="text-xs text-muted-foreground mt-4">
             © {new Date().getFullYear()} Doce Sabor Chocolates. Todos os direitos reservados.
           </p>
         </div>
