@@ -50,7 +50,7 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://cdn.shopify.com/s/files/1/0965/3846/0530/files/imgi_1_logo_branca.png?v=1772575046"
-              alt="Doce Sabor Chocolates"
+              alt="Sabor Doce Chocolates"
               width={180}
               height={80}
               className="object-contain w-[180px] h-auto"
