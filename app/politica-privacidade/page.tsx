@@ -10,8 +10,8 @@ export default function PoliticaPrivacidade() {
       <div className="max-w-3xl mx-auto px-4 py-8">
         <div className="flex justify-center mb-6">
           <Image
-            src="/imgs/logo-doce-sabor.webp"
-            alt="Doce Sabor Chocolates Finos"
+            src="/imgs/logo-sabor-doce-circular.png"
+            alt="Sabor Doce Chocolates Finos"
             width={150}
             height={150}
             className="rounded-full"
@@ -32,7 +32,7 @@ export default function PoliticaPrivacidade() {
             <section className="space-y-2">
               <h2 className="text-lg font-semibold text-foreground">1. Introdução</h2>
               <p>
-                A Doce Sabor Chocolates está comprometida com a proteção da sua privacidade. Esta Política de Privacidade
+                A Sabor Doce Chocolates está comprometida com a proteção da sua privacidade. Esta Política de Privacidade
                 descreve como coletamos, usamos e protegemos suas informações pessoais.
               </p>
             </section>
@@ -78,7 +78,7 @@ export default function PoliticaPrivacidade() {
               <h2 className="text-lg font-semibold text-foreground">6. Direitos do Usuário</h2>
               <p>
                 Você tem o direito de acessar, corrigir ou solicitar a exclusão de seus dados pessoais. Para exercer esses
-                direitos, entre em contato conosco pelo e-mail contato@docesaborchocolates.com.br
+                direitos, entre em contato conosco pelo e-mail contato@sabordocechocolates.com.br
               </p>
             </section>
 

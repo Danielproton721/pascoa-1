@@ -10,8 +10,8 @@ export default function PoliticaReembolso() {
       <div className="max-w-3xl mx-auto px-4 py-8">
         <div className="flex justify-center mb-6">
           <Image
-            src="/imgs/logo-doce-sabor.webp"
-            alt="Doce Sabor Chocolates Finos"
+            src="/imgs/logo-sabor-doce-circular.png"
+            alt="Sabor Doce Chocolates Finos"
             width={150}
             height={150}
             className="rounded-full"
@@ -88,8 +88,8 @@ export default function PoliticaReembolso() {
               <ul className="list-disc list-inside space-y-1 ml-2">
                 <li>
                   {"E-mail: "}
-                  <a href="mailto:contato@docesaborchocolates.com.br" className="text-primary hover:underline">
-                    contato@docesaborchocolates.com.br
+                  <a href="mailto:contato@sabordocechocolates.com.br" className="text-primary hover:underline">
+                    contato@sabordocechocolates.com.br
                   </a>
                 </li>
               </ul>

@@ -72,13 +72,13 @@ export function Footer() {
           </p>
           <p className="text-xs text-muted-foreground mt-1">
             Contato:{" "}
-            <a href="mailto:contato@docesaborchocolates.com.br" className="text-primary hover:underline">contato@docesaborchocolates.com.br</a>
+            <a href="mailto:contato@sabordocechocolates.com.br" className="text-primary hover:underline">contato@sabordocechocolates.com.br</a>
           </p>
           <p className="text-xs text-muted-foreground mt-4 italic">
-            As marcas dos produtos comercializados neste site sao propriedade de seus respectivos fabricantes. A Doce Sabor Chocolates nao possui vinculo societario com essas empresas. Somos um revendedor independente que comercializa produtos originais. Preco final sem taxas adicionais.
+            As marcas dos produtos comercializados neste site sao propriedade de seus respectivos fabricantes. A Sabor Doce Chocolates nao possui vinculo societario com essas empresas. Somos um revendedor independente que comercializa produtos originais. Preco final sem taxas adicionais.
           </p>
           <p className="text-xs text-muted-foreground mt-4">
-            © {new Date().getFullYear()} Doce Sabor Chocolates. Todos os direitos reservados.
+            © {new Date().getFullYear()} Sabor Doce Chocolates. Todos os direitos reservados.
           </p>
         </div>
       </div>

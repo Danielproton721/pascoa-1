@@ -11,18 +11,18 @@ export function AboutUs() {
       <div className="bg-card rounded-xl overflow-hidden border border-border shadow-sm">
         <div className="relative w-full h-48">
           <Image
-            src="https://cdn.shopify.com/s/files/1/0965/3846/0530/files/imgi_1_fachada_doce_sabor.png?v=1772575019"
-            alt="Doce Sabor - Revendedora de chocolates"
+            src="/imgs/loja-sabor-doce.png"
+            alt="Sabor Doce Chocolates Finos - Loja"
             fill
             className="object-cover object-top"
           />
         </div>
         
         <div className="p-4 space-y-3">
-          <h3 className="font-bold text-foreground text-lg">Doce Sabor</h3>
+          <h3 className="font-bold text-foreground text-lg">Sabor Doce</h3>
           
           <p className="text-sm text-muted-foreground leading-relaxed">
-            A Doce Sabor é revendedora autorizada das melhores marcas de chocolates e ovos de Páscoa. 
+            A Sabor Doce é revendedora autorizada das melhores marcas de chocolates e ovos de Páscoa. 
             Trabalhamos com marcas premium. 
             Preços competitivos, entrega rápida e a garantia de produtos originais em cada pedido.
           </p>

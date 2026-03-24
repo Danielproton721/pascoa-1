@@ -10,7 +10,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Doce Sabor - Chocolates e Ovos de Páscoa',
+  title: 'Sabor Doce - Chocolates e Ovos de Páscoa',
   description: 'Chocolates finos e ovos de Páscoa - entrega rápida!',
   icons: {
     icon: '/imgs/logo_marrom.png',

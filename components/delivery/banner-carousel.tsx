@@ -6,15 +6,15 @@ import { useState, useEffect, useCallback } from "react"
 const banners = [
   {
     id: 1,
-    src: "/banners/banner-1.webp",
-    alt: "Páscoa Especial - Veja as Promoções",
+    src: "/banners/banner-1.png",
+    alt: "Páscoa Especial - Veja as Promoções - Descontos de 30%",
     action: "category" as const,
     categoryLink: "promocao",
   },
   {
     id: 2,
-    src: "/banners/banner-2.webp",
-    alt: "Páscoa Especial - Aproveite as Ofertas",
+    src: "/banners/banner-2.png",
+    alt: "Páscoa Especial - Aproveite as Ofertas - Pagamento via Pix",
     action: "category" as const,
     categoryLink: "promocao",
   },

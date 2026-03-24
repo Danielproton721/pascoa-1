@@ -10,8 +10,8 @@ export default function PoliticaCookies() {
       <div className="max-w-3xl mx-auto px-4 py-8">
         <div className="flex justify-center mb-6">
           <Image
-            src="/imgs/logo-doce-sabor.webp"
-            alt="Doce Sabor Chocolates Finos"
+            src="/imgs/logo-sabor-doce-circular.png"
+            alt="Sabor Doce Chocolates Finos"
             width={150}
             height={150}
             className="rounded-full"
@@ -85,7 +85,7 @@ export default function PoliticaCookies() {
             <section className="space-y-2">
               <h2 className="text-lg font-semibold text-foreground">7. Contato</h2>
               <p>
-                Para dúvidas sobre cookies e privacidade, entre em contato pelo e-mail contato@docesaborchocolates.com.br
+                Para dúvidas sobre cookies e privacidade, entre em contato pelo e-mail contato@sabordocechocolates.com.br
               </p>
             </section>
           </div>
