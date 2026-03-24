@@ -63,10 +63,9 @@ export function Footer() {
             Revendedor autorizado
           </p>
           <p className="text-xs text-muted-foreground">
-            Doce Sabor Chocolates
           </p>
           <p className="text-xs text-muted-foreground mt-1">
-            Rua dos Chocolates, 123 - Centro, Sao Paulo - SP, 01234-567
+            Av. Carlos de Campos, 946 - Pari, São Paulo - SP, 03035-040
           </p>
           <p className="text-xs text-muted-foreground mt-1">
             Telefone: (11) 91216-5632
