@@ -10,7 +10,7 @@ export default function PoliticaPrivacidade() {
       <div className="max-w-3xl mx-auto px-4 py-8">
         <div className="flex justify-center mb-6">
           <Image
-            src="/imgs/logo-doce-sabor.webp"
+            src="/imgs/logo-sabor-doce-circular.png"
             alt="Sabor Doce Chocolates Finos"
             width={150}
             height={150}
