@@ -36,20 +36,20 @@ export async function POST(request: NextRequest) {
     // Gerar external_ref unico
     const externalRef = `order_${Date.now()}_${Math.random().toString(36).substring(7)}`
 
-    // Criar transacao PIX na PagouAI (developer.pagou.ai)
-    // Token sk_live_... usa Bearer auth e URL api.pagou.ai
-    const response = await fetch("https://api.pagou.ai/v2/transactions", {
+    // Criar transacao PIX na PagouAI (app.conta.pagou.ai)
+    // Documentacao: usar Basic Auth com sk_live_xxx como username e senha vazia
+    const basicAuth = Buffer.from(`${apiKey}:`).toString("base64")
+    
+    const response = await fetch("https://api.conta.pagou.ai/v1/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`,
+        "Authorization": `Basic ${basicAuth}`,
       },
       body: JSON.stringify({
-        external_ref: externalRef,
         amount: amountInCents,
-        currency: "BRL",
-        method: "pix",
-        buyer: {
+        payment_method: "pix",
+        customer: {
           name: customerName.trim(),
           email: customerEmail.trim().toLowerCase(),
           phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
@@ -58,11 +58,12 @@ export async function POST(request: NextRequest) {
             number: docNumber,
           },
         },
-        products: [
+        items: [
           {
-            name: description,
-            price: amountInCents,
+            title: description,
+            unit_price: amountInCents,
             quantity: 1,
+            tangible: true,
           },
         ],
       }),
@@ -78,9 +79,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Extrair dados PIX da resposta PagouAI (api.pagou.ai/v2)
+    // Extrair dados PIX da resposta PagouAI (api.conta.pagou.ai)
     const transactionId = data.id || data.transaction_id || ""
-    const pixCode = data.pix?.qr_code || data.pix?.qrcode || data.pix?.brcode || data.pix?.code || data.qr_code || ""
+    const pixData = data.pix || data.payment || data
+    const pixCode = pixData?.qr_code || pixData?.qrcode || pixData?.brcode || pixData?.emv || pixData?.copy_paste || ""
 
     // Gerar imagem do QR Code via API publica
     const pixQrCodeImage = pixCode
@@ -93,7 +95,7 @@ export async function POST(request: NextRequest) {
       transactionId: transactionId,
       pixCode: pixCode,
       pixQrCodeImage: pixQrCodeImage,
-      expiresAt: transactionData.pix?.expires_at || transactionData.expires_at || null,
+      expiresAt: pixData?.expires_at || data.expires_at || null,
       amount: amount,
     })
   } catch (err) {
