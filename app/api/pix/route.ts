@@ -37,19 +37,20 @@ export async function POST(request: NextRequest) {
     const externalRef = `order_${Date.now()}_${Math.random().toString(36).substring(7)}`
 
     // Criar transacao PIX na PagouAI
-    // Documentacao: https://developer.pagou.ai/pix/endpoints/create-payment
-    const response = await fetch("https://api.pagou.ai/v2/transactions", {
+    // Documentacao: https://pagouai.readme.io/reference/criar-transacao
+    // Autenticacao: Basic Auth (base64 de "apiKey:")
+    const basicAuth = Buffer.from(`${apiKey}:`).toString("base64")
+    
+    const response = await fetch("https://api.conta.pagou.ai/v1/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`,
+        "Authorization": `Basic ${basicAuth}`,
       },
       body: JSON.stringify({
-        external_ref: externalRef,
         amount: amountInCents,
-        currency: "BRL",
-        method: "pix",
-        buyer: {
+        paymentMethod: "pix",
+        customer: {
           name: customerName.trim(),
           email: customerEmail.trim().toLowerCase(),
           phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
@@ -58,11 +59,12 @@ export async function POST(request: NextRequest) {
             number: docNumber,
           },
         },
-        products: [
+        items: [
           {
-            name: description,
-            price: amountInCents,
+            title: description,
+            unitPrice: amountInCents,
             quantity: 1,
+            tangible: true,
           },
         ],
       }),
