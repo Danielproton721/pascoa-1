@@ -37,15 +37,13 @@ export async function POST(request: NextRequest) {
     const externalRef = `order_${Date.now()}_${Math.random().toString(36).substring(7)}`
 
     // Criar transacao PIX na PagouAI
-    // Documentacao: https://pagouai.readme.io/reference/criar-transacao
-    // Autenticacao: Basic Auth (base64 de "apiKey:")
-    const basicAuth = Buffer.from(`${apiKey}:`).toString("base64")
-    
+    // Tentando diferentes formatos de autenticacao
     const response = await fetch("https://api.conta.pagou.ai/v1/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Basic ${basicAuth}`,
+        "X-API-Key": apiKey,
+        "Authorization": `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         amount: amountInCents,
