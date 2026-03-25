@@ -13,16 +13,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Limpar e validar email
-    const cleanEmail = customerEmail.trim().toLowerCase()
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(cleanEmail)) {
-      return NextResponse.json(
-        { error: "Email inválido. Por favor, verifique o email informado." },
-        { status: 400 }
-      )
-    }
-
     const apiKey = process.env.PAGOUAI_API_KEY
 
     if (!apiKey) {
@@ -60,7 +50,7 @@ export async function POST(request: NextRequest) {
         method: "pix",
         buyer: {
           name: customerName.trim(),
-          email: cleanEmail,
+          email: customerEmail.trim().toLowerCase(),
           phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
           document: {
             type: docType,
