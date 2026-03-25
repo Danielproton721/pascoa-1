@@ -13,6 +13,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Limpar e validar email
+    const cleanEmail = customerEmail.trim().toLowerCase()
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(cleanEmail)) {
+      return NextResponse.json(
+        { error: "Email inválido. Por favor, verifique o email informado." },
+        { status: 400 }
+      )
+    }
+
     const apiKey = process.env.MEDUSAPAY_SECRET_KEY
 
     if (!apiKey) {
@@ -53,8 +63,8 @@ export async function POST(request: NextRequest) {
           },
         ],
         customer: {
-          name: customerName,
-          email: customerEmail,
+          name: customerName.trim(),
+          email: cleanEmail,
           phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
           document: {
             number: docNumber,
