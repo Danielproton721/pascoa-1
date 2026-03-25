@@ -13,11 +13,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const apiKey = process.env.PAGOUAI_API_KEY
+    const apiKey = process.env.MEDUSAPAY_SECRET_KEY
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: "Chave da API PagouAI nao configurada" },
+        { error: "Chave da API MedusaPay nao configurada" },
         { status: 500 }
       )
     }
@@ -29,31 +29,30 @@ export async function POST(request: NextRequest) {
     // Valor em centavos
     const amountInCents = Math.round(amount * 100)
 
-    // Formatar documento
+    // Formatar documento - remover caracteres nao numericos
     const docNumber = customerDocument.replace(/\D/g, "")
-    const docType = docNumber.length > 11 ? "CNPJ" : "CPF"
+    const docType = docNumber.length > 11 ? "cnpj" : "cpf"
 
-    // Gerar external_ref unico
-    const externalRef = `order_${Date.now()}_${Math.random().toString(36).substring(7)}`
+    // Limpar email - remover espacos e converter para minusculas
+    const cleanEmail = customerEmail.trim().toLowerCase()
 
-    // Criar transacao PIX na PagouAI (app.conta.pagou.ai)
-    // Tentando com x-api-key header
-    const response = await fetch("https://api.conta.pagou.ai/v1/transactions", {
+    // Criar transacao PIX na MedusaPay
+    const response = await fetch("https://api.v2.medusapay.com.br/v1/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
+        "Authorization": apiKey,
       },
       body: JSON.stringify({
         amount: amountInCents,
         payment_method: "pix",
         customer: {
           name: customerName.trim(),
-          email: customerEmail.trim().toLowerCase(),
+          email: cleanEmail,
           phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
           document: {
-            type: docType.toLowerCase(),
             number: docNumber,
+            type: docType,
           },
         },
         items: [
@@ -69,18 +68,17 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json()
 
-    if (!response.ok) {
-      console.error("[PagouAI] Erro:", data.detail || data.message || data.error || JSON.stringify(data))
+    if (!response.ok || data.errors) {
+      console.error("[MedusaPay] Erro:", data.errors || data.message || JSON.stringify(data))
       return NextResponse.json(
-        { error: data.detail || data.message || data.error || "Erro ao criar cobranca PIX" },
+        { error: data.errors?.[0] || data.message || "Erro ao criar cobranca PIX" },
         { status: response.status }
       )
     }
 
-    // Extrair dados PIX da resposta PagouAI (api.conta.pagou.ai)
-    const transactionId = data.id || data.transaction_id || ""
-    const pixData = data.pix || data.payment || data
-    const pixCode = pixData?.qr_code || pixData?.qrcode || pixData?.brcode || pixData?.emv || pixData?.copy_paste || ""
+    // Extrair dados PIX da resposta MedusaPay
+    const transactionId = data.id || ""
+    const pixCode = data.pix?.qr_code || data.pix?.emv || ""
 
     // Gerar imagem do QR Code via API publica
     const pixQrCodeImage = pixCode
@@ -93,11 +91,11 @@ export async function POST(request: NextRequest) {
       transactionId: transactionId,
       pixCode: pixCode,
       pixQrCodeImage: pixQrCodeImage,
-      expiresAt: pixData?.expires_at || data.expires_at || null,
+      expiresAt: data.pix?.expires_at || null,
       amount: amount,
     })
   } catch (err) {
-    console.error("[PagouAI] PIX API error:", err instanceof Error ? err.message : err)
+    console.error("[MedusaPay] PIX API error:", err instanceof Error ? err.message : err)
     return NextResponse.json(
       { error: "Erro interno do servidor" },
       { status: 500 }
