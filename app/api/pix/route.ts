@@ -81,11 +81,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Extrair dados PIX da resposta MedusaPay
-    // Log para debug da resposta
-    console.log("[v0] MedusaPay resposta PIX:", JSON.stringify(data.pix || data))
-    
     const transactionId = data.id || ""
-    const pixCode = data.pix?.qr_code || data.pix?.emv || data.pix?.qrcode || data.pix?.brcode || data.pix?.copyPaste || data.pix?.copy_paste || ""
+    const pixCode = data.pix?.qrcode || data.pix?.qr_code || data.pix?.emv || ""
 
     // Gerar imagem do QR Code via API publica
     const pixQrCodeImage = pixCode
