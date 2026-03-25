@@ -14,6 +14,9 @@ export async function POST(request: NextRequest) {
     }
 
     const apiKey = process.env.MEDUSAPAY_SECRET_KEY
+    
+    // Log para debug - verificar se a chave esta sendo lida corretamente
+    console.log("[v0] MedusaPay API Key presente:", !!apiKey, "Primeiros chars:", apiKey?.substring(0, 10))
 
     if (!apiKey) {
       return NextResponse.json(
