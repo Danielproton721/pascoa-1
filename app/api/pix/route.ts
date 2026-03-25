@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: "Chave da API Medusa Pay nao configurada" },
+        { error: "Chave da API MedusaPay nao configurada" },
         { status: 500 }
       )
     }
@@ -29,60 +29,60 @@ export async function POST(request: NextRequest) {
     // Valor em centavos
     const amountInCents = Math.round(amount * 100)
 
-    // Formatar documento
+    // Formatar documento - remover caracteres nao numericos
     const docNumber = customerDocument.replace(/\D/g, "")
     const docType = docNumber.length > 11 ? "cnpj" : "cpf"
 
-    // Criar transacao PIX na Medusa Pay (Basic Auth)
+    // Limpar email - remover espacos e converter para minusculas
+    const cleanEmail = customerEmail.trim().toLowerCase()
+
+    // Criar transacao PIX na MedusaPay
+    // Documentacao: https://medusapay.readme.io/reference/introducao
+    // Autenticacao: Basic Auth com SECRET_KEY:x em base64
+    const basicAuth = Buffer.from(`${apiKey}:x`).toString("base64")
+    
     const response = await fetch("https://api.v2.medusapay.com.br/v1/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Basic ${Buffer.from(`${apiKey}:x`).toString("base64")}`,
+        "Authorization": `Basic ${basicAuth}`,
       },
       body: JSON.stringify({
         amount: amountInCents,
         paymentMethod: "pix",
-        items: [
-          {
-            id: "combo-1",
-            title: "Combo Escolhido",
-            unitPrice: amountInCents,
-            quantity: 1,
-            tangible: true,
-          },
-        ],
         customer: {
-          name: customerName,
-          email: customerEmail,
+          name: customerName.trim(),
+          email: cleanEmail,
           phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
           document: {
             number: docNumber,
             type: docType,
           },
         },
-        pix: {
-          expiresInDays: 1,
-        },
-        metadata: {
-          description: description,
-        },
+        items: [
+          {
+            title: description,
+            unitPrice: amountInCents,
+            quantity: 1,
+            tangible: true,
+          },
+        ],
       }),
     })
 
     const data = await response.json()
 
-    if (!response.ok) {
-      console.error("[MedusaPay] Erro:", data.message || data.error || JSON.stringify(data))
+    if (!response.ok || data.errors) {
+      console.error("[MedusaPay] Erro:", data.errors || data.message || JSON.stringify(data))
       return NextResponse.json(
-        { error: data.message || data.error || "Erro ao criar cobranca PIX" },
+        { error: data.errors?.[0] || data.message || "Erro ao criar cobranca PIX" },
         { status: response.status }
       )
     }
 
-    // Extrair dados PIX da resposta Medusa Pay
-    const pixCode = data.pix?.qrcode || data.pix?.qr_code || data.pix?.brcode || ""
-    const transactionId = data.id || data.transactionId || ""
+    // Extrair dados PIX da resposta MedusaPay
+    const transactionId = data.id || ""
+    const pixCode = data.pix?.qrcode || data.pix?.qr_code || data.pix?.emv || ""
 
     // Gerar imagem do QR Code via API publica
     const pixQrCodeImage = pixCode
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
       transactionId: transactionId,
       pixCode: pixCode,
       pixQrCodeImage: pixQrCodeImage,
-      expiresAt: data.pix?.expires_at || data.expires_at || null,
+      expiresAt: data.pix?.expires_at || null,
       amount: amount,
     })
   } catch (err) {
