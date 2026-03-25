@@ -37,11 +37,15 @@ export async function POST(request: NextRequest) {
     const cleanEmail = customerEmail.trim().toLowerCase()
 
     // Criar transacao PIX na MedusaPay
+    // Documentacao: https://medusapay.readme.io/reference/introducao
+    // Autenticacao: Basic Auth com SECRET_KEY:x em base64
+    const basicAuth = Buffer.from(`${apiKey}:x`).toString("base64")
+    
     const response = await fetch("https://api.v2.medusapay.com.br/v1/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`,
+        "Authorization": `Basic ${basicAuth}`,
       },
       body: JSON.stringify({
         amount: amountInCents,
