@@ -36,33 +36,33 @@ export async function POST(request: NextRequest) {
     // Gerar external_ref unico
     const externalRef = `order_${Date.now()}_${Math.random().toString(36).substring(7)}`
 
-    // Criar transacao PIX na PagouAI
-    // Tentando diferentes formatos de autenticacao
-    const response = await fetch("https://api.conta.pagou.ai/v1/transactions", {
+    // Criar transacao PIX na PagouAI (developer.pagou.ai)
+    // Token sk_live_... usa Bearer auth e URL api.pagou.ai
+    const response = await fetch("https://api.pagou.ai/v2/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-API-Key": apiKey,
         "Authorization": `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
+        external_ref: externalRef,
         amount: amountInCents,
-        paymentMethod: "pix",
-        customer: {
+        currency: "BRL",
+        method: "pix",
+        buyer: {
           name: customerName.trim(),
           email: customerEmail.trim().toLowerCase(),
           phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
           document: {
-            type: docType,
+            type: docType.toLowerCase(),
             number: docNumber,
           },
         },
-        items: [
+        products: [
           {
-            title: description,
-            unitPrice: amountInCents,
+            name: description,
+            price: amountInCents,
             quantity: 1,
-            tangible: true,
           },
         ],
       }),
@@ -70,18 +70,17 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json()
 
-    if (!response.ok || !data.success) {
-      console.error("[PagouAI] Erro:", data.message || data.error || JSON.stringify(data))
+    if (!response.ok) {
+      console.error("[PagouAI] Erro:", data.detail || data.message || data.error || JSON.stringify(data))
       return NextResponse.json(
-        { error: data.message || data.error || "Erro ao criar cobranca PIX" },
+        { error: data.detail || data.message || data.error || "Erro ao criar cobranca PIX" },
         { status: response.status }
       )
     }
 
-    // Extrair dados PIX da resposta PagouAI
-    const transactionData = data.data || data
-    const transactionId = transactionData.id || ""
-    const pixCode = transactionData.pix?.qrcode || transactionData.pix?.qr_code || transactionData.pix?.brcode || transactionData.pix?.code || ""
+    // Extrair dados PIX da resposta PagouAI (api.pagou.ai/v2)
+    const transactionId = data.id || data.transaction_id || ""
+    const pixCode = data.pix?.qr_code || data.pix?.qrcode || data.pix?.brcode || data.pix?.code || data.qr_code || ""
 
     // Gerar imagem do QR Code via API publica
     const pixQrCodeImage = pixCode
