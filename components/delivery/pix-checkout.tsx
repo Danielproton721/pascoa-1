@@ -184,7 +184,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
   }
 
   // ============================================
-  // PIXEL - Dispara quando QR Code e exibido
+  // PIXEL - Dispara InitiateCheckout quando QR Code e exibido (PIX Pendente)
   // ============================================
   const hasDispatchedPixel = useRef(false)
 
@@ -192,53 +192,42 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     if (step !== "qrcode" || hasDispatchedPixel.current) return
     hasDispatchedPixel.current = true
 
-    const firePixels = () => {
+    const fireInitiateCheckout = () => {
       if (typeof window === "undefined") return
 
       const transactionId = pixData?.transactionId || ""
 
-      console.log("[v0] Disparando pixels - step:", step, "transactionId:", transactionId, "amount:", amount)
-
-      // 1. dataLayer - Google Tag Manager
+      // 1. dataLayer - Google Tag Manager (Inicio de Checkout)
       window.dataLayer = window.dataLayer || []
       window.dataLayer.push({
-        event: "compra_aprovada",
+        event: "begin_checkout",
         transaction_id: transactionId,
         value: amount,
         currency: "BRL",
       })
-      console.log("[v0] dataLayer push realizado")
 
-      // 2. Google Ads - Evento de Conversao
+      // 2. Google Ads - Evento de Inicio de Checkout (NAO e conversao final)
       if (window.gtag) {
-        window.gtag("event", "conversion", {
-          send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
+        window.gtag("event", "begin_checkout", {
           value: amount,
           currency: "BRL",
           transaction_id: transactionId,
         })
-        console.log("[v0] gtag conversion disparado")
       } else {
-        console.log("[v0] gtag NAO disponivel, tentando novamente em 2s...")
-        // Retry apos 2 segundos caso gtag ainda nao tenha carregado
         setTimeout(() => {
           if (window.gtag) {
-            window.gtag("event", "conversion", {
-              send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
+            window.gtag("event", "begin_checkout", {
               value: amount,
               currency: "BRL",
               transaction_id: transactionId,
             })
-            console.log("[v0] gtag conversion disparado (retry)")
-          } else {
-            console.log("[v0] gtag ainda NAO disponivel apos retry")
           }
         }, 2000)
       }
 
-      // 3. Facebook Pixel - Evento de Purchase
+      // 3. Facebook Pixel - Evento de InitiateCheckout (NAO e Purchase)
       if (window.fbq) {
-        window.fbq("track", "Purchase", {
+        window.fbq("track", "InitiateCheckout", {
           value: amount,
           currency: "BRL",
           content_type: "product",
@@ -249,14 +238,11 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
           })),
           num_items: items.reduce((acc, item) => acc + item.quantity, 0),
         })
-        console.log("[v0] fbq Purchase disparado")
-      } else {
-        console.log("[v0] fbq NAO disponivel")
       }
     }
 
     // Pequeno delay para garantir que scripts afterInteractive ja carregaram
-    setTimeout(firePixels, 500)
+    setTimeout(fireInitiateCheckout, 500)
   }, [step, pixData, amount, items])
 
   // ============================================
@@ -268,6 +254,46 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     if (hasDispatchedEvent.current) return
     hasDispatchedEvent.current = true
 
+    const transactionId = pixData?.transactionId || ""
+
+    // ============================================
+    // PIXEL - Dispara Purchase quando PIX e PAGO (Conversao Real)
+    // ============================================
+    
+    // 1. dataLayer - Google Tag Manager (Compra Confirmada)
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: "purchase",
+      transaction_id: transactionId,
+      value: amount,
+      currency: "BRL",
+    })
+
+    // 2. Google Ads - Evento de Conversao (COMPRA REAL)
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
+        value: amount,
+        currency: "BRL",
+        transaction_id: transactionId,
+      })
+    }
+
+    // 3. Facebook Pixel - Evento de Purchase (COMPRA REAL)
+    if (window.fbq) {
+      window.fbq("track", "Purchase", {
+        value: amount,
+        currency: "BRL",
+        content_type: "product",
+        contents: items.map((item, index) => ({
+          id: `product_${index}`,
+          quantity: item.quantity,
+          item_price: item.price,
+        })),
+        num_items: items.reduce((acc, item) => acc + item.quantity, 0),
+      })
+    }
+
     // Remove pedido pendente
     if (pixData?.transactionId) {
       removePendingOrder(pixData.transactionId)
@@ -275,7 +301,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
     // Mostrar tela de sucesso
     setStep("success")
-  }, [pixData])
+  }, [pixData, amount, items])
 
   useEffect(() => {
     if (step !== "qrcode" || !pixData?.transactionId) return
