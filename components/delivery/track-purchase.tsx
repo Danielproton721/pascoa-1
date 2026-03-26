@@ -13,9 +13,20 @@ declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void
     gtag?: (...args: unknown[]) => void
+    dataLayer?: Record<string, unknown>[]
   }
 }
 
+/**
+ * TrackPurchase - Componente para rastrear COMPRAS CONFIRMADAS (PIX Pago)
+ * 
+ * Este componente dispara eventos de conversao APENAS quando o pagamento
+ * foi efetivamente confirmado. NAO usar para PIX pendente.
+ * 
+ * - Google Ads: conversion (Purchase)
+ * - Facebook: Purchase
+ * - DataLayer: purchase
+ */
 export function TrackPurchase({ transactionId, amount, items }: TrackPurchaseProps) {
   const hasTracked = useRef(false)
 
@@ -23,13 +34,40 @@ export function TrackPurchase({ transactionId, amount, items }: TrackPurchasePro
     if (!transactionId) return
 
     // Verifica se ja disparou para essa transacao (protege contra StrictMode e re-renders)
-    const storageKey = `tracked_${transactionId}`
+    const storageKey = `purchase_tracked_${transactionId}`
     if (hasTracked.current || localStorage.getItem(storageKey)) return
     hasTracked.current = true
     localStorage.setItem(storageKey, "true")
 
     // ============================================
-    // FACEBOOK PIXEL - Evento de Purchase
+    // DATALAYER - Evento de Purchase (Compra Confirmada)
+    // ============================================
+    if (typeof window !== "undefined") {
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({
+        event: "purchase",
+        transaction_id: transactionId,
+        value: amount,
+        currency: "BRL",
+      })
+    }
+
+    // ============================================
+    // GOOGLE ADS - Evento de Conversao (COMPRA REAL)
+    // ID: AW-18020237329
+    // Rotulo: ldPtCPrYhowcEJGA3JBD
+    // ============================================
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
+        value: amount,
+        currency: "BRL",
+        transaction_id: transactionId,
+      })
+    }
+
+    // ============================================
+    // FACEBOOK PIXEL - Evento de Purchase (COMPRA REAL)
     // ============================================
     if (typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "Purchase", {
@@ -44,22 +82,6 @@ export function TrackPurchase({ transactionId, amount, items }: TrackPurchasePro
         })),
         num_items: items.reduce((acc, item) => acc + item.quantity, 0),
       })
-      console.log("[v0] Facebook Pixel Purchase disparado:", { amount, items })
-    }
-
-    // ============================================
-    // GOOGLE ADS - Evento de Conversao
-    // ID: AW-18020237329
-    // Rotulo: ldPtCPrYhowcEJGA3JBD
-    // ============================================
-    if (typeof window !== "undefined" && window.gtag) {
-      window.gtag("event", "conversion", {
-        send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
-        value: amount,
-        currency: "BRL",
-        transaction_id: transactionId,
-      })
-      console.log("[v0] Google Ads Conversion disparado:", { amount, transactionId })
     }
   }, [transactionId, amount, items])
 
