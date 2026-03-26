@@ -7,12 +7,40 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import { X, Copy, Check, Loader2, QrCode, AlertCircle, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { createClient } from "@supabase/supabase-js"
 
-// Cliente Supabase para rastreamento de conversoes
-const supabaseUrl = "https://pkoytgtcquyuimnbpnhv.supabase.co"
-const supabaseKey = "sb_publishable_3Eucjr7Aa9uTacp4PhA-_Q_UCOFcgqq"
-const supabase = createClient(supabaseUrl, supabaseKey)
+// Configuracao Supabase para rastreamento de conversoes (usando REST API direto)
+const SUPABASE_URL = "https://pkoytgtcquyuimnbpnhv.supabase.co"
+const SUPABASE_KEY = "sb_publishable_3Eucjr7Aa9uTacp4PhA-_Q_UCOFcgqq"
+
+// Funcao helper para inserir dados no Supabase via REST API
+async function supabaseInsert(table: string, data: Record<string, unknown>) {
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_KEY,
+      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "Prefer": "return=representation"
+    },
+    body: JSON.stringify(data)
+  })
+  return response.json()
+}
+
+// Funcao helper para atualizar dados no Supabase via REST API
+async function supabaseUpdate(table: string, data: Record<string, unknown>, column: string, value: string) {
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${column}=eq.${value}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_KEY,
+      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "Prefer": "return=representation"
+    },
+    body: JSON.stringify(data)
+  })
+  return response.json()
+}
 
 declare global {
   interface Window {
@@ -180,39 +208,19 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
       // SUPABASE - Registrar conversao como PENDING
       // ============================================
       try {
-        const clickId = localStorage.getItem("sd_click_id")
-        console.log("[v0] click_id do localStorage:", clickId)
+        // Pega o ID do clique que o rastreador salvou no navegador
+        const savedClickId = localStorage.getItem("sd_click_id")
         
-        const insertData: {
-          external_order_id: string
-          amount: number
-          status: string
-          click_id?: number
-        } = {
+        const insertData: Record<string, unknown> = {
           external_order_id: newPixData.transactionId,
           amount: amount,
           status: "pending",
+          click_id: savedClickId || null // Envia o click_id como string ou null
         }
         
-        // Somente adiciona click_id se existir e for um numero valido
-        if (clickId && !isNaN(Number(clickId))) {
-          insertData.click_id = Number(clickId)
-        }
-        
-        console.log("[v0] Dados para Supabase conversions:", insertData)
-        
-        const { data: insertResult, error: insertError } = await supabase
-          .from("conversions")
-          .insert([insertData])
-          .select()
-        
-        if (insertError) {
-          console.error("[v0] Erro ao inserir conversao:", insertError)
-        } else {
-          console.log("[v0] Conversao inserida com sucesso:", insertResult)
-        }
+        await supabaseInsert("conversions", insertData)
       } catch (err) {
-        console.error("[v0] Erro ao registrar conversao no Supabase:", err)
+        console.error("[Supabase] Erro ao registrar conversao:", err)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao processar pagamento")
@@ -343,15 +351,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     // SUPABASE - Atualizar conversao para PAID
     // ============================================
     if (transactionId) {
-      supabase
-        .from("conversions")
-        .update({ status: "paid" })
-        .eq("external_order_id", transactionId)
-        .then(({ error }) => {
-          if (error) {
-            console.error("[v0] Erro ao atualizar conversao no Supabase:", error)
-          }
-        })
+      supabaseUpdate("conversions", { status: "paid" }, "external_order_id", transactionId)
+        .catch((err) => console.error("[Supabase] Erro ao atualizar conversao:", err))
     }
 
     // Remove pedido pendente
