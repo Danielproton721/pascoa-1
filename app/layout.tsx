@@ -64,46 +64,89 @@ export default function RootLayout({
           />
         </noscript>
         {/* Supabase SDK para rastreamento de cliques */}
-        <Script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" strategy="afterInteractive" />
+        <Script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" strategy="beforeInteractive" />
         {/* Script de rastreamento de UTMs e GCLID */}
         <Script id="track-arrival" strategy="afterInteractive">
           {`
             (function() {
+              var retryCount = 0;
+              var maxRetries = 50;
+              
               function initTracking() {
-                if (typeof supabase === 'undefined') {
-                  setTimeout(initTracking, 100);
+                if (typeof supabase === 'undefined' || typeof supabase.createClient !== 'function') {
+                  retryCount++;
+                  if (retryCount < maxRetries) {
+                    setTimeout(initTracking, 100);
+                  }
                   return;
                 }
                 
-                const _supabase = supabase.createClient(
+                var _supabase = supabase.createClient(
                   'https://pkoytgtcquyuimnbpnhv.supabase.co', 
                   'sb_publishable_3Eucjr7Aa9uTacp4PhA-_Q_UCOFcgqq'
                 );
 
-                async function trackArrival() {
-                  const urlParams = new URLSearchParams(window.location.search);
-                  const gclid = urlParams.get('gclid');
+                // Funcao para rastrear chegada (cliques)
+                async function track() {
+                  var urlParams = new URLSearchParams(window.location.search);
+                  var gclid = urlParams.get('gclid');
                   
                   // Só registra se tiver vindo de um anúncio (GCLID ou UTM)
                   if (gclid || urlParams.get('utm_source')) {
-                    const { data, error } = await _supabase.from('clicks').insert([{
-                      gclid: gclid,
-                      utm_source: urlParams.get('utm_source'),
-                      utm_medium: urlParams.get('utm_medium'),
-                      utm_campaign: urlParams.get('utm_campaign'),
-                      utm_term: urlParams.get('utm_term'),
-                      page_url: window.location.href,
-                      referrer: document.referrer
-                    }]).select();
+                    try {
+                      var result = await _supabase.from('clicks').insert([{
+                        gclid: gclid,
+                        utm_source: urlParams.get('utm_source'),
+                        utm_medium: urlParams.get('utm_medium'),
+                        utm_campaign: urlParams.get('utm_campaign'),
+                        utm_content: urlParams.get('utm_content'),
+                        utm_term: urlParams.get('utm_term'),
+                        page_url: window.location.href,
+                        referrer: document.referrer
+                      }]).select();
 
-                    if (data && data[0]) {
-                      // Guarda o ID do clique no navegador do cliente para usar na hora do Pix
-                      localStorage.setItem('sd_click_id', data[0].id);
+                      if (result.data && result.data[0]) {
+                        // Guarda o ID do clique no navegador do cliente para usar na hora do Pix
+                        localStorage.setItem('sd_click_id', result.data[0].id);
+                      }
+                    } catch (err) {
+                      console.error('Erro ao rastrear clique:', err);
                     }
                   }
                 }
 
-                trackArrival();
+                // Funcao para registrar venda (conversao)
+                window.registrarVenda = async function(orderId, amount) {
+                  var clickId = localStorage.getItem('sd_click_id');
+                  
+                  try {
+                    // Dispara evento de conversao do Google Ads
+                    if (typeof gtag === 'function') {
+                      gtag('event', 'purchase', {
+                        send_to: 'AW-18020237329/ldPtCPrYhowcEJGA3JBD',
+                        value: amount,
+                        currency: 'BRL',
+                        transaction_id: orderId
+                      });
+                    }
+                    
+                    // Registra conversao no Supabase
+                    var result = await _supabase.from('conversions').insert([{
+                      external_order_id: orderId,
+                      click_id: clickId ? parseInt(clickId) : null,
+                      amount: amount,
+                      currency: 'BRL',
+                      status: 'completed'
+                    }]).select();
+                    
+                    return result;
+                  } catch (err) {
+                    console.error('Erro ao registrar venda:', err);
+                    return { error: err };
+                  }
+                };
+
+                track();
               }
               
               initTracking();
