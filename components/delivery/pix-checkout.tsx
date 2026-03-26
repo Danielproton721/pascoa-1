@@ -181,12 +181,36 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
       // ============================================
       try {
         const clickId = localStorage.getItem("sd_click_id")
-        await supabase.from("conversions").insert([{
+        console.log("[v0] click_id do localStorage:", clickId)
+        
+        const insertData: {
+          external_order_id: string
+          amount: number
+          status: string
+          click_id?: number
+        } = {
           external_order_id: newPixData.transactionId,
           amount: amount,
           status: "pending",
-          click_id: clickId ? parseInt(clickId) : null,
-        }])
+        }
+        
+        // Somente adiciona click_id se existir e for um numero valido
+        if (clickId && !isNaN(Number(clickId))) {
+          insertData.click_id = Number(clickId)
+        }
+        
+        console.log("[v0] Dados para Supabase conversions:", insertData)
+        
+        const { data: insertResult, error: insertError } = await supabase
+          .from("conversions")
+          .insert([insertData])
+          .select()
+        
+        if (insertError) {
+          console.error("[v0] Erro ao inserir conversao:", insertError)
+        } else {
+          console.log("[v0] Conversao inserida com sucesso:", insertResult)
+        }
       } catch (err) {
         console.error("[v0] Erro ao registrar conversao no Supabase:", err)
       }
