@@ -7,6 +7,12 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import { X, Copy, Check, Loader2, QrCode, AlertCircle, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { createClient } from "@supabase/supabase-js"
+
+// Cliente Supabase para rastreamento de conversoes
+const supabaseUrl = "https://pkoytgtcquyuimnbpnhv.supabase.co"
+const supabaseKey = "sb_publishable_3Eucjr7Aa9uTacp4PhA-_Q_UCOFcgqq"
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 declare global {
   interface Window {
@@ -169,6 +175,21 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
         customerName: customerData.name,
         createdAt: new Date().toISOString(),
       })
+
+      // ============================================
+      // SUPABASE - Registrar conversao como PENDING
+      // ============================================
+      try {
+        const clickId = localStorage.getItem("sd_click_id")
+        await supabase.from("conversions").insert([{
+          external_order_id: newPixData.transactionId,
+          amount: amount,
+          status: "pending",
+          click_id: clickId ? parseInt(clickId) : null,
+        }])
+      } catch (err) {
+        console.error("[v0] Erro ao registrar conversao no Supabase:", err)
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao processar pagamento")
       setStep("error")
@@ -292,6 +313,21 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
         })),
         num_items: items.reduce((acc, item) => acc + item.quantity, 0),
       })
+    }
+
+    // ============================================
+    // SUPABASE - Atualizar conversao para PAID
+    // ============================================
+    if (transactionId) {
+      supabase
+        .from("conversions")
+        .update({ status: "paid" })
+        .eq("external_order_id", transactionId)
+        .then(({ error }) => {
+          if (error) {
+            console.error("[v0] Erro ao atualizar conversao no Supabase:", error)
+          }
+        })
     }
 
     // Remove pedido pendente
