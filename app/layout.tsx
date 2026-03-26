@@ -63,6 +63,53 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+        {/* Supabase SDK para rastreamento de cliques */}
+        <Script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" strategy="afterInteractive" />
+        {/* Script de rastreamento de UTMs e GCLID */}
+        <Script id="track-arrival" strategy="afterInteractive">
+          {`
+            (function() {
+              function initTracking() {
+                if (typeof supabase === 'undefined') {
+                  setTimeout(initTracking, 100);
+                  return;
+                }
+                
+                const _supabase = supabase.createClient(
+                  'https://pkoytgtcquyuimnbpnhv.supabase.co', 
+                  'sb_publishable_3Eucjr7Aa9uTacp4PhA-_Q_UCOFcgqq'
+                );
+
+                async function trackArrival() {
+                  const urlParams = new URLSearchParams(window.location.search);
+                  const gclid = urlParams.get('gclid');
+                  
+                  // Só registra se tiver vindo de um anúncio (GCLID ou UTM)
+                  if (gclid || urlParams.get('utm_source')) {
+                    const { data, error } = await _supabase.from('clicks').insert([{
+                      gclid: gclid,
+                      utm_source: urlParams.get('utm_source'),
+                      utm_medium: urlParams.get('utm_medium'),
+                      utm_campaign: urlParams.get('utm_campaign'),
+                      utm_term: urlParams.get('utm_term'),
+                      page_url: window.location.href,
+                      referrer: document.referrer
+                    }]).select();
+
+                    if (data && data[0]) {
+                      // Guarda o ID do clique no navegador do cliente para usar na hora do Pix
+                      localStorage.setItem('sd_click_id', data[0].id);
+                    }
+                  }
+                }
+
+                trackArrival();
+              }
+              
+              initTracking();
+            })();
+          `}
+        </Script>
       </head>
       <body className={`font-sans antialiased`}>
         <LocationGuard>
