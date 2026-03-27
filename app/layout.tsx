@@ -65,91 +65,57 @@ export default function RootLayout({
         </noscript>
         {/* Supabase SDK para rastreamento de cliques */}
         <Script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" strategy="beforeInteractive" />
-        {/* Script de rastreamento de UTMs e GCLID */}
-        <Script id="track-arrival" strategy="afterInteractive">
+        {/* Supabase Tracker */}
+        <Script id="supabase-tracker" strategy="afterInteractive">
           {`
             (function() {
               var retryCount = 0;
               var maxRetries = 50;
               
-              function initTracking() {
+              function initTracker() {
                 if (typeof supabase === 'undefined' || typeof supabase.createClient !== 'function') {
                   retryCount++;
                   if (retryCount < maxRetries) {
-                    setTimeout(initTracking, 100);
+                    setTimeout(initTracker, 100);
                   }
                   return;
                 }
                 
-                var _supabase = supabase.createClient(
-                  'https://pkoytgtcquyuimnbpnhv.supabase.co', 
-                  'sb_publishable_3Eucjr7Aa9uTacp4PhA-_Q_UCOFcgqq'
-                );
+                var SUPABASE_URL = "https://pkoytgtcquyuimnbpnhv.supabase.co";
+                var SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrb3l0Z3RjcXV5dWltbmJwbmh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0OTgwNTIsImV4cCI6MjA5MDA3NDA1Mn0.d2zuq96KRF_3KK6JgTCzLoPtvfQtOpJm8G_JkWcvouI";
+                var _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-                // Funcao para rastrear chegada (cliques)
                 async function track() {
-                  var urlParams = new URLSearchParams(window.location.search);
-                  var gclid = urlParams.get('gclid');
+                  var url = new URLSearchParams(window.location.search);
                   
-                  // Só registra se tiver vindo de um anúncio (GCLID ou UTM)
-                  if (gclid || urlParams.get('utm_source')) {
-                    try {
-                      var result = await _supabase.from('clicks').insert([{
-                        gclid: gclid,
-                        utm_source: urlParams.get('utm_source'),
-                        utm_medium: urlParams.get('utm_medium'),
-                        utm_campaign: urlParams.get('utm_campaign'),
-                        utm_content: urlParams.get('utm_content'),
-                        utm_term: urlParams.get('utm_term'),
-                        page_url: window.location.href,
-                        referrer: document.referrer
-                      }]).select();
+                  // Capturamos todos os parâmetros compatíveis com o Supabase
+                  if(url.has('utm_source') || url.has('gclid')) {
+                    // Tratamento dinâmico para sufixos avançados do Google Ads
+                    var termoPesquisa = url.get('utm_term') || '';
+                    if (url.has('matchtype')) termoPesquisa += ' [' + url.get('matchtype') + ']';
+                    if (url.has('device')) termoPesquisa += ' | ' + url.get('device');
 
-                      if (result.data && result.data[0]) {
-                        // Guarda o ID do clique no navegador do cliente para usar na hora do Pix
-                        localStorage.setItem('sd_click_id', result.data[0].id);
-                      }
-                    } catch (err) {
-                      console.error('Erro ao rastrear clique:', err);
+                    var result = await _supabase.from('clicks').insert([{
+                      utm_source: url.get('utm_source') || 'google',
+                      utm_medium: url.get('utm_medium') || 'cpc',
+                      utm_campaign: url.get('utm_campaign'),
+                      utm_content: url.get('utm_content'),
+                      utm_term: termoPesquisa,
+                      gclid: url.get('gclid'),
+                      page_url: window.location.href,
+                      referrer: document.referrer
+                    }]).select();
+                    
+                    if (result.data && result.data[0]) {
+                      localStorage.setItem('sd_click_id', result.data[0].id);
                     }
                   }
                 }
-
-                // Funcao para registrar venda (conversao)
-                window.registrarVenda = async function(orderId, amount) {
-                  var clickId = localStorage.getItem('sd_click_id');
-                  
-                  try {
-                    // Dispara evento de conversao do Google Ads
-                    if (typeof gtag === 'function') {
-                      gtag('event', 'purchase', {
-                        send_to: 'AW-18020237329/ldPtCPrYhowcEJGA3JBD',
-                        value: amount,
-                        currency: 'BRL',
-                        transaction_id: orderId
-                      });
-                    }
-                    
-                    // Registra conversao no Supabase
-                    var result = await _supabase.from('conversions').insert([{
-                      external_order_id: orderId,
-                      click_id: clickId ? parseInt(clickId) : null,
-                      amount: amount,
-                      currency: 'BRL',
-                      status: 'completed'
-                    }]).select();
-                    
-                    return result;
-                  } catch (err) {
-                    console.error('Erro ao registrar venda:', err);
-                    return { error: err };
-                  }
-                };
-
+                
                 track();
               }
               
-              initTracking();
+              initTracker();
             })();
           `}
         </Script>
