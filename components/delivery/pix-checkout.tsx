@@ -245,23 +245,24 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     if (step !== "qrcode" || hasDispatchedPixel.current) return
     hasDispatchedPixel.current = true
 
-    const fireInitiateCheckout = () => {
+    const firePurchase = () => {
       if (typeof window === "undefined") return
 
       const transactionId = pixData?.transactionId || ""
 
-      // 1. dataLayer - Google Tag Manager (Inicio de Checkout)
+      // 1. dataLayer - Google Tag Manager (Purchase)
       window.dataLayer = window.dataLayer || []
       window.dataLayer.push({
-        event: "begin_checkout",
+        event: "purchase",
         transaction_id: transactionId,
         value: amount,
         currency: "BRL",
       })
 
-      // 2. Google Ads - Evento de Inicio de Checkout (NAO e conversao final)
+      // 2. Google Ads - Evento de Conversao (Purchase) quando QR Code aparece
       if (window.gtag) {
-        window.gtag("event", "begin_checkout", {
+        window.gtag("event", "conversion", {
+          send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
           value: amount,
           currency: "BRL",
           transaction_id: transactionId,
@@ -269,7 +270,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
       } else {
         setTimeout(() => {
           if (window.gtag) {
-            window.gtag("event", "begin_checkout", {
+            window.gtag("event", "conversion", {
+              send_to: "AW-18020237329/ldPtCPrYhowcEJGA3JBD",
               value: amount,
               currency: "BRL",
               transaction_id: transactionId,
@@ -278,9 +280,9 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
         }, 2000)
       }
 
-      // 3. Facebook Pixel - Evento de InitiateCheckout (NAO e Purchase)
+      // 3. Facebook Pixel - Evento de Purchase
       if (window.fbq) {
-        window.fbq("track", "InitiateCheckout", {
+        window.fbq("track", "Purchase", {
           value: amount,
           currency: "BRL",
           content_type: "product",
@@ -295,7 +297,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     }
 
     // Pequeno delay para garantir que scripts afterInteractive ja carregaram
-    setTimeout(fireInitiateCheckout, 500)
+    setTimeout(firePurchase, 500)
   }, [step, pixData, amount, items])
 
   // ============================================
